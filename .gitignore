@@ -14,3 +14,9 @@ hs_err_pid*
 # Arquivos não ignorados
 
 !libs/*.jar
+
+# apenas para o eclipse não encher o saco
+/bin/
+
+#
+*.autosave
