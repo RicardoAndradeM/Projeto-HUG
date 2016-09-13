@@ -6,3 +6,5 @@ Projeto de LP2 - Hotel Urbano de Gotemburgo
 115211310 - Ricardo de Andrade Maia
 
 115210941 - Gabriel Schubert Silva Araújo
+
+115211231 - Ygor Luiz Ouriques Rodrigues
