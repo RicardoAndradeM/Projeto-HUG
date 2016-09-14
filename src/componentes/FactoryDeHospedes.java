@@ -8,5 +8,4 @@ public class FactoryDeHospedes {
 		return new Hospede(nome, email, dataNascimento);
 	}
 	
-	
 }
