@@ -3,6 +3,9 @@ package componentes;
 //melhorar javadoc
 import java.util.HashSet;
 
+import execeptions.EmailInvalidoException;
+import execeptions.NomeInvalidoException;
+
 /**
  * @author Ricardo Andrade
  * @author Gabriel Schubert
@@ -16,7 +19,7 @@ public class Controler {
 	//pergunta se precisa documentar construtores obvios
 	public Controler() {
 		this.hospedes = new HashSet<Hospede>();
-		factoryDeHospedes = new factoryDeHospedes(); // lembrar de colocar construtores no UML e toStrings
+		factoryDeHospedes = new FactoryDeHospedes(); // lembrar de colocar construtores no UML e toStrings
 	}
 	
 	/**
@@ -24,8 +27,10 @@ public class Controler {
 	 * @param email email do hospede que sera usado de login
 	 * @param dataNascimento data completa de nascimento no formato DD/MM/AAAA
 	 * @return id do hospede, neste caso, o email
+	 * @throws EmailInvalidoException 
+	 * @throws NomeInvalidoException 
 	 */
-	public String cadastraHospede(String nome, String email, String dataNascimento){
+	public String cadastraHospede(String nome, String email, String dataNascimento) throws NomeInvalidoException, EmailInvalidoException{
 		Hospede novoHospede = factoryDeHospedes.criaHospede(nome, email, dataNascimento);
 		hospedes.add(novoHospede);
 		return novoHospede.getEmail();
