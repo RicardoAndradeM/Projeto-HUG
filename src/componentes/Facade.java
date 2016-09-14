@@ -22,7 +22,7 @@ public class Facade {
 	public String getInfoHospede(String email, String atributo){
 		return controller.getInfoHospede(email, atributo);
 	}
-	public void atualizaCadastro(String id, String atributo, String valor){
+	public void atualizaCadastro(String id, String atributo, String valor) throws EmailInvalidoException, NomeInvalidoException{
 		controller.atualizaCadastro(id, atributo, valor);
 	}
 	public boolean removeHospede(String email){
