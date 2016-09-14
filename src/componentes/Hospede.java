@@ -58,7 +58,7 @@ public class Hospede {
 		}
 		
 		if(quantidadeDeArrobas != 1 || quantidadeDePontos < 1){
-			throw new EmailInvalidoException("Email invalido");
+			throw new EmailInvalidoException("Formato de email invalido");
 		}
 	}
 	

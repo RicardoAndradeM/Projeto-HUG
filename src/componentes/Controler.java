@@ -50,14 +50,17 @@ public class Controler {
 			return hospede.getDataNascimento();
 		}
 		// erro se atributo estiver errado
+		return null; //adicionar o erro aqui ainda.
 	}
 
 	/**
 	 * @param id email do hospede
 	 * @param atributo informacao a ser atualizado
 	 * @param valor novo valor
+	 * @throws EmailInvalidoException 
+	 * @throws NomeInvalidoException 
 	 */
-	public void atualizaCadastro(String id, String atributo, String valor){
+	public void atualizaCadastro(String id, String atributo, String valor) throws EmailInvalidoException, NomeInvalidoException{
 		Hospede hospede = this.buscaHospede(id);
 		if(atributo.equals("nome")){
 			hospede.setNome(valor);
@@ -91,6 +94,7 @@ public class Controler {
 			}
 		}
 		// erro caso nao encontre hospede
+		return null;
 	}
 
 	@Override
