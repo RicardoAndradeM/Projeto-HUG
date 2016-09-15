@@ -1,0 +1,4 @@
+lembrar de:
+	comoar tostring, equals, hashcode e delegar metodos
+	perguntas se devo colocar metodos delegados no uml
+	perguntar sobre polimorfismo na estadia no checkout checkout
