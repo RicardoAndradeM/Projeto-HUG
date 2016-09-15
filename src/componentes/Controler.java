@@ -1,10 +1,15 @@
 package componentes;
 
 //melhorar javadoc
+//lembra de colocar tostring hashcod e eguals no UML
+//4 - perguntar se é boa pratica manter o nome dos parametros iguais e se precisam ser iguais aos testes
 import java.util.HashSet;
 
 import execeptions.EmailInvalidoException;
+import execeptions.HospedeNaoEncontradoException;
+import execeptions.NomeDeAtributoInvalidoException;
 import execeptions.NomeInvalidoException;
+import execeptions.dataNascimentoInvalidaException;
 
 /**
  * @author Ricardo Andrade
@@ -16,10 +21,9 @@ public class Controler {
 	private HashSet<Hospede> hospedes;
 	private FactoryDeHospedes factoryDeHospedes;
 	
-	//pergunta se precisa documentar construtores obvios
 	public Controler() {
 		this.hospedes = new HashSet<Hospede>();
-		factoryDeHospedes = new FactoryDeHospedes(); // lembrar de colocar construtores no UML e toStrings
+		factoryDeHospedes = new FactoryDeHospedes();
 	}
 	
 	/**
@@ -29,8 +33,9 @@ public class Controler {
 	 * @return id do hospede, neste caso, o email
 	 * @throws EmailInvalidoException 
 	 * @throws NomeInvalidoException 
+	 * @throws dataNascimentoInvalidaException 
 	 */
-	public String cadastraHospede(String nome, String email, String dataNascimento) throws NomeInvalidoException, EmailInvalidoException{
+	public String cadastraHospede(String nome, String email, String dataNascimento) throws NomeInvalidoException, EmailInvalidoException, dataNascimentoInvalidaException{
 		Hospede novoHospede = factoryDeHospedes.criaHospede(nome, email, dataNascimento);
 		hospedes.add(novoHospede);
 		return novoHospede.getEmail();
@@ -40,8 +45,10 @@ public class Controler {
 	 * @param id email do hospede
 	 * @param atributo informacao a ser consultada
 	 * @return informacao solicitada
+	 * @throws NomeDeAtributoInvalidoException 
+	 * @throws HospedeNaoEncontradoException 
 	 */
-	public String getInfoHospede(String id, String atributo){
+	public String getInfoHospede(String id, String atributo) throws NomeDeAtributoInvalidoException, HospedeNaoEncontradoException{
 		Hospede hospede = this.buscaHospede(id);
 		if(atributo.equals("nome")){
 			return hospede.getNome();
@@ -49,8 +56,7 @@ public class Controler {
 		if(atributo.equals("Data de Nascimento")){
 			return hospede.getDataNascimento();
 		}
-		// erro se atributo estiver errado
-		return null; //adicionar o erro aqui ainda.
+		throw new NomeDeAtributoInvalidoException("Atributo nao existe");
 	}
 
 	/**
@@ -59,8 +65,11 @@ public class Controler {
 	 * @param valor novo valor
 	 * @throws EmailInvalidoException 
 	 * @throws NomeInvalidoException 
+	 * @throws dataNascimentoInvalidaException 
+	 * @throws NomeDeAtributoInvalidoException 
+	 * @throws HospedeNaoEncontradoException 
 	 */
-	public void atualizaCadastro(String id, String atributo, String valor) throws EmailInvalidoException, NomeInvalidoException{
+	public void atualizaCadastro(String id, String atributo, String valor) throws EmailInvalidoException, NomeInvalidoException, dataNascimentoInvalidaException, NomeDeAtributoInvalidoException, HospedeNaoEncontradoException{
 		Hospede hospede = this.buscaHospede(id);
 		if(atributo.equals("nome")){
 			hospede.setNome(valor);
@@ -71,30 +80,30 @@ public class Controler {
 		if(atributo.equals("Data de Nascimento")){
 			hospede.setEmail(valor);
 		}
-		//erro se atributo estiver errado
+		throw new NomeDeAtributoInvalidoException("Atributo nao existe");
 	}
 	
-	// perguntar se é boa pratica manter o nome dos parametros iguais e se precisam ser iguais aos testes
 	/**
 	 * @param email email do hospede
 	 * @return retorna verdadeiro caso seja concluido com sucesso
+	 * @throws HospedeNaoEncontradoException 
 	 */
-	public boolean removeHospede(String email){
+	public boolean removeHospede(String email) throws HospedeNaoEncontradoException{
 		return hospedes.remove(this.buscaHospede(email));
 	}
 	
 	/**
 	 * @param id email do hospede
 	 * @return retorna o hospede buscado
+	 * @throws HospedeNaoEncontradoException 
 	 */
-	public Hospede buscaHospede(String id) {
+	public Hospede buscaHospede(String id) throws HospedeNaoEncontradoException {
 		for (Hospede hospede : hospedes) {
 			if(hospede.getEmail().equals(id)){
 				return hospede;
 			}
 		}
-		// erro caso nao encontre hospede
-		return null;
+		throw new HospedeNaoEncontradoException("hospede não encontrado");
 	}
 
 	@Override
