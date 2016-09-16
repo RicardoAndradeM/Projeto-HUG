@@ -6,7 +6,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import execeptions.EmailInvalidoException;
+import execeptions.HospedeNaoEncontradoException;
+import execeptions.NomeDeAtributoInvalidoException;
 import execeptions.NomeInvalidoException;
+import execeptions.dataNascimentoInvalidaException;
 
 public class ControlerTest {
 
@@ -19,7 +22,7 @@ public class ControlerTest {
 	}
 
 	@Test
-	public void testCadastraHospede() throws NomeInvalidoException, EmailInvalidoException {
+	public void testCadastraHospede() throws NomeInvalidoException, EmailInvalidoException, dataNascimentoInvalidaException {
 		
 		//Caso de criacao Simples
 		assertEquals("felipe@gmail.com.br",controler.cadastraHospede("Felipe", "felipe@gmail.com.br", "21/02/1995")	);
@@ -84,25 +87,25 @@ public class ControlerTest {
 	}
 
 	@Test
-	public void testGetInfoHospede() {
+	public void testGetInfoHospede() throws NomeDeAtributoInvalidoException, HospedeNaoEncontradoException {
 		assertEquals("Marieta", controler.getInfoHospede("marieta@gmail.com", "nome"));
 		assertEquals("01/01/1992", controler.getInfoHospede("marieta@gmail.com", "Data de Nascimento"));
 	}
 
 	@Test
-	public void testAtualizaCadastro() throws EmailInvalidoException, NomeInvalidoException {
+	public void testAtualizaCadastro() throws EmailInvalidoException, NomeInvalidoException, dataNascimentoInvalidaException, NomeDeAtributoInvalidoException, HospedeNaoEncontradoException {
 		controler.atualizaCadastro("marieta@gmail.com","nome", "Mario");
 		assertEquals("Mario", controler.getInfoHospede("marieta@gmail.com", "nome"));
 	}
 
 	@Test
-	public void testRemoveHospede() {
+	public void testRemoveHospede() throws HospedeNaoEncontradoException {
 		controler.removeHospede("marieta@gmail.com");
 		assertEquals(null, controler.buscaHospede("marieta@gmail.com"));
 	}
 
 	@Test
-	public void testBuscaHospede() {
+	public void testBuscaHospede() throws HospedeNaoEncontradoException {
 		Hospede marieta = controler.buscaHospede("marieta@gmail.com");
 		assertEquals("Marieta",marieta.getNome());
 	}
