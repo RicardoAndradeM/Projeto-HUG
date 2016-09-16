@@ -59,21 +59,21 @@ public class ControlerTest {
 		
 		try {
 			controler.cadastraHospede("Ronaldo", "", "22/05/1986");	
-			fail("O e-mail não deveria ser aceito, jah que eh vazio");
+			fail("O e-mail nao deveria ser aceito, jah que eh vazio");
 		} catch (EmailInvalidoException e) {
 			assertEquals("email nao pode ser vazio ou nulo", e.getMessage());
 		}
 		
 		try {
 			controler.cadastraHospede("Pedrinho", null, "22/05/1986");	
-			fail("O e-mail não deveria ser aceito, jah que eh null");
+			fail("O e-mail nao deveria ser aceito, jah que eh null");
 		} catch (EmailInvalidoException e) {
 			assertEquals("email nao pode ser vazio ou nulo", e.getMessage());
 		}
 		
 		try {
 			controler.cadastraHospede("Osho", "     ", "22/05/1986");	
-			fail("O e-mail não deveria ser aceito, jah que possui somente espacos");
+			fail("O e-mail nao deveria ser aceito, jah que possui somente espacos");
 		} catch (EmailInvalidoException e) {
 			assertEquals("Formato de email invalido", e.getMessage());
 		}
