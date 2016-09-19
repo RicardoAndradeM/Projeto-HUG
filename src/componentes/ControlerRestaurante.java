@@ -37,7 +37,7 @@ public class ControlerRestaurante {
 			}
 	}
 	
-	public boolean cadastraRefeicao(String nome, String descricao, Prato primeiroPrato, Prato segundoPrato, Prato terceiroPrato, Prato quartoPrato){
+	public boolean cadastraRefeicao(String nome, String descricao, Prato primeiroPrato, Prato segundoPrato, Prato terceiroPrato, Prato quartoPrato) throws Exception{
 		if (! (buscaRefeicao(nome)==null)){
 			throw new Exception("Refeicao jah esta cadastrada");
 		}else{
