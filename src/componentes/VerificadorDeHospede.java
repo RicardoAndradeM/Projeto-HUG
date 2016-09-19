@@ -8,7 +8,7 @@ public class VerificadorDeHospede {
 	
 	public void verificaNome(String nome) throws NomeInvalidoException{
 		if(nome == null || nome.equals("")){
-			throw new NomeInvalidoException("Nome nao pode ser vazio ou nulo");
+			throw new NomeInvalidoException("Erro no cadastro de Hospede. Nome do(a) hospede nao pode ser vazio.");
 		}
 		
 		// verificando se o nome é apenas um string de espacos
@@ -17,17 +17,17 @@ public class VerificadorDeHospede {
 				return;				
 			}
 		}
-		throw new NomeInvalidoException("Formato de nome invalido");
+		throw new NomeInvalidoException("Erro no cadastro de Hospede. Nome do(a) hospede nao pode ser vazio.");
 	}
 	
 	public void verificaEmail(String email) throws EmailInvalidoException{
 		if(email == null || email.equals("")){
-			throw new EmailInvalidoException("Nome nao pode ser vazio ou nulo");
+			throw new EmailInvalidoException("Erro no cadastro de Hospede. Email do(a) hospede nao pode ser vazio.");
 		}
 		
 		// verificando se o email tem um usuario(antes do @) e um dominio(depois do @)
 		if(email.charAt(0) == '@' || email.charAt(0) == '.' || email.charAt(email.length()-1) == '@' || email.charAt(email.length()-1) == '.'){
-			throw new EmailInvalidoException("Formato de email invalido");
+			throw new EmailInvalidoException("Erro no cadastro de Hospede. Email do(a) hospede esta invalido.");
 		}
 		boolean hasArroba = false;
 		boolean hasPonto = false;
@@ -38,7 +38,7 @@ public class VerificadorDeHospede {
 				}
 			} else {
 				if(email.charAt(letra) == '@'){
-					throw new EmailInvalidoException("Formato de email invalido");
+					throw new EmailInvalidoException("Erro no cadastro de Hospede. Email do(a) hospede esta invalido.");
 				} else if (email.charAt(letra) == '.') {
 					hasPonto = true;
 				}

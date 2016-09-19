@@ -26,10 +26,6 @@ public class ControlerRecepcao {
 		factoryDeHospedes = new FactoryDeHospedes();
 	}
 	
-	public void iniciaSistema(){
-		
-	}
-	
 	/**
 	 * @param nome nome do hospede
 	 * @param email email do hospede que sera usado de logind
@@ -107,10 +103,6 @@ public class ControlerRecepcao {
 			}
 		}
 		throw new HospedeNaoEncontradoException(String.format("Erro na consulta de hospede. Hospede de email %s nao foi cadastrado(a).", id));
-	}
-	
-	public void fechaSistema(){
-		
 	}
 	
 }
