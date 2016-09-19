@@ -1,6 +1,7 @@
 package enums;
 
 public enum TipoDeQuarto {
+	
 	SIMPLES(100),
 	LUXO(250),
 	PRESIDENCIAL(450);

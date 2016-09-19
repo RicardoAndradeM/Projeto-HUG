@@ -1,0 +1,10 @@
+TipoDeQuarto
+	-Documentar
+Hospede
+	-toString
+	-documerntar e javadoc
+	-teste
+controlerRecpcao
+	-toString
+	-documetnar e javadoc
+	-teste

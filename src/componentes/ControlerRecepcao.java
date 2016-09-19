@@ -25,8 +25,8 @@ import sun.nio.cs.HistoricallyNamedCharset;
  */
 public class ControlerRecepcao {
 	private HashSet<Hospede> hospedes;
-	private FactoryDeHospedes factoryDeHospedes;
 	private ArrayList<Checkout> historicoDeCheckout;
+	private FactoryDeHospedes factoryDeHospedes;
 	private FactoryDeQuarto factoryDeQuarto;
 	private FactoryDeEstadia factoryDeEstadia;
 	
