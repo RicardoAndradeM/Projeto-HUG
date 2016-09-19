@@ -6,6 +6,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import execeptions.NomeDeAtributoInvalidoException;
+
 public class ControlerRestauranteTest {
 	ControlerRestaurante restaurante;
 	Prato burger1;
@@ -17,11 +19,13 @@ public class ControlerRestauranteTest {
 	@Before
 	public void setUp() throws Exception {
 		restaurante = new ControlerRestaurante();
+		
 		burger1 = new Prato("Burger1", 8.00, "Burger de carne");
 		burger2 = new Prato("Burger2", 8.00, "Burger de Frango");
 		burger3 = new Prato("Burger3", 16.00, "Burger de Bode");
 		burger4 = new Prato("Burger4", 80.0, "Burger de Rolinha");
-		engorda1 = new Refeicao("Engorda", "Fique gordinho", burger4, burger4, burger4, burger4);
+		
+		restaurante.cadastraRefeicao("engorda1", "Fique gordinho", burger4, burger4, burger4, burger4);
 	}
 
 	@Test
@@ -57,18 +61,21 @@ public class ControlerRestauranteTest {
 
 	@Test
 	public void testAtualizaRefeicao() throws Exception {
-			restaurante.atualizaRefeicao("Engorda", "nome", "Vida curta");
+			restaurante.atualizaRefeicao("engorda1", "nome", "Vida curta");
+			assertEquals("Vida curta", restaurante.buscaRefeicao("Vida curta").getNome());
 			
 	}
 
 	@Test
-	public void testBuscaRefeicao() {
-		fail("Not yet implemented");
+	public void testBuscaRefeicao() throws NomeDeAtributoInvalidoException {
+		Refeicao refeicaoTemp = new Refeicao("engorda1", "Fique gordinho", burger4, burger4, burger4, burger4);
+		assertEquals(refeicaoTemp, restaurante.buscaRefeicao("engorda1"));
+		
 	}
 
 	@Test
 	public void testVerificaPrato() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
