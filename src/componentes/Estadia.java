@@ -6,7 +6,7 @@ public class Estadia {
 	private Quarto quarto;
 	private int quantidadeDias;
 	
-	public Estadia(Quarto quarto, int quantidadeDias){
+	public Estadia(Quarto quarto, int quantidadeDias) throws QuantidadedeDiasInvalidaException{
 		verificaQuantidadedeDias(quantidadeDias);
 		
 		this.quarto = quarto;
@@ -14,11 +14,11 @@ public class Estadia {
 	}
 	
 	public double calculaValor(){
-		return quarto.getValorQuarto() * quantidadeDias;
+		return quarto.getValorDoQuarto() * quantidadeDias;
 	}
 	
 	public String getQuartoID(){
-		return quarto.getNumeroDeQuarto();
+		return quarto.getNumeroQuarto();
 	}
 	
 	public int getQuantidadeDias(){
@@ -26,7 +26,7 @@ public class Estadia {
 	}
 	
 	public void setQuartoID(String novoQuartoID){
-		quarto.setNumeroDeQuarto(novoQuartoID);
+		quarto.setNumeroQuarto(novoQuartoID);
 	}
 	
 	

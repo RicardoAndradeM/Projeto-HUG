@@ -49,11 +49,11 @@ public class Refeicao {
 	}
 	
 	public String getNome() {
-		return nome;
+		return this.nome;
 	}
 	
 	public String getDescricao() {
-		return descricao;
+		return this.descricao;
 	}
 	
 	public void setNome(String nome) {
