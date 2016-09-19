@@ -59,24 +59,42 @@ public class Hospede {
 		return nome;
 	}
 
+	/** 
+	 * @param nome novo o do hospede a ser atualizado
+	 * @throws NomeInvalidoException caso novo seja invalido
+	 */
 	public void setNome(String nome) throws NomeInvalidoException {
 		this.verificador.verificaNome(nome);
 		this.nome = nome;
 	}
-
+	
+	/**
+	 * @return retonar o email do hospede
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * @param email novo email a ser atualizado do hospede
+	 * @throws EmailInvalidoException caso email seja invalido
+	 */
 	public void setEmail(String email) throws EmailInvalidoException {
 		this.verificador.verificaEmail(email);
 		this.email = email;
 	}
 
+	/**
+	 * @return retorna data de nascimento do hospede
+	 */
 	public String getDataNascimento() {
 		return dataNascimento;
 	}
 
+	/**
+	 * @param dataNascimento nova data de nascimentos a ser atualizada do hospede
+	 * @throws dataNascimentoInvalidaException caso data de nascimento seja injalida
+	 */
 	public void setDataNascimento(String dataNascimento) throws dataNascimentoInvalidaException {
 		this.verificador.verificaDataNascimento(dataNascimento);
 		this.dataNascimento = dataNascimento;

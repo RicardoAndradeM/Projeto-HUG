@@ -148,11 +148,18 @@ public class ControlerRestaurante {
 		return null;
 	}
 	
+<<<<<<< HEAD
 	/**
 	 * 
 	 * @param nomePrato nome da prato
 	 * @return verdadeiro caso encontrado com sucesso 
 	 */
+=======
+	public Prato buscaPrato(String nomePrato){
+		return pratos.get(nomePrato);
+	}
+	
+>>>>>>> f722f410293534b8f9b8e27751c509f5b082d6ca
 	public boolean verificaPrato(String nomePrato){
 		if (pratos.get(nomePrato)==null){
 			return false;
