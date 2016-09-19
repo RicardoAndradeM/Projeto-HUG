@@ -17,11 +17,11 @@ import execeptions.dataNascimentoInvalidaException;
  * @since 14/09/16
  * @version v1.0
  */
-public class Controler {
+public class ControlerRecepcao {
 	private HashSet<Hospede> hospedes;
 	private FactoryDeHospedes factoryDeHospedes;
 	
-	public Controler() {
+	public ControlerRecepcao() {
 		this.hospedes = new HashSet<Hospede>();
 		factoryDeHospedes = new FactoryDeHospedes();
 	}
@@ -50,7 +50,7 @@ public class Controler {
 	 */
 	public String getInfoHospede(String id, String atributo) throws NomeDeAtributoInvalidoException, HospedeNaoEncontradoException{
 		Hospede hospede = this.buscaHospede(id);
-		if(atributo.equals("nome")){
+		if(atributo.equals("Nome")){
 			return hospede.getNome();
 		}
 		if(atributo.equals("Data de Nascimento")){
@@ -71,16 +71,15 @@ public class Controler {
 	 */
 	public void atualizaCadastro(String id, String atributo, String valor) throws EmailInvalidoException, NomeInvalidoException, dataNascimentoInvalidaException, NomeDeAtributoInvalidoException, HospedeNaoEncontradoException{
 		Hospede hospede = this.buscaHospede(id);
-		if(atributo.equals("nome")){
+		if(atributo.equals("Nome")){
 			hospede.setNome(valor);
-		}
-		if(atributo.equals("Data de Nascimento")){
+		} else if(atributo.equals("Data de Nascimento")){
 			hospede.setDataNascimento(valor);
-		}
-		if(atributo.equals("Data de Nascimento")){
+		} else if(atributo.equals("Email")){
 			hospede.setEmail(valor);
-		}
+		} else {
 		throw new NomeDeAtributoInvalidoException("Atributo nao existe");
+		}
 	}
 	
 	/**
@@ -103,7 +102,7 @@ public class Controler {
 				return hospede;
 			}
 		}
-		throw new HospedeNaoEncontradoException("hospede não encontrado");
+		throw new HospedeNaoEncontradoException(String.format("Erro na consulta de hospede. Hospede de email %s nao foi cadastrado(a).", id));
 	}
 
 	@Override
@@ -120,9 +119,9 @@ public class Controler {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof Controler))
+		if (!(obj instanceof ControlerRecepcao))
 			return false;
-		Controler other = (Controler) obj;
+		ControlerRecepcao other = (ControlerRecepcao) obj;
 		if (hospedes == null) {
 			if (other.hospedes != null)
 				return false;

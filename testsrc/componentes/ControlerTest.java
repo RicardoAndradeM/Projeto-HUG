@@ -13,11 +13,11 @@ import execeptions.dataNascimentoInvalidaException;
 
 public class ControlerTest {
 
-	Controler controler;
+	ControlerRecepcao controler;
 	
 	@Before
 	public void setUp() throws Exception {
-		controler = new Controler();
+		controler = new ControlerRecepcao();
 		controler.cadastraHospede("Marieta", "marieta@gmail.com", "01/01/1992");
 	}
 

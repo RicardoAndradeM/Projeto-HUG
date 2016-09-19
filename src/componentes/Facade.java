@@ -6,13 +6,13 @@ import execeptions.HospedeNaoEncontradoException;
 import execeptions.NomeDeAtributoInvalidoException;
 import execeptions.NomeInvalidoException;
 import execeptions.dataNascimentoInvalidaException;
-import componentes.Controler;
+import componentes.ControlerRecepcao;
 
 public class Facade {
-	private Controler controller;
+	private ControlerRecepcao controller;
 	
 	public Facade(){
-		controller = new Controler();
+		controller = new ControlerRecepcao();
 	}
 	
 	public String cadastraHospede(String nome, String email, String dataNascimento) throws NomeInvalidoException, EmailInvalidoException, dataNascimentoInvalidaException{

@@ -1,8 +1,8 @@
 package componentes;
 
-//1 - é nescesario documentar metodos sets, metodos obvios ou documentar exception?
-//2 - caso eu documento tenho que explicar para que serva cada parametro e exception mesmo que seja obvio?
-//3 - para explicar um trexo de codigo, deve utilizar comentario de fim de linha ou normal?
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import execeptions.EmailInvalidoException;
 import execeptions.NomeInvalidoException;
 import execeptions.dataNascimentoInvalidaException;
@@ -17,6 +17,8 @@ public class Hospede {
 	private String nome;
 	private String email;
 	private String dataNascimento;
+	private HashMap<String, Estadia> estadias;
+	private VerificadorDeHospede verificador = new VerificadorDeHospede();
 	
 	/**
 	 * @param nome nome do hospede
@@ -27,73 +29,29 @@ public class Hospede {
 	 * @throws dataNascimentoInvalidaException 
 	 */
 	public Hospede(String nome, String email, String dataNascimento) throws NomeInvalidoException, EmailInvalidoException, dataNascimentoInvalidaException{
-		this.verificaNome(nome);
+		this.verificador.verificaNome(nome);
 		this.nome = nome;
-		this.verificaEmail(email);
+		this.verificador.verificaEmail(email);
 		this.email = email;
-		this.verificaDataNascimento(dataNascimento);
+		this.verificador.verificaDataNascimento(dataNascimento);
 		this.dataNascimento = dataNascimento;
+		this.estadias = new HashMap<String, Estadia>();
 	}
 	
-	private void verificaNome(String nome) throws NomeInvalidoException{
-		if(nome == null || nome.equals("")){
-			throw new NomeInvalidoException("Nome nao pode ser vazio ou nulo");
-		}
-		
-		// verificando se o nome é apenas um string de espacos
-		for (int letra = 0; letra < nome.length(); letra++) {
-			if(nome.charAt(letra) != ' '){
-				return;				
-			}
-		}
-		throw new NomeInvalidoException("Formato de nome invalido");
+	public void redebeEstadia(Estadia estadia){
+		this.estadias.put(estadia.getQuartoID(), estadia);
 	}
 	
-	private void verificaEmail(String email) throws EmailInvalidoException{
-		if(nome == null || nome.equals("")){
-			throw new EmailInvalidoException("Nome nao pode ser vazio ou nulo");
-		}
-		
-		// verificando se o email tem um usuario(antes do @) e um dominio(depois do @)
-		if(email.charAt(0) == '@' || email.charAt(0) == '.' || email.charAt(email.length()-1) == '@' || email.charAt(email.length()-1) == '.'){
-			throw new EmailInvalidoException("Formato de email invalido");
-		}
-		boolean hasArroba = false;
-		boolean hasPonto = false;
-		for (int letra = 0; letra < email.length(); letra++) {
-			if(!hasArroba){
-				if(email.charAt(letra) == '@'){
-					hasArroba = true;
-				}
-			} else {
-				if(email.charAt(letra) == '@'){
-					throw new EmailInvalidoException("Formato de email invalido");
-				} else if (email.charAt(letra) == '.') {
-					hasPonto = true;
-				}
-			}
-		}
-		if(!hasPonto){
-			throw new EmailInvalidoException("Formato de email invalido");
-		}
+	public Estadia devolveEstadia(String numeroQuarto){
+		return this.estadias.remove(numeroQuarto);
 	}
 	
-	private void verificaDataNascimento(String dataNascimento) throws dataNascimentoInvalidaException{
-		if(dataNascimento == null || dataNascimento.equals("")){
-			throw new dataNascimentoInvalidaException("dataNascimento nao pode ser vazio ou nulo");
-		}
-		String[] componetesDeData = dataNascimento.split("/");
-		if(componetesDeData.length != 3 || componetesDeData[0].length() != 2 || componetesDeData[1].length() != 2 || componetesDeData[2].length() != 4){
-			throw new dataNascimentoInvalidaException("Formato de dataNascimento invalido");
-		}
-	}
-
 	public String getNome() {
 		return nome;
 	}
 
 	public void setNome(String nome) throws NomeInvalidoException {
-		this.verificaNome(nome);
+		this.verificador.verificaNome(nome);
 		this.nome = nome;
 	}
 
@@ -102,7 +60,7 @@ public class Hospede {
 	}
 
 	public void setEmail(String email) throws EmailInvalidoException {
-		this.verificaEmail(email);
+		this.verificador.verificaEmail(email);
 		this.email = email;
 	}
 
@@ -111,7 +69,7 @@ public class Hospede {
 	}
 
 	public void setDataNascimento(String dataNascimento) throws dataNascimentoInvalidaException {
-		this.verificaDataNascimento(dataNascimento);
+		this.verificador.verificaDataNascimento(dataNascimento);
 		this.dataNascimento = dataNascimento;
 	}
 
