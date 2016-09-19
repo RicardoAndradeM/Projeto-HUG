@@ -74,8 +74,9 @@ public class ControlerRestauranteTest {
 	}
 
 	@Test
-	public void testVerificaPrato() {
-		
+	public void testVerificaPrato() throws Exception {
+		restaurante.cadastraPrato("MilkGalinha", 24.00, "Delicioso MilkShake sabor Galinha Caipira");
+		restaurante.verificaPrato("MilkGalinha");
 	}
 
 	@Test

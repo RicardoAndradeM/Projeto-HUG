@@ -17,7 +17,7 @@ public class Estadia {
 		return quarto.getValorDoQuarto() * quantidadeDias;
 	}
 	
-	public String getQuartoID(){
+	public String getQuartoNumero(){
 		return quarto.getNumeroQuarto();
 	}
 	
@@ -25,7 +25,7 @@ public class Estadia {
 		return this.quantidadeDias;
 	}
 	
-	public void setQuartoID(String novoQuartoID){
+	public void setQuartoNumero(String novoQuartoID){
 		quarto.setNumeroQuarto(novoQuartoID);
 	}
 	

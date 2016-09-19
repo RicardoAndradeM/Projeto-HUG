@@ -127,6 +127,6 @@ public class ControlerRecepcao {
 	
 	public void checkout(String id, String numeroQuarto) throws HospedeNaoEncontradoException{
 		Estadia estadiaASerFechada = this.buscaHospede(id).devolveEstadia(numeroQuarto);
-		this.historicoDeCheckout.add(new Checkout(LocalDate.now().toString(), buscaHospede(id).getNome(), estadiaASerFechada.getQuartoID(), estadiaASerFechada.calculaValor()));
+		this.historicoDeCheckout.add(new Checkout(LocalDate.now().toString(), buscaHospede(id).getNome(), estadiaASerFechada.getQuartoNumero(), estadiaASerFechada.calculaValor()));
 	}
 }

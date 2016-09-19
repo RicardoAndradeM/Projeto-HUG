@@ -38,7 +38,7 @@ public class Hospede {
 	}
 	
 	public void redebeEstadia(Estadia estadia){
-		this.estadias.put(estadia.getQuartoID(), estadia);
+		this.estadias.put(estadia.getQuartoNumero(), estadia);
 	}
 	
 	public Estadia devolveEstadia(String numeroQuarto){
