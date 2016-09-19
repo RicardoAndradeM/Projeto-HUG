@@ -7,6 +7,7 @@ import execeptions.EmailInvalidoException;
 import execeptions.HospedeNaoEncontradoException;
 import execeptions.NomeDeAtributoInvalidoException;
 import execeptions.NomeInvalidoException;
+import execeptions.QuantidadedeDiasInvalidaException;
 import execeptions.dataNascimentoInvalidaException;
 import componentes.ControlerRecepcao;
 
@@ -23,23 +24,19 @@ public class Facade {
 	public String cadastraHospede(String nome, String email, String dataNascimento) throws NomeInvalidoException, EmailInvalidoException, dataNascimentoInvalidaException{
 		return controlerRecepcao.cadastraHospede(nome, email, dataNascimento);
 	}
-	
 	public String getInfoHospede(String email, String atributo) throws NomeDeAtributoInvalidoException, HospedeNaoEncontradoException{
 		return controlerRecepcao.getInfoHospede(email, atributo);
 	}
-
 	public void atualizaCadastro(String id, String atributo, String valor) throws EmailInvalidoException, NomeInvalidoException, dataNascimentoInvalidaException, NomeDeAtributoInvalidoException, HospedeNaoEncontradoException{
 		controlerRecepcao.atualizaCadastro(id, atributo, valor);
 	}
-
 	public boolean removeHospede(String email) throws HospedeNaoEncontradoException{
 		return controlerRecepcao.removeHospede(email);
 	}
-
 	public Hospede buscaHospede(String email) throws HospedeNaoEncontradoException{
 		return controlerRecepcao.buscaHospede(email);
 	}
-	public void checkin(String id, String numeroQuarto, TipoDeQuarto tipoDeQuarto, int quantidadeDias){
+	public void checkin(String id, String numeroQuarto, TipoDeQuarto tipoDeQuarto, int quantidadeDias) throws NomeDeAtributoInvalidoException, QuantidadedeDiasInvalidaException, HospedeNaoEncontradoException{
 		controlerRecepcao.checkin(id, numeroQuarto, tipoDeQuarto, quantidadeDias);
 	}
 	public void checkout(String id, String numeroQuarto) throws HospedeNaoEncontradoException{
@@ -54,10 +51,10 @@ public class Facade {
 	public void cadastraRefeicao(String nome, String descricao, Prato ṕrimeiroPrato, Prato segundoPrato, Prato terceiroPrato, Prato quartoPrato ) throws Exception{
 		controlerRestaurante.cadastraRefeicao(nome, descricao, ṕrimeiroPrato, segundoPrato, terceiroPrato, quartoPrato);
 	}
-	public void atualizaPrato(String nome, String atributo, String valor){
+	public void atualizaPrato(String nome, String atributo, String valor) throws Exception{
 		controlerRestaurante.atualizaPrato(nome, atributo, valor);
 	}
-	public void atualizaRefeicao(String nomeRefeicao, String atributo, String valor){
+	public void atualizaRefeicao(String nomeRefeicao, String atributo, String valor) throws Exception{
 		controlerRestaurante.atualizaRefeicao(nomeRefeicao, atributo, valor);
 	}	
 	public Refeicao buscaRefeicao(String nomeRefeicao){
@@ -74,23 +71,5 @@ public class Facade {
 	}
 	public void removerRefeicao(String nomeRefeicao) throws Exception{
 		controlerRestaurante.removeRefeicao(nomeRefeicao);
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	}	
 }
