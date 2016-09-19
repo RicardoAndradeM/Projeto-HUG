@@ -9,7 +9,6 @@ import exceptions.NomeInvalidoException;
 /**
  * @author Ricardo Andrade
  * @since 13/09/16
- * @version v1.0
  */
 public class Hospede {
 	private String nome;
