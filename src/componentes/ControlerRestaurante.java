@@ -21,7 +21,7 @@ public class ControlerRestaurante {
 				throw new Exception("prato jah esta cadastrado");
 				
 			}else{
-				Prato novoPrato = new Prato(String nome, double preco, String descricao);
+				Prato novoPrato = new Prato(nome, preco, descricao);
 				pratos.put(nome, novoPrato);
 				return true;
 			}
@@ -32,12 +32,12 @@ public class ControlerRestaurante {
 				throw new Exception("Refeicao jah esta cadastrada");
 			}else{
 				Refeicao novaRefeicao = new Refeicao(nome, descricao, primeiroPrato,segundoPrato, terceiroPrato);
-				refeicoes.add(Refeicao);
+				refeicoes.add(novaRefeicao);
 				return true;
 			}
 	}
 	
-	public boolean cadastraRefeicao(String nome, String descricao, Prato primeiroPrato, Prato segundoPrato, Prato terceiroPrato, Prato quartoPrato){
+	public boolean cadastraRefeicao(String nome, String descricao, Prato primeiroPrato, Prato segundoPrato, Prato terceiroPrato, Prato quartoPrato) throws Exception{
 		if (! (buscaRefeicao(nome)==null)){
 			throw new Exception("Refeicao jah esta cadastrada");
 		}else{
@@ -47,7 +47,7 @@ public class ControlerRestaurante {
 		}
 	}
 	
-	public boolean atualizaPrato(String nomePrato, String atributo, String valor){
+	public boolean atualizaPrato(String nomePrato, String atributo, String valor) throws Exception{
 		Prato prato = pratos.get(nomePrato);
 		
 		if (pratos.get(nomePrato)==null){
@@ -67,7 +67,7 @@ public class ControlerRestaurante {
 		return false;
 	}
 	
-	public boolean atualizaRefeicao(String nomeRefeicao, String atributo, String valor){
+	public boolean atualizaRefeicao(String nomeRefeicao, String atributo, String valor) throws Exception{
 		if (buscaRefeicao(nomeRefeicao)==null){
 			throw new Exception("Refeicao nao existe");
 		}
@@ -88,7 +88,7 @@ public class ControlerRestaurante {
 	
 	public Refeicao buscaRefeicao(String nomeRefeicao){
 		for (Refeicao refeicao : refeicoes){
-			if (refeicao.getNome.equals(nomeRefeicao)){
+			if (refeicao.getNome().equals(nomeRefeicao)){
 				return refeicao;
 			}
 		}
@@ -123,6 +123,8 @@ public class ControlerRestaurante {
 	public boolean removeRefeicao(String nomeRefeicao) throws Exception{
 		if (verificaRefeicao(nomeRefeicao)){
 			refeicoes.remove(buscaRefeicao(nomeRefeicao));
+			return true;
 		}
+		return false;
 	}
 }

@@ -96,5 +96,4 @@ public class Hospede {
 			return false;
 		return true;
 	}
-	
 }
