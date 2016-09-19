@@ -26,9 +26,13 @@ public class ControlerRecepcao {
 		factoryDeHospedes = new FactoryDeHospedes();
 	}
 	
+	public void iniciaSistema(){
+		
+	}
+	
 	/**
 	 * @param nome nome do hospede
-	 * @param email email do hospede que sera usado de login
+	 * @param email email do hospede que sera usado de logind
 	 * @param dataNascimento data completa de nascimento no formato DD/MM/AAAA
 	 * @return id do hospede, neste caso, o email
 	 * @throws EmailInvalidoException 
