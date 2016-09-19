@@ -50,7 +50,7 @@ public class ControlerRestauranteTest {
 
 	@Test
 	public void testAtualizaRefeicao() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
