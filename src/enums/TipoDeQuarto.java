@@ -1,5 +1,9 @@
 package enums;
-
+/**
+ * @author Gabriel Schubert
+ * @since 19/09/2016
+ * @version v1.0
+ */
 public enum TipoDeQuarto {
 	
 	SIMPLES(100),
@@ -8,6 +12,7 @@ public enum TipoDeQuarto {
 	
 	double preco;
 	
+
 	private TipoDeQuarto(double preco){
 		this.preco = preco;
 	}
