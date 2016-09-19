@@ -108,30 +108,9 @@ public class ControlerRecepcao {
 		}
 		throw new HospedeNaoEncontradoException(String.format("Erro na consulta de hospede. Hospede de email %s nao foi cadastrado(a).", id));
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((hospedes == null) ? 0 : hospedes.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof ControlerRecepcao))
-			return false;
-		ControlerRecepcao other = (ControlerRecepcao) obj;
-		if (hospedes == null) {
-			if (other.hospedes != null)
-				return false;
-		} else if (!hospedes.equals(other.hospedes))
-			return false;
-		return true;
+	
+	public void fechaSistema(){
+		
 	}
 	
 }
