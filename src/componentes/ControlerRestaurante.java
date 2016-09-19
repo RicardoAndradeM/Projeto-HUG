@@ -1,5 +1,6 @@
 package componentes;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ControlerRestaurante {
@@ -7,7 +8,7 @@ public class ControlerRestaurante {
 	private final String DESCRICAO = "descricao";
 	private final String PRECO = "preco";
 	
-	private HashMap<Prato> pratos;
+	private HashMap<String, Prato> pratos;
 	private ArrayList<Refeicao> refeicoes;
 	
 	public ControlerRestaurante(){
@@ -16,7 +17,7 @@ public class ControlerRestaurante {
 	}
 	
 	public boolean cadastraPrato(String nome, double preco, String descricao) throws Exception{
-			if (! (buscaPrato(nome)==null)){
+			if (! (pratos.get(nome)==null)){
 				throw new Exception("prato jah esta cadastrado");
 				
 			}else{
@@ -41,7 +42,7 @@ public class ControlerRestaurante {
 			throw new Exception("Refeicao jah esta cadastrada");
 		}else{
 			Refeicao novaRefeicao = new Refeicao(nome, descricao, primeiroPrato,segundoPrato, terceiroPrato, quartoPrato);
-			refeicoes.add(Refeicao);
+			refeicoes.add(novaRefeicao);
 			return true;
 		}
 	}
@@ -49,7 +50,7 @@ public class ControlerRestaurante {
 	public boolean atualizaPrato(String nomePrato, String atributo, String valor){
 		Prato prato = pratos.get(nomePrato);
 		
-		if (buscaPrato(nomePrato)==null){
+		if (pratos.get(nomePrato)==null){
 			throw new Exception("Prato nao existe");
 		}
 		
