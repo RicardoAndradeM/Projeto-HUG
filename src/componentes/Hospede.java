@@ -1,6 +1,5 @@
 package componentes;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import exceptions.DataNascimentoInvalidaException;
@@ -90,16 +89,8 @@ public class Hospede {
 	public String getDataNascimento() {
 		return dataNascimento;
 	}
-
-<<<<<<< HEAD
+	
 	public void setDataNascimento(String dataNascimento) throws DataNascimentoInvalidaException {
-=======
-	/**
-	 * @param dataNascimento nova data de nascimentos a ser atualizada do hospede
-	 * @throws dataNascimentoInvalidaException caso data de nascimento seja injalida
-	 */
-	public void setDataNascimento(String dataNascimento) throws dataNascimentoInvalidaException {
->>>>>>> bbdab1912125bd80d43a29597125d55f7a8c9a64
 		this.verificador.verificaDataNascimento(dataNascimento);
 		this.dataNascimento = dataNascimento;
 	}

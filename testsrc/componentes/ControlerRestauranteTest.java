@@ -6,7 +6,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import exceptions.NaoCadastradoException;
 import exceptions.NomeDeAtributoInvalidoException;
+import exceptions.jacadastrado.JaCadastradoException;
 
 public class ControlerRestauranteTest {
 	ControlerRestaurante restaurante;
@@ -34,7 +36,7 @@ public class ControlerRestauranteTest {
 		try{
 			restaurante.cadastraPrato("McBurger", 7.00, "Hamburger Venenoso");
 			fail("Deveria ter retornado uma exception");
-		}catch(Exception e){
+		}catch(JaCadastradoException e){
 			assertEquals("prato jah esta cadastrado", e.getMessage());
 		}
 	}
@@ -48,7 +50,7 @@ public class ControlerRestauranteTest {
 		try {
 			restaurante.cadastraRefeicao("Mega Burgers", "Serie de hamburgers imperdivel", burger1, burger2, burger3);
 			fail("Deveria ter retornado uma exception pois a refeicao jah esta cadastrada");
-		} catch (Exception e) {
+		} catch (JaCadastradoException e) {
 			assertEquals("Refeicao jah esta cadastrada", e.getMessage());
 		}
 		
@@ -69,8 +71,8 @@ public class ControlerRestauranteTest {
 		
 		try {
 			restaurante.cadastraPrato("Petit Gateau", 1.00, "Sorvete com nome chique");	
-		} catch (Exception e) {
-			/
+		} catch (JaCadastradoException e) {
+			assertEquals("prato jah cadastrado", e.getMessage());
 		}
 	}
 
@@ -79,6 +81,11 @@ public class ControlerRestauranteTest {
 			restaurante.atualizaRefeicao("engorda1", "nome", "Vida curta");
 			assertEquals("Vida curta", restaurante.buscaRefeicao("Vida curta").getNome());
 			
+			try {
+				restaurante.atualizaRefeicao("Feijoada", "preco", "25.0");
+			} catch (NaoCadastradoException e) {
+				assertEquals(e.getMessage(), "Refeicao nao cadastrada");
+			}
 	}
 
 	@Test

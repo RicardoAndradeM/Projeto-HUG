@@ -2,18 +2,10 @@ package componentes;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-<<<<<<< HEAD
-
 import exceptions.NaoCadastradoException;
 import exceptions.jacadastrado.JaCadastradoException;
 
-=======
-/**
-* 
-* @author ygorlor
-*@since 19/09/16
-*/
->>>>>>> bbdab1912125bd80d43a29597125d55f7a8c9a64
+
 public class ControlerRestaurante {
 	private final String NOME = "nome";
 	private final String DESCRICAO = "descricao";
@@ -126,7 +118,7 @@ public class ControlerRestaurante {
 	 */
 	public boolean atualizaRefeicao(String nomeRefeicao, String atributo, String valor) throws Exception{
 		if (buscaRefeicao(nomeRefeicao)==null){
-			throw new NaoCadastradoException("Refeicao nao existe");
+			throw new NaoCadastradoException("Refeicao nao cadastrada");
 		}
 		
 		Refeicao refeicao = buscaRefeicao(nomeRefeicao);
@@ -155,18 +147,15 @@ public class ControlerRestaurante {
 		return null;
 	}
 	
-<<<<<<< HEAD
 	/**
 	 * 
 	 * @param nomePrato nome da prato
 	 * @return verdadeiro caso encontrado com sucesso 
 	 */
-=======
 	public Prato buscaPrato(String nomePrato){
 		return pratos.get(nomePrato);
 	}
-	
->>>>>>> f722f410293534b8f9b8e27751c509f5b082d6ca
+
 	public boolean verificaPrato(String nomePrato){
 		if (pratos.get(nomePrato)==null){
 			return false;
