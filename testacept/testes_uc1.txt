@@ -42,7 +42,7 @@ atualizaCadastro id=${id2} atributo="Data de Nascimento" valor="25/10/1969"
 expect 25/10/1969  getInfoHospede id=${id2} atributo="Data de Nascimento"
 
 atualizaCadastro id=${id3} atributo="Email" valor="agnetha@monomusic.se"
-expect "agnetha@monomusic.se"  getInfoHospede id=${id3} atributo="Email"
+expect "agnetha@monomusic.se"  getInfoHospede id="agnetha@monomusic.se" atributo="Email"
 
 ###############################
 #      Remove Hospede         #

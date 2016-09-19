@@ -67,6 +67,9 @@ public class ControlerRecepcao {
 		if(atributo.equals("Data de Nascimento")){
 			return hospede.getDataNascimento();
 		}
+		if(atributo.equals("Email")){
+			return hospede.getEmail();
+		}
 		throw new NomeDeAtributoInvalidoException("Atributo nao existe");
 	}
 
