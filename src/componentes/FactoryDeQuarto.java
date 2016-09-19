@@ -1,7 +1,7 @@
 package componentes;
 
 import enums.TipoDeQuarto;
-import execeptions.NomeDeAtributoInvalidoException;
+import exceptions.NomeDeAtributoInvalidoException;
 import componentes.Quarto;
 
 public class FactoryDeQuarto {

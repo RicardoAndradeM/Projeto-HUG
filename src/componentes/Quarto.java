@@ -1,7 +1,7 @@
 package componentes;
 
-import execeptions.NomeDeAtributoInvalidoException;
 import enums.TipoDeQuarto;
+import exceptions.NomeDeAtributoInvalidoException;
 
 public class Quarto {
 	private String numeroQuarto;

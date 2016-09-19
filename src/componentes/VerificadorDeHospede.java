@@ -1,8 +1,8 @@
 package componentes;
 
-import execeptions.EmailInvalidoException;
-import execeptions.NomeInvalidoException;
-import execeptions.dataNascimentoInvalidaException;
+import exceptions.DataNascimentoInvalidaException;
+import exceptions.EmailInvalidoException;
+import exceptions.NomeInvalidoException;
 
 public class VerificadorDeHospede {
 	
@@ -49,13 +49,13 @@ public class VerificadorDeHospede {
 		}
 	}
 	
-	public void verificaDataNascimento(String dataNascimento) throws dataNascimentoInvalidaException{
+	public void verificaDataNascimento(String dataNascimento) throws DataNascimentoInvalidaException{
 		if(dataNascimento == null || dataNascimento.equals("")){
-			throw new dataNascimentoInvalidaException("dataNascimento nao pode ser vazio ou nulo");
+			throw new DataNascimentoInvalidaException("dataNascimento nao pode ser vazio ou nulo");
 		}
 		String[] componetesDeData = dataNascimento.split("/");
 		if(componetesDeData.length != 3 || componetesDeData[0].length() != 2 || componetesDeData[1].length() != 2 || componetesDeData[2].length() != 4){
-			throw new dataNascimentoInvalidaException("Formato de dataNascimento invalido");
+			throw new DataNascimentoInvalidaException("Formato de dataNascimento invalido");
 		}
 	}
 	

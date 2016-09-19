@@ -2,7 +2,7 @@ package componentes;
 
 import java.util.ArrayList;
 
-import execeptions.NomeDeAtributoInvalidoException;
+import exceptions.NomeDeAtributoInvalidoException;
 
 public class Refeicao {
 	private String nome;

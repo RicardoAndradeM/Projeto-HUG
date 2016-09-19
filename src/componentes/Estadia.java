@@ -1,6 +1,6 @@
 package componentes;
 
-import execeptions.QuantidadedeDiasInvalidaException;
+import exceptions.QuantidadedeDiasInvalidaException;
 
 public class Estadia {
 	private Quarto quarto;
