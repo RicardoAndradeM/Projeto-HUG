@@ -8,7 +8,7 @@ public class Quarto {
 	private TipoDeQuarto tipo ;
 	
 	
-	public Quarto(String numeroQuarto) throws NomeDeAtributoInvalidoException{
+	public Quarto(String numeroQuarto, TipoDeQuarto tipo ) throws NomeDeAtributoInvalidoException{
 		if(numeroQuarto == null || numeroQuarto.equals("")){
 			throw new NomeDeAtributoInvalidoException("Quarto invalido");
 		}
