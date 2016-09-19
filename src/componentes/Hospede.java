@@ -25,7 +25,7 @@ public class Hospede {
 	 * @param dataNascimento data completa de nascimento no formato DD/MM/AAAA
 	 * @throws NomeInvalidoException caso o nome seja invalido
 	 * @throws EmailInvalidoException caso o email seja invalido
-	 * @throws dataNascimentoInvalidaException 
+	 * @throws dataNascimentoInvalidaException caso data de nascimento esteja no formato errado
 	 */
 	public Hospede(String nome, String email, String dataNascimento) throws NomeInvalidoException, EmailInvalidoException, dataNascimentoInvalidaException{
 		this.verificador.verificaNome(nome);
@@ -37,14 +37,24 @@ public class Hospede {
 		this.estadias = new HashMap<String, Estadia>();
 	}
 	
+	/** associa uma estadia ao hospede
+	 * @param estadia estadia a ser associadsa
+	 */
 	public void redebeEstadia(Estadia estadia){
 		this.estadias.put(estadia.getQuartoNumero(), estadia);
 	}
 	
+	/** remove e retorna a estadia associada ao hospede no momento do checkout
+	 * @param numeroQuarto numero do quarto da estadia
+	 * @return a estadia solicitada
+	 */
 	public Estadia devolveEstadia(String numeroQuarto){
 		return this.estadias.remove(numeroQuarto);
 	}
 	
+	/**
+	 * @return retonar nome do hospede
+	 */
 	public String getNome() {
 		return nome;
 	}
