@@ -53,10 +53,9 @@ public class ControlerRestauranteTest {
 
 	@Test
 	public void testAtualizaPrato() throws Exception {
-		restaurante.atualizaPrato("burger1", "preco", "12.00");
-		if (!(burger1.getPreco()==12.0)){
-			fail("A atualizacao do preco deveria ter mudado para 12.00");
-		}
+		restaurante.cadastraPrato("Salada Bomba", 1.00, "Salada de frutas e verduras");
+		restaurante.atualizaPrato("Salada Bomba","preco", "666.0");
+		assertEquals(666.0, restaurante.buscaPrato("Salada Bomba").getPreco(), 0);
 	}
 
 	@Test
@@ -76,22 +75,27 @@ public class ControlerRestauranteTest {
 	@Test
 	public void testVerificaPrato() throws Exception {
 		restaurante.cadastraPrato("MilkGalinha", 24.00, "Delicioso MilkShake sabor Galinha Caipira");
-		restaurante.verificaPrato("MilkGalinha");
+		assertEquals(true, restaurante.verificaPrato("MilkGalinha"));
 	}
 
 	@Test
-	public void testVerificaRefeicao() {
-		fail("Not yet implemented");
+	public void testVerificaRefeicao() throws Exception {
+		restaurante.cadastraRefeicao("amburgers maravilhosos", "Amburgers tipo 2, eh massa", burger2, burger2, burger2);
+		assertEquals(true, restaurante.verificaRefeicao("amburgers maravilhosos"));
 	}
 
 	@Test
-	public void testRemovePrato() {
-		fail("Not yet implemented");
+	public void testRemovePrato() throws Exception {
+		restaurante.cadastraPrato("Diamante Negro", 6.00, "Chocolate bom");
+		restaurante.removePrato("Diamante Negro");
+		assertEquals(null, restaurante.buscaPrato("Diamante Negro"));
 	}
 
 	@Test
-	public void testRemoveRefeicao() {
-		fail("Not yet implemented");
+	public void testRemoveRefeicao() throws Exception {
+		restaurante.cadastraRefeicao("Divino's Burger", "Amburgers tipo 2, eh massa", burger2, burger2, burger2);
+		restaurante.removeRefeicao("Divino's Burger");
+		assertEquals(null, restaurante.buscaPrato("Divino's Burger"));
 	}
 
 }

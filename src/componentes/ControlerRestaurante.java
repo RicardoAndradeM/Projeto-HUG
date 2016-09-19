@@ -95,6 +95,10 @@ public class ControlerRestaurante {
 		return null;
 	}
 	
+	public Prato buscaPrato(String nomePrato){
+		return pratos.get(nomePrato);
+	}
+	
 	public boolean verificaPrato(String nomePrato){
 		if (pratos.get(nomePrato)==null){
 			return false;
