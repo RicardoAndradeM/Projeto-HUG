@@ -12,6 +12,11 @@ public class Refeicao {
 	
 	
 	public Refeicao(String nome, String descricao, Prato primeiroPrato, Prato segundoPrato, Prato terceiroPrato) throws NomeDeAtributoInvalidoException {
+		
+		this.nome = nome;
+		this.descricao = descricao;
+		pratos = new ArrayList<Prato>();
+		
 		if(nome == null|| nome.equals("")){
 			throw new NomeDeAtributoInvalidoException("Nome invalido");
 		}
@@ -21,11 +26,14 @@ public class Refeicao {
 		pratos.add(primeiroPrato);
 		pratos.add(segundoPrato);
 		pratos.add(terceiroPrato);
-		this.nome = nome;
-		this.descricao = descricao;
 	}
 	
 	public Refeicao(String nome, String descricao, Prato primeiroPrato, Prato segundoPrato, Prato terceiroPrato, Prato quartoPrato) throws NomeDeAtributoInvalidoException {
+		
+		this.nome = nome;
+		this.descricao = descricao;
+		pratos = new ArrayList<Prato>();
+		
 		if(nome == null|| nome.equals("")){
 			throw new NomeDeAtributoInvalidoException("Nome invalido");
 		}
