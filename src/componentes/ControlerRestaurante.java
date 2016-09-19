@@ -12,7 +12,7 @@ public class ControlerRestaurante {
 	private ArrayList<Refeicao> refeicoes;
 	
 	public ControlerRestaurante(){
-		pratos = new HashMap<Prato>();
+		pratos = new HashMap<String, Prato>();
 		refeicoes = new ArrayList<Refeicao>();
 	}
 	
@@ -22,7 +22,7 @@ public class ControlerRestaurante {
 				
 			}else{
 				Prato novoPrato = new Prato(String nome, double preco, String descricao);
-				pratos.put(nome, Prato);
+				pratos.put(nome, novoPrato);
 				return true;
 			}
 	}
