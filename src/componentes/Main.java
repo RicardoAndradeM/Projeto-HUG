@@ -3,6 +3,10 @@ package componentes;
 import easyaccept.EasyAccept;
 
 public class Main {
+	public void iniciaSistema(){
+		
+	}
+	
 	 public static void main(String[] args) {
 	        args = new String[] { 
 	        		"componentes.Facade", "testacept/testes_uc1.txt/",
@@ -16,4 +20,8 @@ public class Main {
 	                };
 	        EasyAccept.main(args);
 	    }
+	 
+	 public void fechaSistema(){
+		 
+	 }
 }
