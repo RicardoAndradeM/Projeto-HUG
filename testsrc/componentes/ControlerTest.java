@@ -5,11 +5,11 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import execeptions.EmailInvalidoException;
-import execeptions.HospedeNaoEncontradoException;
-import execeptions.NomeDeAtributoInvalidoException;
-import execeptions.NomeInvalidoException;
-import execeptions.dataNascimentoInvalidaException;
+import exceptions.DataNascimentoInvalidaException;
+import exceptions.EmailInvalidoException;
+import exceptions.HospedeNaoEncontradoException;
+import exceptions.NomeDeAtributoInvalidoException;
+import exceptions.NomeInvalidoException;
 
 public class ControlerTest {
 
@@ -22,7 +22,7 @@ public class ControlerTest {
 	}
 
 	@Test
-	public void testCadastraHospede() throws NomeInvalidoException, EmailInvalidoException, dataNascimentoInvalidaException {
+	public void testCadastraHospede() throws NomeInvalidoException, EmailInvalidoException, DataNascimentoInvalidaException {
 		
 		//Caso de criacao Simples
 		assertEquals("felipe@gmail.com.br",controler.cadastraHospede("Felipe", "felipe@gmail.com.br", "21/02/1995")	);
@@ -93,7 +93,7 @@ public class ControlerTest {
 	}
 
 	@Test
-	public void testAtualizaCadastro() throws EmailInvalidoException, NomeInvalidoException, dataNascimentoInvalidaException, NomeDeAtributoInvalidoException, HospedeNaoEncontradoException {
+	public void testAtualizaCadastro() throws EmailInvalidoException, NomeInvalidoException, DataNascimentoInvalidaException, NomeDeAtributoInvalidoException, HospedeNaoEncontradoException {
 		controler.atualizaCadastro("marieta@gmail.com","nome", "Mario");
 		assertEquals("Mario", controler.getInfoHospede("marieta@gmail.com", "nome"));
 	}

@@ -3,6 +3,9 @@ package componentes;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import exceptions.NaoCadastradoException;
+import exceptions.jacadastrado.JaCadastradoException;
+
 public class ControlerRestaurante {
 	private final String NOME = "nome";
 	private final String DESCRICAO = "descricao";
@@ -18,7 +21,7 @@ public class ControlerRestaurante {
 	
 	public boolean cadastraPrato(String nome, double preco, String descricao) throws Exception{
 			if (! (pratos.get(nome)==null)){
-				throw new Exception("prato jah esta cadastrado");
+				throw new JaCadastradoException("prato jah esta cadastrado");
 				
 			}else{
 				Prato novoPrato = new Prato(nome, preco, descricao);
@@ -29,7 +32,7 @@ public class ControlerRestaurante {
 	
 	public boolean cadastraRefeicao(String nome, String descricao, Prato primeiroPrato, Prato segundoPrato, Prato terceiroPrato) throws Exception{
 			if (! (buscaRefeicao(nome)==null)){
-				throw new Exception("Refeicao jah esta cadastrada");
+				throw new JaCadastradoException("Refeicao jah esta cadastrada");
 			}else{
 				Refeicao novaRefeicao = new Refeicao(nome, descricao, primeiroPrato,segundoPrato, terceiroPrato);
 				refeicoes.add(novaRefeicao);
@@ -39,7 +42,7 @@ public class ControlerRestaurante {
 	
 	public boolean cadastraRefeicao(String nome, String descricao, Prato primeiroPrato, Prato segundoPrato, Prato terceiroPrato, Prato quartoPrato) throws Exception{
 		if (! (buscaRefeicao(nome)==null)){
-			throw new Exception("Refeicao jah esta cadastrada");
+			throw new JaCadastradoException("Refeicao jah esta cadastrada");
 		}else{
 			Refeicao novaRefeicao = new Refeicao(nome, descricao, primeiroPrato,segundoPrato, terceiroPrato, quartoPrato);
 			refeicoes.add(novaRefeicao);
@@ -51,7 +54,7 @@ public class ControlerRestaurante {
 		Prato prato = pratos.get(nomePrato);
 		
 		if (pratos.get(nomePrato)==null){
-			throw new Exception("Prato nao existe");
+			throw new NaoCadastradoException("Prato nao existe");
 		}
 		
 		if (atributo.equals(NOME)){
@@ -69,7 +72,7 @@ public class ControlerRestaurante {
 	
 	public boolean atualizaRefeicao(String nomeRefeicao, String atributo, String valor) throws Exception{
 		if (buscaRefeicao(nomeRefeicao)==null){
-			throw new Exception("Refeicao nao existe");
+			throw new NaoCadastradoException("Refeicao nao existe");
 		}
 		
 		Refeicao refeicao = buscaRefeicao(nomeRefeicao);
@@ -120,7 +123,7 @@ public class ControlerRestaurante {
 			pratos.remove(nomePrato);
 			return true;
 		}else{
-			throw new Exception("Prato nao existe");
+			throw new NaoCadastradoException("Prato nao existe");
 		}
 	}
 	

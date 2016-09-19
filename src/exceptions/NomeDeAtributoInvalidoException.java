@@ -1,4 +1,4 @@
-package execeptions;
+package exceptions;
 
 public class NomeDeAtributoInvalidoException extends Exception {
 

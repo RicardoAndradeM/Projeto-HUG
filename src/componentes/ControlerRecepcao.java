@@ -11,12 +11,12 @@ import com.sun.xml.internal.messaging.saaj.packaging.mime.util.QDecoderStream;
 import com.sun.xml.internal.ws.message.AttachmentUnmarshallerImpl;
 
 import enums.TipoDeQuarto;
-import execeptions.EmailInvalidoException;
-import execeptions.HospedeNaoEncontradoException;
-import execeptions.NomeDeAtributoInvalidoException;
-import execeptions.NomeInvalidoException;
-import execeptions.QuantidadedeDiasInvalidaException;
-import execeptions.dataNascimentoInvalidaException;
+import exceptions.DataNascimentoInvalidaException;
+import exceptions.EmailInvalidoException;
+import exceptions.HospedeNaoEncontradoException;
+import exceptions.NomeDeAtributoInvalidoException;
+import exceptions.NomeInvalidoException;
+import exceptions.QuantidadedeDiasInvalidaException;
 import sun.nio.cs.HistoricallyNamedCharset;
 
 /**
@@ -44,9 +44,9 @@ public class ControlerRecepcao {
 	 * @return id do hospede, neste caso, o email
 	 * @throws EmailInvalidoException 
 	 * @throws NomeInvalidoException 
-	 * @throws dataNascimentoInvalidaException 
+	 * @throws DataNascimentoInvalidaException 
 	 */
-	public String cadastraHospede(String nome, String email, String dataNascimento) throws NomeInvalidoException, EmailInvalidoException, dataNascimentoInvalidaException{
+	public String cadastraHospede(String nome, String email, String dataNascimento) throws NomeInvalidoException, EmailInvalidoException, DataNascimentoInvalidaException{
 		Hospede novoHospede = factoryDeHospedes.criaHospede(nome, email, dataNascimento);
 		hospedes.add(novoHospede);
 		return novoHospede.getEmail();
@@ -79,11 +79,11 @@ public class ControlerRecepcao {
 	 * @param valor novo valor
 	 * @throws EmailInvalidoException 
 	 * @throws NomeInvalidoException 
-	 * @throws dataNascimentoInvalidaException 
+	 * @throws DataNascimentoInvalidaException 
 	 * @throws NomeDeAtributoInvalidoException 
 	 * @throws HospedeNaoEncontradoException 
 	 */
-	public void atualizaCadastro(String id, String atributo, String valor) throws EmailInvalidoException, NomeInvalidoException, dataNascimentoInvalidaException, NomeDeAtributoInvalidoException, HospedeNaoEncontradoException{
+	public void atualizaCadastro(String id, String atributo, String valor) throws EmailInvalidoException, NomeInvalidoException, DataNascimentoInvalidaException, NomeDeAtributoInvalidoException, HospedeNaoEncontradoException{
 		Hospede hospede = this.buscaHospede(id);
 		if(atributo.equals("Nome")){
 			hospede.setNome(valor);

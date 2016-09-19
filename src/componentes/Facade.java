@@ -3,12 +3,12 @@ package componentes;
 import componentes.Hospede;
 import easyaccept.EasyAccept;
 import enums.TipoDeQuarto;
-import execeptions.EmailInvalidoException;
-import execeptions.HospedeNaoEncontradoException;
-import execeptions.NomeDeAtributoInvalidoException;
-import execeptions.NomeInvalidoException;
-import execeptions.QuantidadedeDiasInvalidaException;
-import execeptions.dataNascimentoInvalidaException;
+import exceptions.DataNascimentoInvalidaException;
+import exceptions.EmailInvalidoException;
+import exceptions.HospedeNaoEncontradoException;
+import exceptions.NomeDeAtributoInvalidoException;
+import exceptions.NomeInvalidoException;
+import exceptions.QuantidadedeDiasInvalidaException;
 import componentes.ControlerRecepcao;
 
 public class Facade {
@@ -21,13 +21,13 @@ public class Facade {
 		controlerRestaurante = new ControlerRestaurante();
 	}
 	
-	public String cadastraHospede(String nome, String email, String dataNascimento) throws NomeInvalidoException, EmailInvalidoException, dataNascimentoInvalidaException{
+	public String cadastraHospede(String nome, String email, String dataNascimento) throws NomeInvalidoException, EmailInvalidoException, DataNascimentoInvalidaException{
 		return controlerRecepcao.cadastraHospede(nome, email, dataNascimento);
 	}
 	public String getInfoHospede(String email, String atributo) throws NomeDeAtributoInvalidoException, HospedeNaoEncontradoException{
 		return controlerRecepcao.getInfoHospede(email, atributo);
 	}
-	public void atualizaCadastro(String id, String atributo, String valor) throws EmailInvalidoException, NomeInvalidoException, dataNascimentoInvalidaException, NomeDeAtributoInvalidoException, HospedeNaoEncontradoException{
+	public void atualizaCadastro(String id, String atributo, String valor) throws EmailInvalidoException, NomeInvalidoException, DataNascimentoInvalidaException, NomeDeAtributoInvalidoException, HospedeNaoEncontradoException{
 		controlerRecepcao.atualizaCadastro(id, atributo, valor);
 	}
 	public boolean removeHospede(String email) throws HospedeNaoEncontradoException{

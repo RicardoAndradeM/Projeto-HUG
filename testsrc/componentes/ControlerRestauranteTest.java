@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import execeptions.NomeDeAtributoInvalidoException;
+import exceptions.NomeDeAtributoInvalidoException;
 
 public class ControlerRestauranteTest {
 	ControlerRestaurante restaurante;
@@ -42,13 +42,23 @@ public class ControlerRestauranteTest {
 	@Test
 	public void testCadastraRefeicao3() throws Exception {
 		restaurante.cadastraRefeicao("Mega Burgers", "Serie de hamburgers imperdivel", burger1, burger2, burger3);
-		Refeicao refeicao = restaurante.buscaRefeicao("Mega Burgers");
+		Refeicao refeicao = new Refeicao("Mega Burgers", "Serie de hamburgers imperdivel", burger1, burger2, burger3);
+		assertEquals(refeicao, restaurante.buscaRefeicao("Mega Burgers"));
+		
+		try {
+			restaurante.cadastraRefeicao("Mega Burgers", "Serie de hamburgers imperdivel", burger1, burger2, burger3);
+			fail("Deveria ter retornado uma exception pois a refeicao jah esta cadastrada");
+		} catch (Exception e) {
+			assertEquals("Refeicao jah esta cadastrada", e.getMessage());
+		}
+		
 	}
 
 	@Test
 	public void testCadastraRefeicao4() throws Exception {
-		restaurante.cadastraRefeicao("Mega Burgers", "Serie de hamburgers imperdivel", burger1, burger2, burger3);
-		Refeicao refeicao = restaurante.buscaRefeicao("Mega Burgers");
+		restaurante.cadastraRefeicao("Mega Burgers", "Serie de hamburgers imperdivel", burger1, burger2, burger3, burger4);
+		Refeicao refeicao = new Refeicao("Mega Burgers", "Serie de hamburgers imperdivel", burger1, burger2, burger3, burger4);
+		assertEquals(refeicao, restaurante.buscaRefeicao("Mega Burgers"));
 	}
 
 	@Test
@@ -56,6 +66,12 @@ public class ControlerRestauranteTest {
 		restaurante.cadastraPrato("Salada Bomba", 1.00, "Salada de frutas e verduras");
 		restaurante.atualizaPrato("Salada Bomba","preco", "666.0");
 		assertEquals(666.0, restaurante.buscaPrato("Salada Bomba").getPreco(), 0);
+		
+		try {
+			restaurante.cadastraPrato("Petit Gateau", 1.00, "Sorvete com nome chique");	
+		} catch (Exception e) {
+			/
+		}
 	}
 
 	@Test

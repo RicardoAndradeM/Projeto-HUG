@@ -1,4 +1,4 @@
-package execeptions;
+package exceptions;
 
 public class QuantidadedeDiasInvalidaException extends Exception{
 

@@ -3,9 +3,9 @@ package componentes;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import execeptions.EmailInvalidoException;
-import execeptions.NomeInvalidoException;
-import execeptions.dataNascimentoInvalidaException;
+import exceptions.DataNascimentoInvalidaException;
+import exceptions.EmailInvalidoException;
+import exceptions.NomeInvalidoException;
 
 /**
  * @author Ricardo Andrade
@@ -25,9 +25,9 @@ public class Hospede {
 	 * @param dataNascimento data completa de nascimento no formato DD/MM/AAAA
 	 * @throws NomeInvalidoException caso o nome seja invalido
 	 * @throws EmailInvalidoException caso o email seja invalido
-	 * @throws dataNascimentoInvalidaException caso data de nascimento esteja no formato errado
+	 * @throws DataNascimentoInvalidaException caso data de nascimento esteja no formato errado
 	 */
-	public Hospede(String nome, String email, String dataNascimento) throws NomeInvalidoException, EmailInvalidoException, dataNascimentoInvalidaException{
+	public Hospede(String nome, String email, String dataNascimento) throws NomeInvalidoException, EmailInvalidoException, DataNascimentoInvalidaException{
 		this.verificador.verificaNome(nome);
 		this.nome = nome;
 		this.verificador.verificaEmail(email);
@@ -77,7 +77,7 @@ public class Hospede {
 		return dataNascimento;
 	}
 
-	public void setDataNascimento(String dataNascimento) throws dataNascimentoInvalidaException {
+	public void setDataNascimento(String dataNascimento) throws DataNascimentoInvalidaException {
 		this.verificador.verificaDataNascimento(dataNascimento);
 		this.dataNascimento = dataNascimento;
 	}
