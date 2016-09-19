@@ -1,6 +1,7 @@
 package componentes;
 
 import componentes.Hospede;
+import easyaccept.EasyAccept;
 import execeptions.EmailInvalidoException;
 import execeptions.HospedeNaoEncontradoException;
 import execeptions.NomeDeAtributoInvalidoException;
@@ -34,5 +35,14 @@ public class Facade {
 	public Hospede buscaHospede(String email) throws HospedeNaoEncontradoException{
 		return controller.buscaHospede(email);
 	}
+	
+	 public static void main(String[] args) {
+	        args = new String[] { "facade.Facade", "acceptance_test/testes_uc1.txt/",
+	                "acceptance_test/testes_uc1_exception.txt/", "acceptance_test/testes_uc2.txt/",
+	                "acceptance_test/testes_uc2_exception.txt/", "acceptance_test/testes_uc3.txt/",
+	                "acceptance_test/testes_uc3_exception.txt/", "acceptance_test/testes_uc4.txt/",
+	                "acceptance_test/testes_uc4_exception.txt/" };
+	        EasyAccept.main(args);
+	    }
 	
 }
