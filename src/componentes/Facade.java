@@ -37,11 +37,16 @@ public class Facade {
 	}
 	
 	 public static void main(String[] args) {
-	        args = new String[] { "facade.Facade", "acceptance_test/testes_uc1.txt/",
-	                "acceptance_test/testes_uc1_exception.txt/", "acceptance_test/testes_uc2.txt/",
-	                "acceptance_test/testes_uc2_exception.txt/", "acceptance_test/testes_uc3.txt/",
-	                "acceptance_test/testes_uc3_exception.txt/", "acceptance_test/testes_uc4.txt/",
-	                "acceptance_test/testes_uc4_exception.txt/" };
+	        args = new String[] { 
+	        		"componentes.Facade", "testacept/testes_uc1.txt/",
+	                "testacept/testes_uc1_exception.txt/", 
+	                "testacept/testes_uc2.txt/",
+	                "testacept/testes_uc2_exception.txt/", 
+	                "testacept/testes_uc3.txt/",
+	                "testacept/testes_uc3_exception.txt/", 
+	                "testacept/testes_uc4.txt/",
+	                "testacept/testes_uc4_exception.txt/" 
+	                };
 	        EasyAccept.main(args);
 	    }
 	
