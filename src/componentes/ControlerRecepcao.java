@@ -1,29 +1,39 @@
 package componentes;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 //melhorar javadoc
 //lembra de colocar tostring hashcod e eguals no UML
 //4 - perguntar se é boa pratica manter o nome dos parametros iguais e se precisam ser iguais aos testes
 import java.util.HashSet;
 
+import com.sun.xml.internal.messaging.saaj.packaging.mime.util.QDecoderStream;
+import com.sun.xml.internal.ws.message.AttachmentUnmarshallerImpl;
+
+import enums.TipoDeQuarto;
 import execeptions.EmailInvalidoException;
 import execeptions.HospedeNaoEncontradoException;
 import execeptions.NomeDeAtributoInvalidoException;
 import execeptions.NomeInvalidoException;
 import execeptions.dataNascimentoInvalidaException;
+import sun.nio.cs.HistoricallyNamedCharset;
 
 /**
  * @author Ricardo Andrade
- * @author Gabriel Schubert
  * @since 14/09/16
  * @version v1.0
  */
 public class ControlerRecepcao {
 	private HashSet<Hospede> hospedes;
 	private FactoryDeHospedes factoryDeHospedes;
+	private ArrayList<Checkout> historicoDeCheckout;
+	private FactoryDeQuarto factoryDeQuarto;
+	private FactoryDeEstadia factoryDeEstadia;
 	
 	public ControlerRecepcao() {
 		this.hospedes = new HashSet<Hospede>();
-		factoryDeHospedes = new FactoryDeHospedes();
+		this.factoryDeHospedes = new FactoryDeHospedes();
+		this.historicoDeCheckout = new ArrayList<Checkout>();
 	}
 	
 	/**
@@ -105,4 +115,14 @@ public class ControlerRecepcao {
 		throw new HospedeNaoEncontradoException(String.format("Erro na consulta de hospede. Hospede de email %s nao foi cadastrado(a).", id));
 	}
 	
+	public void checkin(String id, String numeroQuarto, TipoDeQuarto tipoDeQuarto, int quantidadeDias){
+		Quarto novoQuarto = this.factoryDeQuarto.criaQuarto(numeroQuarto, tipoDeQuarto);
+		Estadia novaEstadia = this.factoryDeEstadia.criaEstadia(novoQuarto,quantidadeDias);
+		this.buscaHospede(id).redebeEstadia(novaEstadia);
+	}
+	
+	public void checkout(String id, String numeroQuarto) throws HospedeNaoEncontradoException{
+		Estadia estadiaASerFechada = this.buscaHospede(id).devolveEstadia(numeroQuarto);
+		this.historicoDeCheckout.add(new Checkout(LocalDate.now().toString(), buscaHospede(id).getNome(), estadiaASerFechada.getQuartoID(), estadiaASerFechada.calculaValor()));
+	}
 }
