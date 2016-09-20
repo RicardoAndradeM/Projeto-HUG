@@ -7,9 +7,6 @@ import java.util.ArrayList;
 //4 - perguntar se é boa pratica manter o nome dos parametros iguais e se precisam ser iguais aos testes
 import java.util.HashSet;
 
-import com.sun.xml.internal.messaging.saaj.packaging.mime.util.QDecoderStream;
-import com.sun.xml.internal.ws.message.AttachmentUnmarshallerImpl;
-
 import enums.TipoDeQuarto;
 import exceptions.DataNascimentoInvalidaException;
 import exceptions.EmailInvalidoException;
@@ -20,7 +17,6 @@ import exceptions.QuantidadedeDiasInvalidaException;
 import factorys.FactoryDeEstadia;
 import factorys.FactoryDeHospedes;
 import factorys.FactoryDeQuarto;
-import sun.nio.cs.HistoricallyNamedCharset;
 
 /**
  * @author Ricardo Andrade

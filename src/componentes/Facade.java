@@ -1,6 +1,10 @@
 package componentes;
 
-import easyaccept.EasyAccept;
+import recepcao.ControlerRecepcao;
+import recepcao.Hospede;
+import restaurante.ControlerRestaurante;
+import restaurante.Prato;
+import restaurante.Refeicao;
 import enums.TipoDeQuarto;
 import exceptions.DataNascimentoInvalidaException;
 import exceptions.EmailInvalidoException;
@@ -8,11 +12,6 @@ import exceptions.HospedeNaoEncontradoException;
 import exceptions.NomeDeAtributoInvalidoException;
 import exceptions.NomeInvalidoException;
 import exceptions.QuantidadedeDiasInvalidaException;
-import recepcao.ControlerRecepcao;
-import recepcao.Hospede;
-import restaurante.ControlerRestaurante;
-import restaurante.Prato;
-import restaurante.Refeicao;
 	
 /**
  * 
