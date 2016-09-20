@@ -85,13 +85,25 @@ public class ControlerRecepcao {
 	public void atualizaCadastro(String id, String atributo, String valor) throws EmailInvalidoException, NomeInvalidoException, DataNascimentoInvalidaException, NomeDeAtributoInvalidoException, HospedeNaoEncontradoException{
 		Hospede hospede = this.buscaHospede(id);
 		if(atributo.equals("Nome")){
-			hospede.setNome(valor);
+			try {
+				hospede.setNome(valor);				
+			} catch (NomeInvalidoException e) {
+				throw new NomeDeAtributoInvalidoException("Erro na atualizacao do cadastro de Hospede. " + e.getMessage());
+			}
 		} else if(atributo.equals("Data de Nascimento")){
-			hospede.setDataNascimento(valor);
+			try {
+				hospede.setDataNascimento(valor);				
+			} catch (DataNascimentoInvalidaException e) {
+				throw new DataNascimentoInvalidaException("Erro na atualizacao do cadastro de Hospede. " + e.getMessage());
+			}
 		} else if(atributo.equals("Email")){
-			hospede.setEmail(valor);
+			try {
+				hospede.setEmail(valor);				
+			} catch (EmailInvalidoException e) {
+				throw new EmailInvalidoException("Erro na atualizacao do cadastro de Hospede. " + e.getMessage());
+			}
 		} else {
-		throw new NomeDeAtributoInvalidoException("Atributo nao existe");
+			throw new NomeDeAtributoInvalidoException("Atributo nao existe");
 		}
 	}
 	
