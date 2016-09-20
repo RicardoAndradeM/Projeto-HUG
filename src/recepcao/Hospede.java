@@ -2,9 +2,9 @@ package recepcao;
 
 import java.util.HashMap;
 
-import exceptions.DataNascimentoInvalidaException;
-import exceptions.EmailInvalidoException;
-import exceptions.NomeInvalidoException;
+import exceptions.valordeatributoinvalido.DataNascimentoInvalidaException;
+import exceptions.valordeatributoinvalido.EmailInvalidoException;
+import exceptions.valordeatributoinvalido.NomeInvalidoException;
 
 /**
  * @author Ricardo Andrade

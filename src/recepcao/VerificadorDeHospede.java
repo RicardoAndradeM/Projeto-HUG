@@ -1,8 +1,8 @@
 package recepcao;
 
-import exceptions.DataNascimentoInvalidaException;
-import exceptions.EmailInvalidoException;
-import exceptions.NomeInvalidoException;
+import exceptions.valordeatributoinvalido.DataNascimentoInvalidaException;
+import exceptions.valordeatributoinvalido.EmailInvalidoException;
+import exceptions.valordeatributoinvalido.NomeInvalidoException;
 
 public class VerificadorDeHospede {
 	

@@ -1,6 +1,6 @@
 package recepcao;
 
-import exceptions.QuantidadedeDiasInvalidaException;
+import exceptions.valordeatributoinvalido.QuantidadedeDiasInvalidaException;
 
 public class Estadia {
 	private Quarto quarto;

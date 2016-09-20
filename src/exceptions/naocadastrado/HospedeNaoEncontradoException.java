@@ -1,6 +1,6 @@
-package exceptions;
+package exceptions.naocadastrado;
 
-public class HospedeNaoEncontradoException extends Exception {
+public class HospedeNaoEncontradoException extends NaoCadastradoException {
 
 	private static final long serialVersionUID = -673709273230389808L;
 	

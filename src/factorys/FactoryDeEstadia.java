@@ -1,6 +1,6 @@
 package factorys;
 
-import exceptions.QuantidadedeDiasInvalidaException;
+import exceptions.valordeatributoinvalido.QuantidadedeDiasInvalidaException;
 import recepcao.Estadia;
 import recepcao.Quarto;
 

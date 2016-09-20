@@ -1,6 +1,6 @@
-package exceptions;
+package exceptions.valordeatributoinvalido;
 
-public class NomeInvalidoException extends Exception {
+public class NomeInvalidoException extends ValorDeAtributoInvalidoException  {
 	
 	private static final long serialVersionUID = -5347433941573592344L;
 

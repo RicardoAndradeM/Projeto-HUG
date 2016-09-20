@@ -3,8 +3,8 @@ package restaurante;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import exceptions.NaoCadastradoException;
 import exceptions.jacadastrado.JaCadastradoException;
+import exceptions.naocadastrado.NaoCadastradoException;
 
 
 public class ControlerRestaurante {

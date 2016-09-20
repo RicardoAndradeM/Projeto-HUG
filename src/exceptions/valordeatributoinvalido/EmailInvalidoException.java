@@ -1,6 +1,6 @@
-package exceptions;
+package exceptions.valordeatributoinvalido;
 
-public class EmailInvalidoException extends Exception {
+public class EmailInvalidoException extends ValorDeAtributoInvalidoException  {
 
 	private static final long serialVersionUID = -1000246698803637998L;
 

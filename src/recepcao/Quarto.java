@@ -1,7 +1,7 @@
 package recepcao;
 
 import enums.TipoDeQuarto;
-import exceptions.NomeDeAtributoInvalidoException;
+import exceptions.valordeatributoinvalido.NomeDeAtributoInvalidoException;
 
 public class Quarto {
 	private String numeroQuarto;

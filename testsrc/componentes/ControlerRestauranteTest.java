@@ -6,9 +6,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import exceptions.NaoCadastradoException;
-import exceptions.NomeDeAtributoInvalidoException;
 import exceptions.jacadastrado.JaCadastradoException;
+import exceptions.naocadastrado.NaoCadastradoException;
+import exceptions.valordeatributoinvalido.NomeDeAtributoInvalidoException;
 import restaurante.ControlerRestaurante;
 import restaurante.Prato;
 import restaurante.Refeicao;

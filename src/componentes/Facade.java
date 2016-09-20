@@ -6,12 +6,12 @@ import restaurante.ControlerRestaurante;
 import restaurante.Prato;
 import restaurante.Refeicao;
 import enums.TipoDeQuarto;
-import exceptions.DataNascimentoInvalidaException;
-import exceptions.EmailInvalidoException;
-import exceptions.HospedeNaoEncontradoException;
-import exceptions.NomeDeAtributoInvalidoException;
-import exceptions.NomeInvalidoException;
-import exceptions.QuantidadedeDiasInvalidaException;
+import exceptions.naocadastrado.HospedeNaoEncontradoException;
+import exceptions.valordeatributoinvalido.DataNascimentoInvalidaException;
+import exceptions.valordeatributoinvalido.EmailInvalidoException;
+import exceptions.valordeatributoinvalido.NomeDeAtributoInvalidoException;
+import exceptions.valordeatributoinvalido.NomeInvalidoException;
+import exceptions.valordeatributoinvalido.QuantidadedeDiasInvalidaException;
 	
 /**
  * 

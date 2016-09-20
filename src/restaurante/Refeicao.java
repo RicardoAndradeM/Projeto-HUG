@@ -2,7 +2,7 @@ package restaurante;
 
 import java.util.ArrayList;
 
-import exceptions.NomeDeAtributoInvalidoException;
+import exceptions.valordeatributoinvalido.NomeDeAtributoInvalidoException;
 
 public class Refeicao {
 	private String nome;

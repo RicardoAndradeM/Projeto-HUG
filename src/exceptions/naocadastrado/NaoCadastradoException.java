@@ -1,4 +1,4 @@
-package exceptions;
+package exceptions.naocadastrado;
 
 public class NaoCadastradoException extends Exception {
 	

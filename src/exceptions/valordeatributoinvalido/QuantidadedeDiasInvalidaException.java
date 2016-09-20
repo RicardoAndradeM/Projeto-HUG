@@ -1,6 +1,6 @@
-package exceptions;
+package exceptions.valordeatributoinvalido;
 
-public class QuantidadedeDiasInvalidaException extends Exception{
+public class QuantidadedeDiasInvalidaException extends Exception {
 
 	private static final long serialVersionUID = -2533662229217053808L;
 
