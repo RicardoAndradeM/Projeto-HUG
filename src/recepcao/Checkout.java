@@ -1,4 +1,4 @@
-package componentes;
+package recepcao;
 
 /**
  * @author Ricardo Andrade

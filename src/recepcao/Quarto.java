@@ -1,4 +1,4 @@
-package componentes;
+package recepcao;
 
 import enums.TipoDeQuarto;
 import exceptions.NomeDeAtributoInvalidoException;

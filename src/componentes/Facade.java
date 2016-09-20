@@ -1,6 +1,5 @@
 package componentes;
 
-import componentes.Hospede;
 import easyaccept.EasyAccept;
 import enums.TipoDeQuarto;
 import exceptions.DataNascimentoInvalidaException;
@@ -9,7 +8,11 @@ import exceptions.HospedeNaoEncontradoException;
 import exceptions.NomeDeAtributoInvalidoException;
 import exceptions.NomeInvalidoException;
 import exceptions.QuantidadedeDiasInvalidaException;
-import componentes.ControlerRecepcao;
+import recepcao.ControlerRecepcao;
+import recepcao.Hospede;
+import restaurante.ControlerRestaurante;
+import restaurante.Prato;
+import restaurante.Refeicao;
 	
 /**
  * 
@@ -25,10 +28,7 @@ public class Facade {
 		controlerRecepcao = new ControlerRecepcao();
 		controlerRestaurante = new ControlerRestaurante();
 	}
-<<<<<<< HEAD
 	
-	public String cadastraHospede(String nome, String email, String dataNascimento) throws NomeInvalidoException, EmailInvalidoException, DataNascimentoInvalidaException{
-=======
 	/**
 	 * 
 	 * @param nome do hospede
@@ -37,12 +37,11 @@ public class Facade {
 	 * @return ah id do hospede
 	 * @throws NomeInvalidoException
 	 * @throws EmailInvalidoException
-	 * @throws dataNascimentoInvalidaException
 	 */
-	public String cadastraHospede(String nome, String email, String dataNascimento) throws NomeInvalidoException, EmailInvalidoException, dataNascimentoInvalidaException{
->>>>>>> bbdab1912125bd80d43a29597125d55f7a8c9a64
+	public String cadastraHospede(String nome, String email, String dataNascimento) throws NomeInvalidoException, EmailInvalidoException, DataNascimentoInvalidaException{
 		return controlerRecepcao.cadastraHospede(nome, email, dataNascimento);
 	}
+	
 	/**
 	 * @param nome nome do hospede
 	 * @param email email do hospede que sera usado de logind
@@ -55,23 +54,21 @@ public class Facade {
 	public String getInfoHospede(String email, String atributo) throws NomeDeAtributoInvalidoException, HospedeNaoEncontradoException{
 		return controlerRecepcao.getInfoHospede(email, atributo);
 	}
-<<<<<<< HEAD
-	public void atualizaCadastro(String id, String atributo, String valor) throws EmailInvalidoException, NomeInvalidoException, DataNascimentoInvalidaException, NomeDeAtributoInvalidoException, HospedeNaoEncontradoException{
-=======
+	
 	/**
 	 * @param id email do hospede
 	 * @param atributo informacao a ser atualizado
 	 * @param valor novo valor
 	 * @throws EmailInvalidoException 
 	 * @throws NomeInvalidoException 
-	 * @throws dataNascimentoInvalidaException 
 	 * @throws NomeDeAtributoInvalidoException 
 	 * @throws HospedeNaoEncontradoException 
+	 * @throws DataNascimentoInvalidaException 
 	 */
-	public void atualizaCadastro(String id, String atributo, String valor) throws EmailInvalidoException, NomeInvalidoException, dataNascimentoInvalidaException, NomeDeAtributoInvalidoException, HospedeNaoEncontradoException{
->>>>>>> bbdab1912125bd80d43a29597125d55f7a8c9a64
+	public void atualizaCadastro(String id, String atributo, String valor) throws EmailInvalidoException, NomeInvalidoException, NomeDeAtributoInvalidoException, HospedeNaoEncontradoException, DataNascimentoInvalidaException{
 		controlerRecepcao.atualizaCadastro(id, atributo, valor);
 	}
+	
 	/**
 	 * @param email email do hospede
 	 * @return retorna verdadeiro caso seja concluido com sucesso
@@ -88,9 +85,11 @@ public class Facade {
 	public Hospede buscaHospede(String email) throws HospedeNaoEncontradoException{
 		return controlerRecepcao.buscaHospede(email);
 	}
+	
 	public void checkin(String id, String numeroQuarto, TipoDeQuarto tipoDeQuarto, int quantidadeDias) throws NomeDeAtributoInvalidoException, QuantidadedeDiasInvalidaException, HospedeNaoEncontradoException{
 		controlerRecepcao.checkin(id, numeroQuarto, tipoDeQuarto, quantidadeDias);
 	}
+	
 	public void checkout(String id, String numeroQuarto) throws HospedeNaoEncontradoException{
 		controlerRecepcao.checkout(id, numeroQuarto);
 	}

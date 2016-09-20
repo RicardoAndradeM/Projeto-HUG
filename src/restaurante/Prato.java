@@ -1,4 +1,4 @@
-package componentes;
+package restaurante;
 
 public class Prato {
 	String nome;

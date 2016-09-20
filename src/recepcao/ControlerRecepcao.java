@@ -1,4 +1,4 @@
-package componentes;
+package recepcao;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,6 +17,9 @@ import exceptions.HospedeNaoEncontradoException;
 import exceptions.NomeDeAtributoInvalidoException;
 import exceptions.NomeInvalidoException;
 import exceptions.QuantidadedeDiasInvalidaException;
+import factorys.FactoryDeEstadia;
+import factorys.FactoryDeHospedes;
+import factorys.FactoryDeQuarto;
 import sun.nio.cs.HistoricallyNamedCharset;
 
 /**

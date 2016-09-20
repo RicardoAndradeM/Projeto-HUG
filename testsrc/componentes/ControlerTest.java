@@ -10,6 +10,8 @@ import exceptions.EmailInvalidoException;
 import exceptions.HospedeNaoEncontradoException;
 import exceptions.NomeDeAtributoInvalidoException;
 import exceptions.NomeInvalidoException;
+import recepcao.ControlerRecepcao;
+import recepcao.Hospede;
 
 public class ControlerTest {
 

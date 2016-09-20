@@ -9,6 +9,9 @@ import org.junit.Test;
 import exceptions.NaoCadastradoException;
 import exceptions.NomeDeAtributoInvalidoException;
 import exceptions.jacadastrado.JaCadastradoException;
+import restaurante.ControlerRestaurante;
+import restaurante.Prato;
+import restaurante.Refeicao;
 
 public class ControlerRestauranteTest {
 	ControlerRestaurante restaurante;

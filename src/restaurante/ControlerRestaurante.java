@@ -1,7 +1,8 @@
-package componentes;
+package restaurante;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import exceptions.NaoCadastradoException;
 import exceptions.jacadastrado.JaCadastradoException;
 

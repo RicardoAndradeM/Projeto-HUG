@@ -1,6 +1,8 @@
-package componentes;
+package factorys;
 
 import exceptions.QuantidadedeDiasInvalidaException;
+import recepcao.Estadia;
+import recepcao.Quarto;
 
 public class FactoryDeEstadia {
 

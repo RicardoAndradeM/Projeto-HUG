@@ -1,4 +1,4 @@
-package componentes;
+package recepcao;
 
 import java.util.HashMap;
 
