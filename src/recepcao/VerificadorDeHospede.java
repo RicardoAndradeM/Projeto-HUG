@@ -1,11 +1,15 @@
 package recepcao;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import exceptions.valordeatributoinvalido.DataNascimentoInvalidaException;
 import exceptions.valordeatributoinvalido.EmailInvalidoException;
 import exceptions.valordeatributoinvalido.NomeInvalidoException;
+import jdk.nashorn.internal.objects.NativeNumber;
 
 public class VerificadorDeHospede {
 	private final String EMAIL_PATTERN = 
@@ -42,6 +46,27 @@ public class VerificadorDeHospede {
 		String[] componetesDeData = dataNascimento.split("/");
 		if(componetesDeData.length != 3 || componetesDeData[0].length() != 2 || componetesDeData[1].length() != 2 || componetesDeData[2].length() != 4){
 			throw new DataNascimentoInvalidaException("Formato de data invalido.");
+		}
+		int dias;
+		int meses;
+		int anos;
+		try {
+			dias = Integer.parseInt(componetesDeData[0]);
+			meses = Integer.parseInt(componetesDeData[1]);
+			anos = Integer.parseInt(componetesDeData[2]);			
+		} catch (NumberFormatException e) {
+			throw new DataNascimentoInvalidaException("Formato de data invalido.");
+		}
+		LocalDate nascimentoHospede;
+		try {
+			nascimentoHospede = LocalDate.of(anos, meses, dias);			
+		} catch (DateTimeException e) {
+			throw new DataNascimentoInvalidaException("Formato de data invalido.");
+		}
+		LocalDate dataAtual = LocalDate.now();
+		Period idade = Period.between(nascimentoHospede, dataAtual);
+		if(idade.getYears() < 18){
+			throw new DataNascimentoInvalidaException("A idade do(a) hospede deve ser maior que 18 anos.");
 		}
 	}
 	
