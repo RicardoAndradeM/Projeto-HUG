@@ -3,9 +3,6 @@ package componentes;
 import easyaccept.EasyAccept;
 
 public class Main {
-	public void iniciaSistema(){
-		
-	}
 	
 	 public static void main(String[] args) {
 	        args = new String[] { 
@@ -20,8 +17,5 @@ public class Main {
 	                };
 	        EasyAccept.main(args);
 	    }
-	 
-	 public void fechaSistema(){
-		 
-	 }
+
 }

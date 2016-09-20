@@ -28,6 +28,10 @@ public class Facade {
 		controlerRestaurante = new ControlerRestaurante();
 	}
 	
+	public void iniciaSistema(){
+		
+	}
+	
 	/**
 	 * 
 	 * @param nome do hospede
@@ -205,4 +209,8 @@ public class Facade {
 	public void removerRefeicao(String nomeRefeicao) throws Exception{
 		controlerRestaurante.removeRefeicao(nomeRefeicao);
 	}	
+	
+	 public void fechaSistema(){
+		 
+	 }
 }
