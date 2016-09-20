@@ -6,6 +6,8 @@ import java.util.ArrayList;
 //lembra de colocar tostring hashcod e eguals no UML
 //4 - perguntar se é boa pratica manter o nome dos parametros iguais e se precisam ser iguais aos testes
 import java.util.HashSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import enums.TipoDeQuarto;
 import exceptions.naocadastrado.HospedeNaoEncontradoException;
@@ -29,6 +31,10 @@ public class ControlerRecepcao {
 	private FactoryDeHospedes factoryDeHospedes;
 	private FactoryDeQuarto factoryDeQuarto;
 	private FactoryDeEstadia factoryDeEstadia;
+	private final String EMAIL_PATTERN = 
+	        "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+	        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	private final Pattern pattern = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
 	
 	public ControlerRecepcao() {
 		this.hospedes = new HashSet<Hospede>();
@@ -111,8 +117,16 @@ public class ControlerRecepcao {
 	 * @param email email do hospede
 	 * @return retorna verdadeiro caso seja concluido com sucesso
 	 * @throws HospedeNaoEncontradoException 
+	 * @throws EmailInvalidoException 
 	 */
-	public boolean removeHospede(String email) throws HospedeNaoEncontradoException{
+	public boolean removeHospede(String email) throws HospedeNaoEncontradoException, EmailInvalidoException{
+		if(email.trim().equals("") || email == null){
+			throw new EmailInvalidoException("Erro na remocao do Hospede. Email do(a) hospede nao pode ser vazio.");
+		}
+		Matcher matcher = pattern.matcher(email);
+	    if(!matcher.matches()){
+	    	throw new EmailInvalidoException("Erro na remocao do Hospede. Formato de email invalido.");	    	
+	    }
 		return hospedes.remove(this.buscaHospede(email));
 	}
 	

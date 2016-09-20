@@ -76,8 +76,9 @@ public class Facade {
 	 * @param email email do hospede
 	 * @return retorna verdadeiro caso seja concluido com sucesso
 	 * @throws HospedeNaoEncontradoException 
+	 * @throws EmailInvalidoException 
 	 */
-	public boolean removeHospede(String email) throws HospedeNaoEncontradoException{
+	public boolean removeHospede(String email) throws HospedeNaoEncontradoException, EmailInvalidoException{
 		return controlerRecepcao.removeHospede(email);
 	}
 	/**
