@@ -13,7 +13,7 @@ import exceptions.NomeInvalidoException;
 import recepcao.ControlerRecepcao;
 import recepcao.Hospede;
 
-public class ControlerTest {
+public class ControlerRecepcaoTest {
 
 	ControlerRecepcao controler;
 	

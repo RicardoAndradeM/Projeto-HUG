@@ -14,6 +14,12 @@ import restaurante.Prato;
 import restaurante.Refeicao;
 
 public class ControlerRestauranteTest {
+	
+	public final String PRATO_JA_CADASTRADO = "prato jah esta cadastrado";
+	public final String REFEICAO_JA_CADASTRADA = "Refeicao jah esta cadastrada";
+	public final String REFEICAO_INEXISTENTE = "Refeicao nao cadastrada";
+	public final String PRATO_INEXISTENTE = "Prato nao existe";
+	
 	ControlerRestaurante restaurante;
 	Prato burger1;
 	Prato burger2;
@@ -40,7 +46,7 @@ public class ControlerRestauranteTest {
 			restaurante.cadastraPrato("McBurger", 7.00, "Hamburger Venenoso");
 			fail("Deveria ter retornado uma exception");
 		}catch(JaCadastradoException e){
-			assertEquals("prato jah esta cadastrado", e.getMessage());
+			assertEquals(PRATO_JA_CADASTRADO, e.getMessage());
 		}
 	}
 
@@ -54,8 +60,9 @@ public class ControlerRestauranteTest {
 			restaurante.cadastraRefeicao("Mega Burgers", "Serie de hamburgers imperdivel", burger1, burger2, burger3);
 			fail("Deveria ter retornado uma exception pois a refeicao jah esta cadastrada");
 		} catch (JaCadastradoException e) {
-			assertEquals("Refeicao jah esta cadastrada", e.getMessage());
+			assertEquals(REFEICAO_JA_CADASTRADA, e.getMessage());
 		}
+		
 		
 	}
 
@@ -87,7 +94,7 @@ public class ControlerRestauranteTest {
 			try {
 				restaurante.atualizaRefeicao("Feijoada", "preco", "25.0");
 			} catch (NaoCadastradoException e) {
-				assertEquals(e.getMessage(), "Refeicao nao cadastrada");
+				assertEquals(REFEICAO_INEXISTENTE, e.getMessage());
 			}
 	}
 
@@ -115,6 +122,13 @@ public class ControlerRestauranteTest {
 		restaurante.cadastraPrato("Diamante Negro", 6.00, "Chocolate bom");
 		restaurante.removePrato("Diamante Negro");
 		assertEquals(null, restaurante.buscaPrato("Diamante Negro"));
+		
+		try {
+			restaurante.removePrato("Diamante Negro");
+			fail("Deveria ter retornado uma exception, pois o prato nao esta mais cadastrado");
+		} catch (NaoCadastradoException e) {
+			assertEquals(PRATO_INEXISTENTE, e.getMessage());
+		}
 	}
 
 	@Test
