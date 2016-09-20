@@ -10,7 +10,15 @@ public class Refeicao {
 	private ArrayList<Prato> pratos;
 	
 	
-	
+	/**
+	 * 
+	 * @param nome da refeicao
+	 * @param descricao da refeicao
+	 * @param primeiroPrato
+	 * @param segundoPrato
+	 * @param terceiroPrato
+	 * @throws NomeDeAtributoInvalidoException
+	 */
 	public Refeicao(String nome, String descricao, Prato primeiroPrato, Prato segundoPrato, Prato terceiroPrato) throws NomeDeAtributoInvalidoException {
 		
 		this.nome = nome;
@@ -28,6 +36,16 @@ public class Refeicao {
 		pratos.add(terceiroPrato);
 	}
 	
+	/**
+	 * 
+	 * @param nome  da refeicao
+	 * @param descricao da refeicao
+	 * @param primeiroPrato
+	 * @param segundoPrato
+	 * @param terceiroPrato
+	 * @param quartoPrato
+	 * @throws NomeDeAtributoInvalidoException
+	 */
 	public Refeicao(String nome, String descricao, Prato primeiroPrato, Prato segundoPrato, Prato terceiroPrato, Prato quartoPrato) throws NomeDeAtributoInvalidoException {
 		
 		this.nome = nome;
@@ -48,6 +66,10 @@ public class Refeicao {
 		this.descricao = descricao;
 	}
 	
+	/**
+	 * 
+	 * @return valor do prato 
+	 */
 	public double getValor(){
 		double valor = 0;
 		for (Prato prato : pratos) {
@@ -56,22 +78,44 @@ public class Refeicao {
 		return valor - (valor*0.1);
 	}
 	
+	/**
+	 * 
+	 * @return nome do prato
+	 */
 	public String getNome() {
 		return this.nome;
 	}
 	
+	/**
+	 * 
+	 * @return descricao do prato
+	 */
 	public String getDescricao() {
 		return this.descricao;
 	}
 	
+	/**
+	 * 
+	 * @param nome a ser atualizado
+	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 	
+	/**
+	 * 
+	 * @param descricao a ser atualizado
+	 */
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
 	
+	
+	/**
+	 * 
+	 * @param posicaoPrato aonde quer ser inserido novo prato
+	 * @param prato novo prato
+	 */
 	public void autualizaPrato(int posicaoPrato, Prato prato){
 		pratos.add(posicaoPrato, prato);
 	}
