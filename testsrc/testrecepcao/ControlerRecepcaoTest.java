@@ -1,4 +1,4 @@
-package componentes;
+package testrecepcao;
 
 import static org.junit.Assert.*;
 

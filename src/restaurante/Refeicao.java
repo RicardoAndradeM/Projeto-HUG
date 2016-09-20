@@ -3,6 +3,7 @@ package restaurante;
 import java.util.ArrayList;
 
 import exceptions.valordeatributoinvalido.NomeDeAtributoInvalidoException;
+import exceptions.valordeatributoinvalido.ValorDeAtributoInvalidoException;
 
 public class Refeicao {
 	private String nome;
@@ -17,23 +18,42 @@ public class Refeicao {
 	 * @param primeiroPrato
 	 * @param segundoPrato
 	 * @param terceiroPrato
-	 * @throws NomeDeAtributoInvalidoException
+	 * @throws ValorDeAtributoInvalidoException 
 	 */
-	public Refeicao(String nome, String descricao, Prato primeiroPrato, Prato segundoPrato, Prato terceiroPrato) throws NomeDeAtributoInvalidoException {
+	public Refeicao(String nome, String descricao, Prato primeiroPrato, Prato segundoPrato, Prato terceiroPrato) throws ValorDeAtributoInvalidoException {
 		
 		this.nome = nome;
 		this.descricao = descricao;
 		pratos = new ArrayList<Prato>();
 		
-		if(nome == null|| nome.equals("")){
-			throw new NomeDeAtributoInvalidoException("Nome invalido");
-		}
-		if( descricao == null || descricao.equals("")){
-			throw new NomeDeAtributoInvalidoException("Descricao invalida");
-		}
+		verificaNome(nome);
+		verificaDescricao(descricao);
+		
+		verificaPrato(primeiroPrato);
+		verificaPrato(segundoPrato);
+		verificaPrato(terceiroPrato);
+		
 		pratos.add(primeiroPrato);
 		pratos.add(segundoPrato);
 		pratos.add(terceiroPrato);
+	}
+
+	private void verificaPrato(Prato primeiroPrato) throws ValorDeAtributoInvalidoException {
+		if (primeiroPrato==null || !(primeiroPrato instanceof Prato)){
+			throw new ValorDeAtributoInvalidoException("O prato indicado nao eh um prato valido");
+		}
+	}
+
+	private void verificaDescricao(String descricao) throws NomeDeAtributoInvalidoException {
+		if( descricao == null || descricao.equals("")){
+			throw new NomeDeAtributoInvalidoException("Descricao invalida");
+		}
+	}
+
+	private void verificaNome(String nome) throws NomeDeAtributoInvalidoException {
+		if(nome == null|| nome.equals("")){
+			throw new NomeDeAtributoInvalidoException("Nome invalido");
+		}
 	}
 	
 	/**
@@ -52,12 +72,8 @@ public class Refeicao {
 		this.descricao = descricao;
 		pratos = new ArrayList<Prato>();
 		
-		if(nome == null|| nome.equals("")){
-			throw new NomeDeAtributoInvalidoException("Nome invalido");
-		}
-		if( descricao == null || descricao.equals("")){
-			throw new NomeDeAtributoInvalidoException("Descricao invalida");
-		}
+		verificaNome(nome);
+		verificaDescricao(descricao);
 		pratos.add(primeiroPrato);
 		pratos.add(segundoPrato);
 		pratos.add(terceiroPrato);

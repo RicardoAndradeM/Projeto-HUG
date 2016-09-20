@@ -1,4 +1,4 @@
-package componentes;
+package testrestaurante;
 
 
 import static org.junit.Assert.*;
