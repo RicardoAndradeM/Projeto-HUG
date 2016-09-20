@@ -101,7 +101,7 @@ public class ControlerRecepcaoTest {
 	}
 
 	@Test
-	public void testRemoveHospede() throws HospedeNaoEncontradoException {
+	public void testRemoveHospede() throws HospedeNaoEncontradoException, EmailInvalidoException {
 		controler.removeHospede("marieta@gmail.com");
 		assertEquals(null, controler.buscaHospede("marieta@gmail.com"));
 	}

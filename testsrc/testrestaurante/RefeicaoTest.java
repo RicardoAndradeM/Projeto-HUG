@@ -23,6 +23,9 @@ public class RefeicaoTest {
 		sorvete = new Prato("sorvete kibon", 4.00, "kibon que vc vai comprar");
 		batataDoce = new Prato("comida de monstro", 6.00, "carboidrato puro");
 		frango = new Prato("frango desfiado", 5.00, "proteinas a mil");
+		
+		Refeicao frangao = new Refeicao("frangao2000", "frango ate o amanhecer!", frango, frango, frango);
+		Refeicao frangao2 = new Refeicao("frangao2000", "frango ate o amanhecer!", frango, frango, frango, frango);
 	}
 
 	@Test
@@ -69,7 +72,7 @@ public class RefeicaoTest {
 	@Test
 	public void testRefeicaoStringStringPratoPratoPratoPrato() {
 		try {
-			Refeicao paraMaromba = new Refeicao("", "para ficar grandao", frango, frango, batataDoce);
+			Refeicao paraMaromba = new Refeicao("", "para ficar grandao", frango, frango, batataDoce, batataDoce);
 			fail("deveria ter retornado uma AtributoInvalidoException");
 		} catch (ValorDeAtributoInvalidoException e) {
 			assertEquals("Nome invalido", e.getMessage());
@@ -77,32 +80,40 @@ public class RefeicaoTest {
 	
 	
 	try {
-			Refeicao paraMaromba = new Refeicao("Preparem-se marombas", "", frango, frango, batataDoce);
+			Refeicao paraMaromba = new Refeicao("Preparem-se marombas", "", frango, frango, batataDoce, batataDoce);
 			fail("deveria ter retornado uma AtributoInvalidoException");
 		} catch (ValorDeAtributoInvalidoException e) {
 			assertEquals("Descricao invalida", e.getMessage());
 		}
 	
 	try {
-		Refeicao paraMaromba = new Refeicao("Preparem-se marombas", "para ficar grandao", null, frango, batataDoce);
+		Refeicao paraMaromba = new Refeicao("Preparem-se marombas", "para ficar grandao", null, frango, batataDoce, batataDoce);
 		fail("deveria ter retornado uma AtributoInvalidoException");
 	} catch (ValorDeAtributoInvalidoException e) {
 		assertEquals("O prato indicado nao eh um prato valido", e.getMessage());
 	}
 	
 	try {
-		Refeicao paraMaromba = new Refeicao("Preparem-se marombas", "para ficar grandao", frango, null, batataDoce);
+		Refeicao paraMaromba = new Refeicao("Preparem-se marombas", "para ficar grandao", frango, null, batataDoce, batataDoce);
 		fail("deveria ter retornado uma AtributoInvalidoException");
 	} catch (ValorDeAtributoInvalidoException e) {
 		assertEquals("O prato indicado nao eh um prato valido", e.getMessage());
 	}
 	
 	try {
-		Refeicao paraMaromba = new Refeicao("Preparem-se marombas", "para ficar grandao", frango, frango, null);
+		Refeicao paraMaromba = new Refeicao("Preparem-se marombas", "para ficar grandao", frango, frango, null, batataDoce);
 		fail("deveria ter retornado uma AtributoInvalidoException");
 	} catch (ValorDeAtributoInvalidoException e) {
 		assertEquals("O prato indicado nao eh um prato valido", e.getMessage());
 	}
+	
+	try {
+		Refeicao paraMaromba = new Refeicao("Preparem-se marombas", "para ficar grandao", frango, frango, batataDoce, null);
+		fail("deveria ter retornado uma AtributoInvalidoException");
+	} catch (ValorDeAtributoInvalidoException e) {
+		assertEquals("O prato indicado nao eh um prato valido", e.getMessage());
+	}
+	
 	}
 
 	@Test
