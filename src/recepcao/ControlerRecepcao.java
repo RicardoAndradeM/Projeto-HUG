@@ -144,7 +144,7 @@ public class ControlerRecepcao {
 		throw new HospedeNaoEncontradoException(String.format("Erro na consulta de hospede. Hospede de email %s nao foi cadastrado(a).", id));
 	}
 	
-	public void checkin(String id, String numeroQuarto, TipoDeQuarto tipoDeQuarto, int quantidadeDias) throws NomeDeAtributoInvalidoException, QuantidadedeDiasInvalidaException, HospedeNaoEncontradoException{
+	public void realizaCheckin(String id, String numeroQuarto, TipoDeQuarto tipoDeQuarto, int quantidadeDias) throws NomeDeAtributoInvalidoException, QuantidadedeDiasInvalidaException, HospedeNaoEncontradoException{
 		Quarto novoQuarto = this.factoryDeQuarto.criaQuarto(numeroQuarto, tipoDeQuarto);
 		Estadia novaEstadia = this.factoryDeEstadia.criaEstadia(novoQuarto,quantidadeDias);
 		this.buscaHospede(id).redebeEstadia(novaEstadia);

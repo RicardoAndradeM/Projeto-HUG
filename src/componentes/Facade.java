@@ -90,8 +90,8 @@ public class Facade {
 		return controlerRecepcao.buscaHospede(email);
 	}
 	
-	public void checkin(String id, String numeroQuarto, TipoDeQuarto tipoDeQuarto, int quantidadeDias) throws NomeDeAtributoInvalidoException, QuantidadedeDiasInvalidaException, HospedeNaoEncontradoException{
-		controlerRecepcao.checkin(id, numeroQuarto, tipoDeQuarto, quantidadeDias);
+	public void realizaCheckin(String id, String numeroQuarto, TipoDeQuarto tipoDeQuarto, int quantidadeDias) throws NomeDeAtributoInvalidoException, QuantidadedeDiasInvalidaException, HospedeNaoEncontradoException{
+		controlerRecepcao.realizaCheckin(id, numeroQuarto, tipoDeQuarto, quantidadeDias);
 	}
 	
 	public void checkout(String id, String numeroQuarto) throws HospedeNaoEncontradoException{
