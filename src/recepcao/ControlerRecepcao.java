@@ -144,7 +144,15 @@ public class ControlerRecepcao {
 		throw new HospedeNaoEncontradoException(String.format("Erro na consulta de hospede. Hospede de email %s nao foi cadastrado(a).", id));
 	}
 	
-	public void realizaCheckin(String id, String numeroQuarto, TipoDeQuarto tipoDeQuarto, int quantidadeDias) throws NomeDeAtributoInvalidoException, QuantidadedeDiasInvalidaException, HospedeNaoEncontradoException{
+	public void realizaCheckin(String id, String numeroQuarto, String tipoDeQuartoString, int quantidadeDias) throws NomeDeAtributoInvalidoException, QuantidadedeDiasInvalidaException, HospedeNaoEncontradoException{
+		TipoDeQuarto tipoDeQuarto;
+		if(tipoDeQuartoString.equals("Presidencial")){
+			tipoDeQuarto = TipoDeQuarto.PRESIDENCIAL;
+		} else if (tipoDeQuartoString.equals("Luxo")){
+			tipoDeQuarto = TipoDeQuarto.LUXO;
+		} else {
+			tipoDeQuarto = TipoDeQuarto.SIMPLES;
+		}
 		Quarto novoQuarto = this.factoryDeQuarto.criaQuarto(numeroQuarto, tipoDeQuarto);
 		Estadia novaEstadia = this.factoryDeEstadia.criaEstadia(novoQuarto,quantidadeDias);
 		this.buscaHospede(id).redebeEstadia(novaEstadia);
