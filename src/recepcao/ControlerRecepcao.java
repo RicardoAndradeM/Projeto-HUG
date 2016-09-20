@@ -153,8 +153,10 @@ public class ControlerRecepcao {
 		} else {
 			tipoDeQuarto = TipoDeQuarto.SIMPLES;
 		}
-		Quarto novoQuarto = this.factoryDeQuarto.criaQuarto(numeroQuarto, tipoDeQuarto);
-		Estadia novaEstadia = this.factoryDeEstadia.criaEstadia(novoQuarto,quantidadeDias);
+		//Quarto novoQuarto = this.factoryDeQuarto.criaQuarto(numeroQuarto, tipoDeQuarto);
+		Quarto novoQuarto = new Quarto(numeroQuarto, tipoDeQuarto);
+		//Estadia novaEstadia = this.factoryDeEstadia.criaEstadia(novoQuarto,quantidadeDias);
+		Estadia novaEstadia = new Estadia(novoQuarto, quantidadeDias);
 		this.buscaHospede(id).redebeEstadia(novaEstadia);
 	}
 	
