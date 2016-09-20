@@ -6,55 +6,54 @@ import org.junit.Before;
 import org.junit.Test;
 
 import restaurante.Prato;
-
+import exceptions.valordeatributoinvalido.ValorDeAtributoInvalidoException;
 public class PratoTest {
 
+	Prato macarraoIntegral;
+	
 	@Before
 	public void setUp() throws Exception {
-		Prato macarraoIntegral = new Prato("Macarrone", 7.00,"Super bom" );
+		macarraoIntegral = new Prato("Macarrone", 7.00,"Super bom" );
+	}
+		
+	@Test(expected = ValorDeAtributoInvalidoException.class)
+		public void testPrato() throws Exception{
+		Prato McLanche = new Prato("", 50.0, "Acabe com sua saude");
+		Prato BurgerBomb = new Prato(null, 50.0, "Exploda sua saude");
 	}
 
 	@Test
-	public void testPrato() {
-		Prato McLanche = new Prato("McLanche", 50.0, "Acabe com sua saude");
-		
-//	@Test(expected = NullPointerException.class)
-//		public void construction() throws Exception {
-//		GBFile broken1 = new GBFile(null, null, null);
-//		GBFile broken2 = new GBFile(null, ".txt", sb1);
-//		GBFile broken3 = new GBFile("broken", ".txt", null);
-//		GBFile broken4 = new GBFile("broken", null, sb1);
-		
-//	}
-
-	@Test
 	public void testGetNome() {
-		fail("Not yet implemented");
+		assertEquals("Macarrone", macarraoIntegral.getNome());
 	}
 
 	@Test
 	public void testSetNome() {
-		fail("Not yet implemented");
+		macarraoIntegral.setNome("PeiPou");
+		assertEquals("PeiPou", macarraoIntegral.getNome());
 	}
 
 	@Test
 	public void testGetPreco() {
-		fail("Not yet implemented");
+		assertEquals(7.00, macarraoIntegral.getPreco(), 0);
 	}
 
 	@Test
 	public void testSetPreco() {
-		fail("Not yet implemented");
+		macarraoIntegral.setPreco(55.0);
+		assertEquals(55.0, macarraoIntegral.getPreco(), 0);
+		
 	}
 
 	@Test
 	public void testGetDescricao() {
-		fail("Not yet implemented");
+		assertEquals("Super bom", macarraoIntegral.getDescricao());
 	}
 
 	@Test
 	public void testSetDescricao() {
-		fail("Not yet implemented");
+		macarraoIntegral.setDescricao("Bomzaum");
+		assertEquals("Bomzaum", macarraoIntegral.getDescricao());
 	}
 
 }

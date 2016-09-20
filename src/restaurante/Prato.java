@@ -51,7 +51,7 @@ public class Prato {
 	 * @return nome do prato
 	 */
 	public String getNome() {
-		return nome;
+		return this.nome;
 	}
 	
 	/**
