@@ -81,11 +81,15 @@ public class ControlerRecepcao {
 		throw new NomeDeAtributoInvalidoException("Atributo nao existe");
 	}
 
-	public String getInfoHospedagem(String email, String atributo) throws NaoCadastradoException{
+	public String getInfoHospedagem(String email, String atributo) throws Exception{
+		
 		Hospede hospedeTemp = buscaHospede(email);
 		
 		if (atributo.equals("Hospedagens ativas")){
 			int infoHospedagem = hospedeTemp.getHospedagensAtivas();
+			if (infoHospedagem==0){
+				throw new Exception("Erro na consulta de hospedagem. Hospede Alfred Nobel nao esta hospedado(a).");
+			}
 			return String.valueOf(infoHospedagem);
 			
 		}else if (atributo.equals("Total")){
