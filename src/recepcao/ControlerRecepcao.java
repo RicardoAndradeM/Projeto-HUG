@@ -6,11 +6,14 @@ import java.util.ArrayList;
 //lembra de colocar tostring hashcod e eguals no UML
 //4 - perguntar se é boa pratica manter o nome dos parametros iguais e se precisam ser iguais aos testes
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import enums.TipoDeQuarto;
 import exceptions.naocadastrado.HospedeNaoEncontradoException;
+import exceptions.naocadastrado.NaoCadastradoException;
 import exceptions.valordeatributoinvalido.DataNascimentoInvalidaException;
 import exceptions.valordeatributoinvalido.EmailInvalidoException;
 import exceptions.valordeatributoinvalido.NomeDeAtributoInvalidoException;
@@ -78,6 +81,29 @@ public class ControlerRecepcao {
 		throw new NomeDeAtributoInvalidoException("Atributo nao existe");
 	}
 
+	public String getInfoHospedagem(String email, String atributo) throws NaoCadastradoException{
+		Hospede hospedeTemp = buscaHospede(email);
+		
+		if (atributo.equals("Hospedagens ativas")){
+			int infoHospedagem = hospedeTemp.getHospedagensAtivas();
+			return String.valueOf(infoHospedagem);
+			
+		}else if (atributo.equals("Total")){
+			String valorTotal = String.valueOf(hospedeTemp.getValorTotalEstadias());
+			return "R$"+valorTotal;
+					
+		}else if (atributo.equals("Quarto")){
+		 String quartos = String.valueOf(hospedeTemp.getQuarto());
+		 
+		 quartos = quartos.replace("]", "");
+		 quartos = quartos.replace("[", "");
+		 quartos = quartos.replace(" ", "");
+		 
+			return quartos;
+		}
+		return "0";
+	}
+	
 	/**
 	 * @param id email do hospede
 	 * @param atributo informacao a ser atualizado

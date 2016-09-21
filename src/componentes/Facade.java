@@ -7,6 +7,7 @@ import restaurante.Prato;
 import restaurante.Refeicao;
 import enums.TipoDeQuarto;
 import exceptions.naocadastrado.HospedeNaoEncontradoException;
+import exceptions.naocadastrado.NaoCadastradoException;
 import exceptions.valordeatributoinvalido.DataNascimentoInvalidaException;
 import exceptions.valordeatributoinvalido.EmailInvalidoException;
 import exceptions.valordeatributoinvalido.NomeDeAtributoInvalidoException;
@@ -57,6 +58,11 @@ public class Facade {
 	public String getInfoHospede(String email, String atributo) throws NomeDeAtributoInvalidoException, HospedeNaoEncontradoException{
 		return controlerRecepcao.getInfoHospede(email, atributo);
 	}
+	
+	public String getInfoHospedagem(String email, String atributo) throws NaoCadastradoException {
+		return controlerRecepcao.getInfoHospedagem(email, atributo);
+	}
+
 	
 	/**
 	 * @param id email do hospede
@@ -121,8 +127,8 @@ public class Facade {
 	 * @return verdadeiro caso cadastro com sucesso 
 	 * @throws Exception
 	 */
-	public boolean cadastraRefeicao(String nome, String descricao, Prato ṕrimeiroPrato, Prato segundoPrato, Prato terceiroPrato) throws Exception{
-		return controlerRestaurante.cadastraRefeicao(nome, descricao, ṕrimeiroPrato, segundoPrato, terceiroPrato);
+	public boolean cadastraRefeicao(String nome, String descricao, Prato primeiroPrato, Prato segundoPrato, Prato terceiroPrato) throws Exception{
+		return controlerRestaurante.cadastraRefeicao(nome, descricao, primeiroPrato, segundoPrato, terceiroPrato);
 	}
 	
 	/**
@@ -136,8 +142,8 @@ public class Facade {
 	 * @return verdadeiro caso cadastro com sucesso 
 	 * @throws Exception
 	 */
-	public boolean cadastraRefeicao(String nome, String descricao, Prato ṕrimeiroPrato, Prato segundoPrato, Prato terceiroPrato, Prato quartoPrato ) throws Exception{
-		return controlerRestaurante.cadastraRefeicao(nome, descricao, ṕrimeiroPrato, segundoPrato, terceiroPrato, quartoPrato);
+	public boolean cadastraRefeicao(String nome, String descricao, Prato primeiroPrato, Prato segundoPrato, Prato terceiroPrato, Prato quartoPrato ) throws Exception{
+		return controlerRestaurante.cadastraRefeicao(nome, descricao, primeiroPrato, segundoPrato, terceiroPrato, quartoPrato);
 	}
 	
 	/**

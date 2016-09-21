@@ -1,6 +1,10 @@
 package recepcao;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import exceptions.valordeatributoinvalido.DataNascimentoInvalidaException;
 import exceptions.valordeatributoinvalido.EmailInvalidoException;
@@ -48,6 +52,29 @@ public class Hospede {
 	 */
 	public Estadia devolveEstadia(String numeroQuarto){
 		return this.estadias.remove(numeroQuarto);
+	}
+	
+	public int getHospedagensAtivas(){
+		return estadias.size();
+	}
+	
+	public double getValorTotalEstadias(){
+		if (estadias.isEmpty()){
+			return 0;
+		}
+		
+		Collection<Estadia> estadias = this.estadias.values();
+		double valorTotal = 0;
+		
+		for (Estadia estadia : estadias){
+			valorTotal += estadia.calculaValor();
+		}
+		
+		return valorTotal;
+	}
+	
+	public Set<String> getQuarto(){
+		return estadias.keySet();
 	}
 	
 	/**

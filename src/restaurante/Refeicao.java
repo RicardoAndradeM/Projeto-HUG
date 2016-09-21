@@ -64,9 +64,9 @@ public class Refeicao {
 	 * @param segundoPrato
 	 * @param terceiroPrato
 	 * @param quartoPrato
-	 * @throws NomeDeAtributoInvalidoException
+	 * @throws ValorDeAtributoInvalidoException 
 	 */
-	public Refeicao(String nome, String descricao, Prato primeiroPrato, Prato segundoPrato, Prato terceiroPrato, Prato quartoPrato) throws NomeDeAtributoInvalidoException {
+	public Refeicao(String nome, String descricao, Prato primeiroPrato, Prato segundoPrato, Prato terceiroPrato, Prato quartoPrato) throws ValorDeAtributoInvalidoException {
 		
 		this.nome = nome;
 		this.descricao = descricao;
@@ -74,6 +74,12 @@ public class Refeicao {
 		
 		verificaNome(nome);
 		verificaDescricao(descricao);
+		
+		verificaPrato(primeiroPrato);
+		verificaPrato(segundoPrato);
+		verificaPrato(terceiroPrato);
+		verificaPrato(quartoPrato);
+		
 		pratos.add(primeiroPrato);
 		pratos.add(segundoPrato);
 		pratos.add(terceiroPrato);
@@ -136,6 +142,10 @@ public class Refeicao {
 		pratos.add(posicaoPrato, prato);
 	}
 
+	public Prato getPrato(int numeroPrato){
+		return pratos.get(numeroPrato);
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

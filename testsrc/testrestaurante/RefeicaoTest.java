@@ -16,6 +16,9 @@ public class RefeicaoTest {
 	Prato sorvete;
 	Prato batataDoce;
 	Prato frango;
+	Refeicao frangao;
+	Refeicao frangao2;
+	Refeicao mariaDoFrango;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -24,8 +27,9 @@ public class RefeicaoTest {
 		batataDoce = new Prato("comida de monstro", 6.00, "carboidrato puro");
 		frango = new Prato("frango desfiado", 5.00, "proteinas a mil");
 		
-		Refeicao frangao = new Refeicao("frangao2000", "frango ate o amanhecer!", frango, frango, frango);
-		Refeicao frangao2 = new Refeicao("frangao2000", "frango ate o amanhecer!", frango, frango, frango, frango);
+		frangao = new Refeicao("frangao2000", "frango ate o amanhecer!", frango, frango, frango);
+		frangao2 = new Refeicao("frangao2002", "frango ate o anoitecer do outro dia!", frango, frango, frango, frango);
+		mariaDoFrango = new Refeicao("frangao2002", "frango ate o anoitecer do outro dia!", frango, frango, frango, frango);
 	}
 
 	@Test
@@ -118,37 +122,49 @@ public class RefeicaoTest {
 
 	@Test
 	public void testGetValor() {
-		fail("Not yet implemented");
+		assertEquals(13.5, frangao.getValor(), 0);
+		assertEquals(18, frangao2.getValor(), 0);
 	}
 
 	@Test
 	public void testGetNome() {
-		fail("Not yet implemented");
+		assertEquals("frangao2000", frangao.getNome());
+		assertEquals("frangao2002", frangao2.getNome());
 	}
 
 	@Test
 	public void testGetDescricao() {
-		fail("Not yet implemented");
+		assertEquals("frango ate o amanhecer!", frangao.getDescricao());
+		assertEquals("frango ate o anoitecer do outro dia!", frangao2.getDescricao());
 	}
 
 	@Test
 	public void testSetNome() {
-		fail("Not yet implemented");
+		frangao.setNome("frangao naruto");
+		frangao2.setNome("frangao sasuke");
+		
+		assertEquals("frangao naruto", frangao.getNome());
+		assertEquals("frangao sasuke", frangao2.getNome());
 	}
 
 	@Test
 	public void testSetDescricao() {
-		fail("Not yet implemented");
+		frangao.setDescricao("frango a bessa");
+		frangao2.setDescricao("frango a intermares");
+		
+		assertEquals("frango a bessa", frangao.getDescricao());
+		assertEquals("frango a intermares", frangao2.getDescricao());;
 	}
 
 	@Test
 	public void testAutualizaPrato() {
-		fail("Not yet implemented");
+		frangao.autualizaPrato(0, batataDoce);
+		frangao.getPrato(0);
 	}
 
 	@Test
 	public void testEqualsObject() {
-		fail("Not yet implemented");
+		assertEquals(mariaDoFrango, frangao2);
 	}
 
 }

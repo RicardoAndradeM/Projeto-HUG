@@ -9,6 +9,7 @@ import org.junit.Test;
 import exceptions.jacadastrado.JaCadastradoException;
 import exceptions.naocadastrado.NaoCadastradoException;
 import exceptions.valordeatributoinvalido.NomeDeAtributoInvalidoException;
+import exceptions.valordeatributoinvalido.ValorDeAtributoInvalidoException;
 import restaurante.ControlerRestaurante;
 import restaurante.Prato;
 import restaurante.Refeicao;
@@ -99,7 +100,7 @@ public class ControlerRestauranteTest {
 	}
 
 	@Test
-	public void testBuscaRefeicao() throws NomeDeAtributoInvalidoException {
+	public void testBuscaRefeicao() throws ValorDeAtributoInvalidoException {
 		Refeicao refeicaoTemp = new Refeicao("engorda1", "Fique gordinho", burger4, burger4, burger4, burger4);
 		assertEquals(refeicaoTemp, restaurante.buscaRefeicao("engorda1"));
 		
