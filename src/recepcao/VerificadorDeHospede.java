@@ -39,7 +39,7 @@ public class VerificadorDeHospede {
 	
 	/** verifica se email eh valido
 	 * @param email email a se avaliado
-	 * @throws EmailInvalidoException
+	 * @throws EmailInvalidoException caso email seja invalido
 	 */
 	public void verificaEmail(String email) throws EmailInvalidoException{
 		if(email.trim().equals("") || email == null){

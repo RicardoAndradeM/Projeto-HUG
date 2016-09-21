@@ -85,7 +85,7 @@ public class ControlerRecepcao {
 	 * @param email email do hospede
 	 * @param atributo atributo solicitado
 	 * @return atribulo que foi solicitado
-	 * @throws Exception
+	 * @throws Exception .
 	 */
 	public String getInfoHospedagem(String email, String atributo) throws Exception{
 		
@@ -169,7 +169,7 @@ public class ControlerRecepcao {
 	/** busca hospede no sistema
 	 * @param id email do hospede
 	 * @return retorna o hospede buscado
-	 * @throws HospedeNaoEncontradoException 
+	 * @throws HospedeNaoEncontradoException  caso hospede nao seja encontrado
 	 */
 	public Hospede buscaHospede(String id) throws HospedeNaoEncontradoException {
 		for (Hospede hospede : hospedes) {

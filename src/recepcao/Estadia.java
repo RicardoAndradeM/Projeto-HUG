@@ -4,7 +4,7 @@ import exceptions.valordeatributoinvalido.QuantidadedeDiasInvalidaException;
 
 /**
  * Classe que representa uma estadia
- * @sice 15/09/16
+ * @since 15/09/16
  */
 public class Estadia {
 	private Quarto quarto;

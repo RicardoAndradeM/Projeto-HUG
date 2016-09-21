@@ -29,7 +29,7 @@ public class ControlerRestaurante {
 	 * @param preco do prato
 	 * @param descricao do prato cadastrado
 	 * @return verdadeiro caso cadastro com sucesso 
-	 * @throws Exception
+	 * @throws Exception .
 	 */
 	public boolean cadastraPrato(String nome, double preco, String descricao) throws Exception{
 			if (! (pratos.get(nome)==null)){
@@ -50,7 +50,7 @@ public class ControlerRestaurante {
 	 * @param segundoPrato da refeicao
 	 * @param terceiroPrato da refeicao
 	 * @return verdadeiro caso cadastro com sucesso 
-	 * @throws Exception
+	 * @throws Exception .
 	 */
 	public boolean cadastraRefeicao(String nome, String descricao, Prato primeiroPrato, Prato segundoPrato, Prato terceiroPrato) throws Exception{
 			if (! (buscaRefeicao(nome)==null)){
@@ -69,9 +69,9 @@ public class ControlerRestaurante {
 	 * @param primeiroPrato da refeicao
 	 * @param segundoPrato da refeicao
 	 * @param terceiroPrato da refeicao
-	 * @param quartoPrato
+	 * @param quartoPrato da refeicao
 	 * @return verdadeiro caso cadastro com sucesso 
-	 * @throws Exception
+	 * @throws Exception .
 	 */
 	public boolean cadastraRefeicao(String nome, String descricao, Prato primeiroPrato, Prato segundoPrato, Prato terceiroPrato, Prato quartoPrato) throws Exception{
 		if (! (buscaRefeicao(nome)==null)){
@@ -89,7 +89,7 @@ public class ControlerRestaurante {
 	 * @param atributo do prato
 	 * @param valor do prato
 	 * @return verdadeiro caso atualizado com sucesso 
-	 * @throws Exception
+	 * @throws Exception .
 	 */
 	public boolean atualizaPrato(String nomePrato, String atributo, String valor) throws Exception{
 		Prato prato = pratos.get(nomePrato);
@@ -117,7 +117,7 @@ public class ControlerRestaurante {
 	 * @param atributo da refeicao
 	 * @param valor da refeicao
 	 * @return verdadeiro caso cadastro com sucesso 
-	 * @throws Exception
+	 * @throws Exception .
 	 */
 	public boolean atualizaRefeicao(String nomeRefeicao, String atributo, String valor) throws Exception{
 		if (buscaRefeicao(nomeRefeicao)==null){
@@ -179,7 +179,7 @@ public class ControlerRestaurante {
 	 * remove um prato do sitema
 	 * @param nomePrato nome do prato
 	 * @return verdadeiro caso prato remavido com sucesso 
-	 * @throws Exception
+	 * @throws Exception .
 	 */
 	public boolean removePrato(String nomePrato) throws Exception{
 		if (verificaPrato(nomePrato)){
@@ -194,7 +194,7 @@ public class ControlerRestaurante {
 	 * remove uma refeicao do sistema
 	 * @param nomeRefeicao nome da refeicao
 	 * @return verdadeiro caso prato remavido com sucesso 
-	 * @throws Exception
+	 * @throws Exception .
 	 */
 	public boolean removeRefeicao(String nomeRefeicao) throws Exception{
 		if (verificaRefeicao(nomeRefeicao)){

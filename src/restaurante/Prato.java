@@ -6,7 +6,7 @@ import exceptions.valordeatributoinvalido.ValorDeAtributoInvalidoException;
 
 /**
  * representa um prato
- * @sice 19/09/16
+ * @since 19/09/16
  *
  */
 public class Prato {
@@ -19,9 +19,9 @@ public class Prato {
 	 * @param nome do prato
 	 * @param preco do prato
 	 * @param descricao do praequalsto
-	 * @throws NomeInvalidoException 
-	 * @throws PrecoInvalidoException 
-	 * @throws ValorDeAtributoInvalidoException 
+	 * @throws NomeInvalidoException  caso nome seja invalido
+	 * @throws PrecoInvalidoException  caso preco seja invalido
+	 * @throws ValorDeAtributoInvalidoException  caso valor do atributo seja invalido
 	 */
 	public Prato(String nome, double preco,	String descricao) throws NomeInvalidoException, PrecoInvalidoException, ValorDeAtributoInvalidoException {
 		verificaNome(nome);
@@ -77,7 +77,7 @@ public class Prato {
 	
 	/**
 	 * 
-	 * @param novo preco do prato
+	 * @param preco do prato
 	 */
 	public void setPreco(double preco) {
 		this.preco = preco;
@@ -92,8 +92,7 @@ public class Prato {
 	}
 	
 	/**
-	 * 
-	 * @param nova descricao do prato
+	 * @param descricao do prato
 	 */
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;

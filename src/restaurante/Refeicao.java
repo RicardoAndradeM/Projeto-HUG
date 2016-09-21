@@ -7,7 +7,7 @@ import exceptions.valordeatributoinvalido.ValorDeAtributoInvalidoException;
 
 /**
  * representa uma refeicao no sitema
- * @sice 18/09/16
+ * @since 18/09/16
  */
 public class Refeicao {
 	private String nome;
@@ -19,10 +19,10 @@ public class Refeicao {
 	 * 
 	 * @param nome da refeicao
 	 * @param descricao da refeicao
-	 * @param primeiroPrato
-	 * @param segundoPrato
-	 * @param terceiroPrato
-	 * @throws ValorDeAtributoInvalidoException 
+	 * @param primeiroPrato a ser cadastrado
+	 * @param segundoPrato a ser cadastrado
+	 * @param terceiroPrato a ser cadastrado
+	 * @throws ValorDeAtributoInvalidoException caso valor do atributo seja invalido
 	 */
 	public Refeicao(String nome, String descricao, Prato primeiroPrato, Prato segundoPrato, Prato terceiroPrato) throws ValorDeAtributoInvalidoException {
 		
@@ -64,11 +64,11 @@ public class Refeicao {
 	 * 
 	 * @param nome  da refeicao
 	 * @param descricao da refeicao
-	 * @param primeiroPrato
-	 * @param segundoPrato
-	 * @param terceiroPrato
-	 * @param quartoPrato
-	 * @throws ValorDeAtributoInvalidoException 
+	 * @param primeiroPrato a ser cadastrado
+	 * @param segundoPrato a ser cadastrado
+	 * @param terceiroPrato a ser cadastrado
+	 * @param quartoPrato a ser cadastrado
+	 * @throws ValorDeAtributoInvalidoException  caso valor do atributo seja invalido
 	 */
 	public Refeicao(String nome, String descricao, Prato primeiroPrato, Prato segundoPrato, Prato terceiroPrato, Prato quartoPrato) throws ValorDeAtributoInvalidoException {
 		
