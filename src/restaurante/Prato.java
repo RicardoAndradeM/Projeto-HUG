@@ -4,6 +4,11 @@ import exceptions.valordeatributoinvalido.NomeInvalidoException;
 import exceptions.valordeatributoinvalido.PrecoInvalidoException;
 import exceptions.valordeatributoinvalido.ValorDeAtributoInvalidoException;
 
+/**
+ * representa um prato
+ * @sice 19/09/16
+ *
+ */
 public class Prato {
 	String nome;
 	double preco;

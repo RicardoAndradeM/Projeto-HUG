@@ -1,5 +1,9 @@
 package factorys;
 
+/**
+ * Cria objetos do tipo Estadia
+ * @since 15/09/16
+ */
 import exceptions.valordeatributoinvalido.DataNascimentoInvalidaException;
 import exceptions.valordeatributoinvalido.EmailInvalidoException;
 import exceptions.valordeatributoinvalido.NomeInvalidoException;

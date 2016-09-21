@@ -2,7 +2,7 @@ package recepcao;
 
 /**
  * @author Ricardo Andrade
- * @since 13/09/16
+ * @since 18/09/16
  */
 public class Checkout {
 	String dataDeSaida;

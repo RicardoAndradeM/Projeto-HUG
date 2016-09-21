@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import exceptions.valordeatributoinvalido.NomeDeAtributoInvalidoException;
 import exceptions.valordeatributoinvalido.ValorDeAtributoInvalidoException;
 
+/**
+ * representa uma refeicao no sitema
+ * @sice 18/09/16
+ */
 public class Refeicao {
 	private String nome;
 	private String descricao;

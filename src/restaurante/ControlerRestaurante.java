@@ -6,7 +6,10 @@ import java.util.HashMap;
 import exceptions.jacadastrado.JaCadastradoException;
 import exceptions.naocadastrado.NaoCadastradoException;
 
-
+/**
+ * Controler do restaurante
+ * @since 16/09/16
+ */
 public class ControlerRestaurante {
 	private final String NOME = "nome";
 	private final String DESCRICAO = "descricao";
@@ -21,7 +24,7 @@ public class ControlerRestaurante {
 	}
 	
 	/**
-	 * 
+	 * cadastra um prato no sistema
 	 * @param nome do prato
 	 * @param preco do prato
 	 * @param descricao do prato cadastrado
@@ -40,7 +43,7 @@ public class ControlerRestaurante {
 	}
 	
 	/**
-	 * 
+	 * cadastra uma refeicao no sitema
 	 * @param nome da refeicao
 	 * @param descricao da refeicao
 	 * @param primeiroPrato da refeicao
@@ -60,8 +63,7 @@ public class ControlerRestaurante {
 	}
 	
 	/**
-	 * 
-	
+	 * cadastra uma refeicao no sistema
 	 * @param nome da refeicao
 	 * @param descricao da refeicao
 	 * @param primeiroPrato da refeicao
@@ -82,7 +84,7 @@ public class ControlerRestaurante {
 	}
 	
 	/**
-	 * 
+	 * atrualiza informacoes de um prato
 	 * @param nomePrato nome do prato
 	 * @param atributo do prato
 	 * @param valor do prato
@@ -110,7 +112,7 @@ public class ControlerRestaurante {
 	}
 	
 	/**
-	 * 
+	 * atrualiza informacoes de uma refeicao
 	 * @param nomeRefeicao nome da refeicao
 	 * @param atributo da refeicao
 	 * @param valor da refeicao
@@ -135,7 +137,7 @@ public class ControlerRestaurante {
 	}
 	
 	/**
-	 * 
+	 * busca uma refeicao no sitema
 	 * @param nomeRefeicao nome da refeicao
 	 * @return refeicao encontrada
 	 */
@@ -149,7 +151,7 @@ public class ControlerRestaurante {
 	}
 	
 	/**
-	 * 
+	 * busca um prato no sitema
 	 * @param nomePrato nome da prato
 	 * @return verdadeiro caso encontrado com sucesso 
 	 */
@@ -165,11 +167,6 @@ public class ControlerRestaurante {
 		}
 	}
 	
-	/**
-	 * 
-	 * @param nomeRefeicao nome da refeicao
-	 * @return verdadeiro caso encontrado com sucesso 
-	 */
 	public boolean verificaRefeicao(String nomeRefeicao){
 		if (buscaRefeicao(nomeRefeicao)==null){
 			return false;
@@ -179,8 +176,8 @@ public class ControlerRestaurante {
 	}
 	
 	/**
-	 * 
-	 * @param nomePrato
+	 * remove um prato do sitema
+	 * @param nomePrato nome do prato
 	 * @return verdadeiro caso prato remavido com sucesso 
 	 * @throws Exception
 	 */
@@ -194,8 +191,8 @@ public class ControlerRestaurante {
 	}
 	
 	/**
-	 * 
-	 * @param nomeRefeicao
+	 * remove uma refeicao do sistema
+	 * @param nomeRefeicao nome da refeicao
 	 * @return verdadeiro caso prato remavido com sucesso 
 	 * @throws Exception
 	 */

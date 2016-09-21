@@ -2,6 +2,10 @@ package componentes;
 
 import easyaccept.EasyAccept;
 
+/**
+ * Classe que inicia o sistema
+ * @since 18/09/16
+ */
 public class Main {
 	
 	 public static void main(String[] args) {

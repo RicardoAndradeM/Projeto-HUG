@@ -2,6 +2,10 @@ package recepcao;
 
 import exceptions.valordeatributoinvalido.QuantidadedeDiasInvalidaException;
 
+/**
+ * Classe que representa uma estadia
+ * @sice 15/09/16
+ */
 public class Estadia {
 	private Quarto quarto;
 	private int quantidadeDias;
@@ -13,18 +17,30 @@ public class Estadia {
 		this.quantidadeDias = quantidadeDias;
 	}
 	
+	/** calcula valor da estadia
+	 * @return valor da estadia
+	 */
 	public double calculaValor(){
 		return quarto.getValorDoQuarto() * quantidadeDias;
 	}
 	
+	/**
+	 * @return retorna numero do quarto
+	 */
 	public String getQuartoNumero(){
 		return quarto.getNumeroQuarto();
 	}
 	
+	/**
+	 * @return retorna a duracao da estadia
+	 */
 	public int getQuantidadeDias(){
 		return this.quantidadeDias;
 	}
 	
+	/** muda numero do quarto
+	 * @param novoQuartoID novo numero de quarto
+	 */
 	public void setQuartoNumero(String novoQuartoID){
 		quarto.setNumeroQuarto(novoQuartoID);
 	}

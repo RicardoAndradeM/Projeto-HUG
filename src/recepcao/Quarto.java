@@ -3,10 +3,13 @@ package recepcao;
 import enums.TipoDeQuarto;
 import exceptions.valordeatributoinvalido.NomeDeAtributoInvalidoException;
 
+/** 
+ * Classe que representa um quarto
+ * @since 15/09/16
+ */
 public class Quarto {
 	private String numeroQuarto;
 	private TipoDeQuarto tipo ;
-	
 	
 	public Quarto(String numeroQuarto, TipoDeQuarto tipo ) throws NomeDeAtributoInvalidoException{
 		if(numeroQuarto == null || numeroQuarto.equals("")){
@@ -15,14 +18,23 @@ public class Quarto {
 		this.numeroQuarto = numeroQuarto;
 	}
 
+	/**
+	 * @return retorna numero do quarto
+	 */
 	public String getNumeroQuarto() {
 		return numeroQuarto;
 	}
 
+	/** altera numero do quarto
+	 * @param numeroQuarto novo numero do quarto
+	 */
 	public void setNumeroQuarto(String numeroQuarto) {
 		this.numeroQuarto = numeroQuarto;
 	} 
 	
+	/** 
+	 * @return retorna o valor do quarto
+	 */
 	public double getValorDoQuarto(){
 		return tipo.getPreco();
 	}
@@ -59,9 +71,4 @@ public class Quarto {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-	
 }

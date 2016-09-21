@@ -1,6 +1,5 @@
 package enums;
 /**
- * @author Gabriel Schubert
  * @since 19/09/2016
  * @version v1.0
  */

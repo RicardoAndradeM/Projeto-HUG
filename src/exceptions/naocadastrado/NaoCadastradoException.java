@@ -1,5 +1,9 @@
 package exceptions.naocadastrado;
 
+/**
+ * representa exception caso um item não esteja cadastrado no sitema
+ * @since 20/0916
+ */
 public class NaoCadastradoException extends Exception {
 	
 	private static final long serialVersionUID = 1276256438398021120L;

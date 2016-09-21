@@ -15,9 +15,8 @@ import exceptions.valordeatributoinvalido.NomeInvalidoException;
 import exceptions.valordeatributoinvalido.QuantidadedeDiasInvalidaException;
 	
 /**
- * 
- * @author ygorlor
- *@since 19/09/16
+ * facade do sistema
+ * @since 13/09/16
  */
 public class Facade {
 	private ControlerRecepcao controlerRecepcao;
@@ -33,33 +32,38 @@ public class Facade {
 		
 	}
 	
-	/**
-	 * 
+	/** cadastra um hospede no sistema
 	 * @param nome do hospede
 	 * @param email do hospede
 	 * @param dataNascimento do hospede
 	 * @return ah id do hospede
-	 * @throws NomeInvalidoException
-	 * @throws EmailInvalidoException
+	 * @throws NomeInvalidoException caso nome seja invalido
+	 * @throws EmailInvalidoException caso email seja invalido
 	 */
 	public String cadastraHospede(String nome, String email, String dataNascimento) throws NomeInvalidoException, EmailInvalidoException, DataNascimentoInvalidaException{
 		return controlerRecepcao.cadastraHospede(nome, email, dataNascimento);
 	}
 	
-	/**
+	/** obtem informações do hospede no sitema
 	 * @param nome nome do hospede
 	 * @param email email do hospede que sera usado de logind
 	 * @param dataNascimento data completa de nascimento no formato DD/MM/AAAA
 	 * @return id do hospede, neste caso, o email
-	 * @throws EmailInvalidoException 
-	 * @throws NomeInvalidoException 
-	 * @throws dataNascimentoInvalidaException 
+	 * @throws EmailInvalidoException caso email invalido
+	 * @throws NomeInvalidoException caso nome invalido
+	 * @throws dataNascimentoInvalidaException caso data de nascimento seja invalido
 	 */
 	public String getInfoHospede(String email, String atributo) throws NomeDeAtributoInvalidoException, HospedeNaoEncontradoException{
 		return controlerRecepcao.getInfoHospede(email, atributo);
 	}
 	
-	public String getInfoHospedagem(String email, String atributo) throws NaoCadastradoException {
+	/** retorna informacoes do espede
+	 * @param email email do hospede
+	 * @param atributo atributo solicitado
+	 * @return atribulo que foi solicitado
+	 * @throws Exception
+	 */
+	public String getInfoHospedagem(String email, String atributo) throws Exception {
 		return controlerRecepcao.getInfoHospedagem(email, atributo);
 	}
 
@@ -96,16 +100,29 @@ public class Facade {
 		return controlerRecepcao.buscaHospede(email);
 	}
 	
+	/** realiza o chekin do hospede
+	 * @param id email do hospede
+	 * @param quantidadeDias dia que ficara hospedado
+	 * @param numeroQuarto numero do quarto em que ficara
+	 * @param tipoDeQuartoString string do tipo de quarto que ocupara
+	 * @throws NomeDeAtributoInvalidoException caso nome seja invalido
+	 * @throws QuantidadedeDiasInvalidaException caso a quantidade de dias seja invalida
+	 * @throws HospedeNaoEncontradoException caso hospe não esja cadastrado
+	 */
 	public void realizaCheckin(String id, int quantidadeDias, String numeroQuarto, String tipoDeQuartoString) throws NomeDeAtributoInvalidoException, QuantidadedeDiasInvalidaException, HospedeNaoEncontradoException{
 		controlerRecepcao.realizaCheckin(id, numeroQuarto, tipoDeQuartoString, quantidadeDias);
 	}
 	
+	/** faz o checkout do hospede no sistema
+	 * @param id email do hospede
+	 * @param numeroQuarto numero do quarto em que ficara
+	 * @throws HospedeNaoEncontradoException caso hospede não seja encontrado
+	 */
 	public void checkout(String id, String numeroQuarto) throws HospedeNaoEncontradoException{
 		controlerRecepcao.checkout(id, numeroQuarto);
 	}
 	
-	/**
-	 * 
+	/** cadastra um prato no cardapio
 	 * @param nome nome do prato
 	 * @param preco preco do prato
 	 * @param descricao do prato cadastrado
@@ -116,8 +133,7 @@ public class Facade {
 		return controlerRestaurante.cadastraPrato(nome, preco, descricao);
 	}
 	
-	/**
-	 * 
+	/** cadastra uma refeicao no sistema
 	 * @param nome da refeicao
 	 * @param descricao da refeicao
 	 * @param primeiroPrato da refeicao
@@ -131,8 +147,7 @@ public class Facade {
 		return controlerRestaurante.cadastraRefeicao(nome, descricao, primeiroPrato, segundoPrato, terceiroPrato);
 	}
 	
-	/**
-	 * 
+	/** cadastra uma refeicao no sistema
 	 * @param nome da refeicao
 	 * @param descricao da refeicao
 	 * @param primeiroPrato da refeicao
@@ -146,8 +161,7 @@ public class Facade {
 		return controlerRestaurante.cadastraRefeicao(nome, descricao, primeiroPrato, segundoPrato, terceiroPrato, quartoPrato);
 	}
 	
-	/**
-	 * 
+	/** atualiza os dados de um prato
 	 * @param nomePrato nome do prato
 	 * @param atributo do prato
 	 * @param valor do prato
@@ -158,8 +172,7 @@ public class Facade {
 		return controlerRestaurante.atualizaPrato(nome, atributo, valor);
 	}
 	
-	/**
-	 * 
+	/** atualiza os dados de uma refeicao
 	 * @param nomeRefeicao nome da refeicao
 	 * @param atributo da refeicao
 	 * @param valor da refeicao
@@ -170,8 +183,7 @@ public class Facade {
 		return controlerRestaurante.atualizaRefeicao(nomeRefeicao, atributo, valor);
 	}	
 	
-	/**
-	 * 
+	/** busca uma refeicao no cardapio
 	 * @param nomeRefeicao nome da refeicao
 	 * @return refeicao encontrada
 	 */
@@ -179,8 +191,7 @@ public class Facade {
 		return controlerRestaurante.buscaRefeicao(nomeRefeicao);
 	}
 	
-	/**
-	 * 
+	/** verifica se um prato esta no cardapio
 	 * @param nomePrato nome da prato
 	 * @return verdadeiro caso encontrado com sucesso 
 	 */
@@ -188,8 +199,7 @@ public class Facade {
 		return controlerRestaurante.verificaPrato(nomePrato);
 	}
 	
-	/**
-	 * 
+	/** verifica se uma refeicao esta no cardapio
 	 * @param nomeRefeicao nome da refeicao
 	 * @return verdadeiro caso encontrado com sucesso 
 	 */
@@ -197,9 +207,8 @@ public class Facade {
 		return controlerRestaurante.verificaRefeicao(nomeRefeicao);
 	}
 	
-	/**
-	 * 
-	 * @param nomePrato
+	/** remove um prato do sistema
+	 * @param nomePrato nome do prato
 	 * @return verdadeiro caso prato remavido com sucesso 
 	 * @throws Exception
 	 */
@@ -207,9 +216,8 @@ public class Facade {
 		controlerRestaurante.removePrato(nomePrato);
 	}
 	
-	/**
-	 * 
-	 * @param nomeRefeicao
+	/** remove uma refeicao do sistema
+	 * @param nomeRefeicao nome da refeicao
 	 * @return verdadeiro caso prato remavido com sucesso 
 	 * @throws Exception
 	 */

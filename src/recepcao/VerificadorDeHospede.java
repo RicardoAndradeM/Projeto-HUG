@@ -11,12 +11,20 @@ import exceptions.valordeatributoinvalido.EmailInvalidoException;
 import exceptions.valordeatributoinvalido.NomeInvalidoException;
 import jdk.nashorn.internal.objects.NativeNumber;
 
+/** Classe que verifica se valore relacionados a hospede sao validos
+ * @since 15/09/16
+ *
+ */
 public class VerificadorDeHospede {
 	private final String EMAIL_PATTERN = 
 	        "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 	        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	private final Pattern pattern = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
 	
+	/** verifica se nome eh valido
+	 * @param nome nome a ser avaliado
+	 * @throws NomeInvalidoException caso nome sejan invalido
+	 */
 	public void verificaNome(String nome) throws NomeInvalidoException{
 		if(nome == null || nome.trim().equals("")){
 			throw new NomeInvalidoException("Nome do(a) hospede nao pode ser vazio.");
@@ -29,6 +37,10 @@ public class VerificadorDeHospede {
 		}
 	}
 	
+	/** verifica se email eh valido
+	 * @param email email a se avaliado
+	 * @throws EmailInvalidoException
+	 */
 	public void verificaEmail(String email) throws EmailInvalidoException{
 		if(email.trim().equals("") || email == null){
 			throw new EmailInvalidoException("Email do(a) hospede nao pode ser vazio.");
@@ -39,6 +51,10 @@ public class VerificadorDeHospede {
 	    }
 	}
 	
+	/** verifica se data de nascimento eh valido
+	 * @param dataNascimento data a ser avalida
+	 * @throws DataNascimentoInvalidaException caso data seja invalida
+	 */
 	public void verificaDataNascimento(String dataNascimento) throws DataNascimentoInvalidaException{
 		if(dataNascimento.trim().equals("") || dataNascimento == null){
 			throw new DataNascimentoInvalidaException("Data de Nascimento do(a) hospede nao pode ser vazio.");		

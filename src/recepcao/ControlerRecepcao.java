@@ -45,14 +45,14 @@ public class ControlerRecepcao {
 		this.historicoDeCheckout = new ArrayList<Checkout>();
 	}
 	
-	/**
+	/** cadastra hospede no sitema
 	 * @param nome nome do hospede
 	 * @param email email do hospede que sera usado de logind
 	 * @param dataNascimento data completa de nascimento no formato DD/MM/AAAA
 	 * @return id do hospede, neste caso, o email
-	 * @throws EmailInvalidoException 
-	 * @throws NomeInvalidoException 
-	 * @throws DataNascimentoInvalidaException 
+	 * @throws EmailInvalidoException caso email seja invalido
+	 * @throws NomeInvalidoException caso nome seja invalido
+	 * @throws DataNascimentoInvalidaException caso data de nascimento seja invalido
 	 */
 	public String cadastraHospede(String nome, String email, String dataNascimento) throws NomeInvalidoException, EmailInvalidoException, DataNascimentoInvalidaException{
 		Hospede novoHospede = factoryDeHospedes.criaHospede(nome, email, dataNascimento);
@@ -60,12 +60,12 @@ public class ControlerRecepcao {
 		return novoHospede.getEmail();
 	}
 	
-	/**
+	/** retorna informacoes do hospede
 	 * @param id email do hospede
 	 * @param atributo informacao a ser consultada
 	 * @return informacao solicitada
-	 * @throws NomeDeAtributoInvalidoException 
-	 * @throws HospedeNaoEncontradoException 
+	 * @throws NomeDeAtributoInvalidoException caso nome do atributo seja invalido
+	 * @throws HospedeNaoEncontradoException caso hospede nao esteja cadastrado no sistema
 	 */
 	public String getInfoHospede(String id, String atributo) throws NomeDeAtributoInvalidoException, HospedeNaoEncontradoException{
 		Hospede hospede = this.buscaHospede(id);
@@ -81,6 +81,12 @@ public class ControlerRecepcao {
 		throw new NomeDeAtributoInvalidoException("Atributo nao existe");
 	}
 
+	/** retorna informacoes do espede
+	 * @param email email do hospede
+	 * @param atributo atributo solicitado
+	 * @return atribulo que foi solicitado
+	 * @throws Exception
+	 */
 	public String getInfoHospedagem(String email, String atributo) throws Exception{
 		
 		Hospede hospedeTemp = buscaHospede(email);
@@ -108,15 +114,15 @@ public class ControlerRecepcao {
 		return "0";
 	}
 	
-	/**
+	/** atualiza dados de hospede
 	 * @param id email do hospede
 	 * @param atributo informacao a ser atualizado
 	 * @param valor novo valor
-	 * @throws EmailInvalidoException 
-	 * @throws NomeInvalidoException 
-	 * @throws DataNascimentoInvalidaException 
-	 * @throws NomeDeAtributoInvalidoException 
-	 * @throws HospedeNaoEncontradoException 
+	 * @throws EmailInvalidoException caso email seja invalido
+	 * @throws NomeInvalidoException caso nome seja invalido
+	 * @throws DataNascimentoInvalidaException caso data seja invalida
+	 * @throws NomeDeAtributoInvalidoException caso nome do atributo seja invalido
+	 * @throws HospedeNaoEncontradoException caso hospede nao esteja cadastrado
 	 */
 	public void atualizaCadastro(String id, String atributo, String valor) throws EmailInvalidoException, NomeInvalidoException, DataNascimentoInvalidaException, NomeDeAtributoInvalidoException, HospedeNaoEncontradoException{
 		Hospede hospede = this.buscaHospede(id);
@@ -143,11 +149,11 @@ public class ControlerRecepcao {
 		}
 	}
 	
-	/**
+	/** remove hospede do sistema
 	 * @param email email do hospede
 	 * @return retorna verdadeiro caso seja concluido com sucesso
-	 * @throws HospedeNaoEncontradoException 
-	 * @throws EmailInvalidoException 
+	 * @throws HospedeNaoEncontradoException caso hospede nao esteja cadastrado
+	 * @throws EmailInvalidoException caso email seja invalido
 	 */
 	public boolean removeHospede(String email) throws HospedeNaoEncontradoException, EmailInvalidoException{
 		if(email.trim().equals("") || email == null){
@@ -160,7 +166,7 @@ public class ControlerRecepcao {
 		return hospedes.remove(this.buscaHospede(email));
 	}
 	
-	/**
+	/** busca hospede no sistema
 	 * @param id email do hospede
 	 * @return retorna o hospede buscado
 	 * @throws HospedeNaoEncontradoException 
@@ -174,6 +180,15 @@ public class ControlerRecepcao {
 		throw new HospedeNaoEncontradoException(String.format("Erro na consulta de hospede. Hospede de email %s nao foi cadastrado(a).", id));
 	}
 	
+	/** realiza o chekin do hospede
+	 * @param id email do hospede
+	 * @param quantidadeDias dia que ficara hospedado
+	 * @param numeroQuarto numero do quarto em que ficara
+	 * @param tipoDeQuartoString string do tipo de quarto que ocupara
+	 * @throws NomeDeAtributoInvalidoException caso nome seja invalido
+	 * @throws QuantidadedeDiasInvalidaException caso a quantidade de dias seja invalida
+	 * @throws HospedeNaoEncontradoException caso hospe não esja cadastrado
+	 */
 	public void realizaCheckin(String id, String numeroQuarto, String tipoDeQuartoString, int quantidadeDias) throws NomeDeAtributoInvalidoException, QuantidadedeDiasInvalidaException, HospedeNaoEncontradoException{
 		TipoDeQuarto tipoDeQuarto;
 		if(tipoDeQuartoString.equals("Presidencial")){
@@ -190,6 +205,11 @@ public class ControlerRecepcao {
 		this.buscaHospede(id).redebeEstadia(novaEstadia);
 	}
 	
+	/** faz o checkout do hospede no sistema
+	 * @param id email do hospede
+	 * @param numeroQuarto numero do quarto em que ficara
+	 * @throws HospedeNaoEncontradoException caso hospede não seja encontrado
+	 */
 	public void checkout(String id, String numeroQuarto) throws HospedeNaoEncontradoException{
 		Estadia estadiaASerFechada = this.buscaHospede(id).devolveEstadia(numeroQuarto);
 		this.historicoDeCheckout.add(new Checkout(LocalDate.now().toString(), buscaHospede(id).getNome(), estadiaASerFechada.getQuartoNumero(), estadiaASerFechada.calculaValor()));
