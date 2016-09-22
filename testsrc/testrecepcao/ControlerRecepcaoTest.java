@@ -6,10 +6,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import exceptions.naocadastrado.HospedeNaoEncontradoException;
+import exceptions.naocadastrado.NaoCadastradoException;
 import exceptions.valordeatributoinvalido.DataNascimentoInvalidaException;
 import exceptions.valordeatributoinvalido.EmailInvalidoException;
 import exceptions.valordeatributoinvalido.NomeDeAtributoInvalidoException;
 import exceptions.valordeatributoinvalido.NomeInvalidoException;
+import exceptions.valordeatributoinvalido.ValorDeAtributoInvalidoException;
 import recepcao.ControlerRecepcao;
 import recepcao.Hospede;
 
@@ -35,56 +37,56 @@ public class ControlerRecepcaoTest {
 			controler.cadastraHospede("    ", "ricardo@hotmail.com.br", "22/03/1996");
 			fail("Nao deveria aceitar nome somente com espacos");
 		} catch (NomeInvalidoException e) {
-			assertEquals("Formato de nome invalido", e.getMessage());
+			assertEquals("Erro no cadastro de Hospede. Nome do(a) hospede nao pode ser vazio.", e.getMessage());
 		}
 		
 		try {
 			controler.cadastraHospede(null,"nada@gmail.com", "06/06/1966");
 			fail("Nao deveria aceitar nome null");
 		} catch (Exception e) {
-			assertEquals("Nome nao pode ser vazio ou nulo", e.getMessage());
+			assertEquals("Erro no cadastro de Hospede. Nome do(a) hospede nao pode ser vazio.", e.getMessage());
 		}
 		
 		try {
 			controler.cadastraHospede("", "ricardo@hotmail.com.br", "22/03/1996");
 			fail("Nao deveria aceitar o nome vazio");
 		} catch (NomeInvalidoException e) {
-			assertEquals("Nome nao pode ser vazio ou nulo", e.getMessage());
+			assertEquals("Erro no cadastro de Hospede. Nome do(a) hospede nao pode ser vazio.", e.getMessage());
 		}
 		
 		try {
 			controler.cadastraHospede("Gabriel", "gabriel@eu", "22/05/1986");	
-			fail("O e-mail digital eh invalido.");
-		} catch (EmailInvalidoException e) {
-			assertEquals("Formato de email invalido", e.getMessage());
+			fail("Deveri ter retornado uma Exception, parceiro.");
+		} catch (ValorDeAtributoInvalidoException e) {
+			assertEquals("Erro no cadastro de Hospede. Email do(a) hospede esta invalido.", e.getMessage());
 		}
 		
 		try {
 			controler.cadastraHospede("Ronaldo", "", "22/05/1986");	
 			fail("O e-mail nao deveria ser aceito, jah que eh vazio");
-		} catch (EmailInvalidoException e) {
-			assertEquals("email nao pode ser vazio ou nulo", e.getMessage());
+		} catch (ValorDeAtributoInvalidoException e) {
+			assertEquals("Erro no cadastro de Hospede. Email do(a) hospede nao pode ser vazio.", e.getMessage());
 		}
 		
 		try {
 			controler.cadastraHospede("Pedrinho", null, "22/05/1986");	
 			fail("O e-mail nao deveria ser aceito, jah que eh null");
-		} catch (EmailInvalidoException e) {
-			assertEquals("email nao pode ser vazio ou nulo", e.getMessage());
+		} catch (ValorDeAtributoInvalidoException e) {
+			assertEquals("Erro no cadastro de Hospede. Email do(a) hospede nao pode ser vazio.", e.getMessage());
 		}
 		
 		try {
 			controler.cadastraHospede("Osho", "     ", "22/05/1986");	
 			fail("O e-mail nao deveria ser aceito, jah que possui somente espacos");
-		} catch (EmailInvalidoException e) {
-			assertEquals("Formato de email invalido", e.getMessage());
+		} catch (ValorDeAtributoInvalidoException e) {
+			assertEquals("Erro no cadastro de Hospede. Email do(a) hospede nao pode ser vazio.", e.getMessage());
 		}
 		
 		try {
 			controler.cadastraHospede("Amanda", "amanda@google.com.br", "555/03/01000");
 			fail("Nao deveria aceitar essa data");
 		} catch (NomeInvalidoException e) {
-			assertEquals("Formato de data invalido", e.getMessage());
+			assertEquals("Erro no cadastro de Hospede. Formato de data invalido.", e.getMessage());
 		}
 	}
 
@@ -103,7 +105,12 @@ public class ControlerRecepcaoTest {
 	@Test
 	public void testRemoveHospede() throws HospedeNaoEncontradoException, EmailInvalidoException {
 		controler.removeHospede("marieta@gmail.com");
-		assertEquals(null, controler.buscaHospede("marieta@gmail.com"));
+		try {
+			assertEquals(null, controler.buscaHospede("marieta@gmail.com"));
+			fail("Deveria ter retornado uma Exception");
+		} catch (NaoCadastradoException e) {
+			assertEquals("Erro na consulta de hospede. Hospede de email marieta@gmail.com nao foi cadastrado(a).", e.getMessage());
+		}
 	}
 
 	@Test

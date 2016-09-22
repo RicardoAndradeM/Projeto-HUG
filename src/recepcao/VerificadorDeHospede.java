@@ -42,7 +42,7 @@ public class VerificadorDeHospede {
 	 * @throws EmailInvalidoException caso email seja invalido
 	 */
 	public void verificaEmail(String email) throws EmailInvalidoException{
-		if(email.trim().equals("") || email == null){
+		if(email == null || email.trim().equals("")) {
 			throw new EmailInvalidoException("Email do(a) hospede nao pode ser vazio.");
 		}
 		Matcher matcher = pattern.matcher(email);

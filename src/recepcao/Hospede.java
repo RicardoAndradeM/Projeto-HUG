@@ -11,7 +11,6 @@ import exceptions.valordeatributoinvalido.EmailInvalidoException;
 import exceptions.valordeatributoinvalido.NomeInvalidoException;
 
 /**
- * @author Ricardo Andrade
  * @since 13/09/16
  */
 public class Hospede {
