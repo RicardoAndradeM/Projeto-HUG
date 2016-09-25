@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import exceptions.valordeatributoinvalido.DataNascimentoInvalidaException;
@@ -62,11 +63,13 @@ public class Hospede {
 			return 0;
 		}
 		
-		Collection<Estadia> estadias = this.estadias.values();
+		Collection<Estadia> listaEstadias = estadias.values();
+		Iterator<Estadia> it = listaEstadias.iterator();
 		double valorTotal = 0;
 		
-		for (Estadia estadia : estadias){
-			valorTotal += estadia.calculaValor();
+		while(it.hasNext()){
+			Estadia estadia = it.next();
+			valorTotal+= estadia.calculaValor();
 		}
 		
 		return valorTotal;

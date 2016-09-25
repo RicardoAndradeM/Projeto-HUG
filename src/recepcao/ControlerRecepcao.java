@@ -69,6 +69,9 @@ public class ControlerRecepcao {
 	 */
 	public String getInfoHospede(String id, String atributo) throws NomeDeAtributoInvalidoException, HospedeNaoEncontradoException{
 		Hospede hospede = this.buscaHospede(id);
+		if (hospede==null){
+			throw new HospedeNaoEncontradoException("Erro na consulta de hospede. Hospede de email robyn@sverige.se nao foi cadastrado(a).");
+		}
 		if(atributo.equals("Nome")){
 			return hospede.getNome();
 		}
@@ -90,12 +93,13 @@ public class ControlerRecepcao {
 	public String getInfoHospedagem(String email, String atributo) throws Exception{
 		
 		Hospede hospedeTemp = buscaHospede(email);
+		int infoHospedagem = hospedeTemp.getHospedagensAtivas();
+		
+		if (infoHospedagem==0){
+			throw new Exception(String.format("Erro na consulta de hospedagem. Hospede %s nao esta hospedado(a).",hospedeTemp.getNome()));
+		}
 		
 		if (atributo.equals("Hospedagens ativas")){
-			int infoHospedagem = hospedeTemp.getHospedagensAtivas();
-			if (infoHospedagem==0){
-				throw new Exception("Erro na consulta de hospedagem. Hospede Alfred Nobel nao esta hospedado(a).");
-			}
 			return String.valueOf(infoHospedagem);
 			
 		}else if (atributo.equals("Total")){
@@ -177,7 +181,8 @@ public class ControlerRecepcao {
 				return hospede;
 			}
 		}
-		throw new HospedeNaoEncontradoException(String.format("Erro na consulta de hospede. Hospede de email %s nao foi cadastrado(a).", id));
+//		throw new HospedeNaoEncontradoException(String.format("Erro na consulta de hospede. Hospede de email %s nao foi cadastrado(a).", id));
+		return null;
 	}
 	
 	/** realiza o chekin do hospede
