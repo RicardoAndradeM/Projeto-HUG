@@ -1,4 +1,4 @@
-package recepcao;
+package recepcao.hospede;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import recepcao.Estadia;
 import exceptions.valordeatributoinvalido.DataNascimentoInvalidaException;
 import exceptions.valordeatributoinvalido.EmailInvalidoException;
 import exceptions.valordeatributoinvalido.NomeInvalidoException;

@@ -1,4 +1,4 @@
-package factorys;
+package recepcao.factories;
 
 import enums.TipoDeQuarto;
 import exceptions.valordeatributoinvalido.NomeDeAtributoInvalidoException;

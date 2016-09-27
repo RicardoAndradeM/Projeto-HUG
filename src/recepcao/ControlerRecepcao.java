@@ -9,6 +9,10 @@ import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import recepcao.factories.FactoryDeEstadia;
+import recepcao.factories.FactoryDeHospedes;
+import recepcao.factories.FactoryDeQuarto;
+import recepcao.hospede.Hospede;
 import enums.TipoDeQuarto;
 import exceptions.naocadastrado.HospedeNaoEncontradoException;
 import exceptions.valordeatributoinvalido.DataNascimentoInvalidaException;
@@ -16,9 +20,6 @@ import exceptions.valordeatributoinvalido.EmailInvalidoException;
 import exceptions.valordeatributoinvalido.NomeDeAtributoInvalidoException;
 import exceptions.valordeatributoinvalido.NomeInvalidoException;
 import exceptions.valordeatributoinvalido.QuantidadedeDiasInvalidaException;
-import factorys.FactoryDeEstadia;
-import factorys.FactoryDeHospedes;
-import factorys.FactoryDeQuarto;
 
 /**
  * @author Ricardo Andrade

@@ -1,7 +1,7 @@
 package componentes;
 
 import recepcao.ControlerRecepcao;
-import recepcao.Hospede;
+import recepcao.hospede.Hospede;
 import restaurante.ControlerRestaurante;
 import restaurante.Prato;
 import restaurante.Refeicao;

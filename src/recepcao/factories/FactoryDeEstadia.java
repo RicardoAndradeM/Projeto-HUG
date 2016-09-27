@@ -1,4 +1,4 @@
-package factorys;
+package recepcao.factories;
 
 import exceptions.valordeatributoinvalido.QuantidadedeDiasInvalidaException;
 import recepcao.Estadia;

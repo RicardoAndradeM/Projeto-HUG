@@ -13,7 +13,7 @@ import exceptions.valordeatributoinvalido.NomeDeAtributoInvalidoException;
 import exceptions.valordeatributoinvalido.NomeInvalidoException;
 import exceptions.valordeatributoinvalido.ValorDeAtributoInvalidoException;
 import recepcao.ControlerRecepcao;
-import recepcao.Hospede;
+import recepcao.hospede.Hospede;
 
 public class ControlerRecepcaoTest {
 

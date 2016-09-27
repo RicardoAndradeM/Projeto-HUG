@@ -1,4 +1,4 @@
-package recepcao;
+package recepcao.hospede;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
