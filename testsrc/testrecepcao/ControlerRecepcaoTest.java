@@ -99,7 +99,7 @@ public class ControlerRecepcaoTest {
 	@Test
 	public void testAtualizaCadastro() throws EmailInvalidoException, NomeInvalidoException, DataNascimentoInvalidaException, NomeDeAtributoInvalidoException, HospedeNaoEncontradoException {
 		controler.atualizaCadastro("marieta@gmail.com","nome", "Mario");
-		assertEquals("Mario", controler.getInfoHospede("marieta@gmail.com", "nome"));
+		assertEquals("Mario", controler.getInfoHospede("maormato de data invalidrieta@gmail.com", "nome"));
 	}
 
 	@Test

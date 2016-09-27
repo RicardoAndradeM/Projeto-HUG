@@ -16,6 +16,7 @@ public class Quarto {
 			throw new NomeDeAtributoInvalidoException("Quarto invalido");
 		}
 		this.numeroQuarto = numeroQuarto;
+		this.tipo = tipo;
 	}
 
 	/**
