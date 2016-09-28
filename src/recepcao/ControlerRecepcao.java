@@ -13,6 +13,7 @@ import recepcao.factories.FactoryDeEstadia;
 import recepcao.factories.FactoryDeHospedes;
 import recepcao.factories.FactoryDeQuarto;
 import recepcao.hospede.Hospede;
+import recepcao.hospede.VerificadorDeHospede;
 import enums.TipoDeQuarto;
 import exceptions.naocadastrado.HospedeNaoEncontradoException;
 import exceptions.valordeatributoinvalido.DataNascimentoInvalidaException;
@@ -20,6 +21,7 @@ import exceptions.valordeatributoinvalido.EmailInvalidoException;
 import exceptions.valordeatributoinvalido.NomeDeAtributoInvalidoException;
 import exceptions.valordeatributoinvalido.NomeInvalidoException;
 import exceptions.valordeatributoinvalido.QuantidadedeDiasInvalidaException;
+import exceptions.valordeatributoinvalido.ValorDeAtributoInvalidoException;
 
 /**
  * @author Ricardo Andrade
@@ -32,6 +34,7 @@ public class ControlerRecepcao {
 	private FactoryDeHospedes factoryDeHospedes;
 	private FactoryDeQuarto factoryDeQuarto;
 	private FactoryDeEstadia factoryDeEstadia;
+	private VerificadorDeHospede verificaHospede;
 	private final String EMAIL_PATTERN = 
 	        "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 	        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
@@ -41,6 +44,7 @@ public class ControlerRecepcao {
 		this.hospedes = new HashSet<Hospede>();
 		this.factoryDeHospedes = new FactoryDeHospedes();
 		this.historicoDeCheckout = new ArrayList<Checkout>();
+		verificaHospede = new VerificadorDeHospede();
 	}
 	
 	/** cadastra hospede no sitema
@@ -187,12 +191,18 @@ public class ControlerRecepcao {
 	 * @param quantidadeDias dia que ficara hospedado
 	 * @param numeroQuarto numero do quarto em que ficara
 	 * @param tipoDeQuartoString string do tipo de quarto que ocupara
-	 * @throws NomeDeAtributoInvalidoException caso nome seja invalido
 	 * @throws QuantidadedeDiasInvalidaException caso a quantidade de dias seja invalida
 	 * @throws HospedeNaoEncontradoException caso hospe não esja cadastrado
+	 * @throws ValorDeAtributoInvalidoException 
 	 */
-	public void realizaCheckin(String id, String numeroQuarto, String tipoDeQuartoString, int quantidadeDias) throws NomeDeAtributoInvalidoException, QuantidadedeDiasInvalidaException, HospedeNaoEncontradoException{
+	public void realizaCheckin(String id, String numeroQuarto, String tipoDeQuartoString, int quantidadeDias) throws QuantidadedeDiasInvalidaException, HospedeNaoEncontradoException, ValorDeAtributoInvalidoException{
 		TipoDeQuarto tipoDeQuarto;
+		try{
+		verificaHospede.verificaEmail(id);
+		}catch(Exception e){
+			throw new EmailInvalidoException("Erro ao realizar checkin. "+ e.getMessage());
+		}
+		
 		if(tipoDeQuartoString.equals("Presidencial")){
 			tipoDeQuarto = TipoDeQuarto.PRESIDENCIAL;
 		} else if (tipoDeQuartoString.equals("Luxo")){
@@ -200,11 +210,27 @@ public class ControlerRecepcao {
 		} else {
 			tipoDeQuarto = TipoDeQuarto.SIMPLES;
 		}
-		//Quarto novoQuarto = this.factoryDeQuarto.criaQuarto(numeroQuarto, tipoDeQuarto);
-		Quarto novoQuarto = new Quarto(numeroQuarto, tipoDeQuarto);
-		//Estadia novaEstadia = this.factoryDeEstadia.criaEstadia(novoQuarto,quantidadeDias);
-		Estadia novaEstadia = new Estadia(novoQuarto, quantidadeDias);
-		this.buscaHospede(id).redebeEstadia(novaEstadia);
+		
+		Quarto novoQuarto;
+		
+		try {
+			Quarto novoQuarto2 = new Quarto(numeroQuarto, tipoDeQuarto);
+			novoQuarto = novoQuarto2;
+		} catch (Exception e) {
+			throw new ValorDeAtributoInvalidoException("Erro ao realizar checkin. "+e.getMessage());
+		}
+		
+		Hospede hospede = this.buscaHospede(id);
+		if (hospede==null){
+			throw new HospedeNaoEncontradoException("Erro ao realizar checkin. Hospede de email "+id+ " nao foi cadastrado(a).");
+		}
+		try {
+			Estadia novaEstadia = new Estadia(novoQuarto, quantidadeDias);
+			hospede.redebeEstadia(novaEstadia);
+		} catch (Exception e) {
+			throw new QuantidadedeDiasInvalidaException("Erro ao realizar checkin. "+e.getMessage());
+		}
+		
 	}
 	
 	/** faz o checkout do hospede no sistema

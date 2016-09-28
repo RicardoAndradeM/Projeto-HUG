@@ -13,6 +13,7 @@ import exceptions.valordeatributoinvalido.EmailInvalidoException;
 import exceptions.valordeatributoinvalido.NomeDeAtributoInvalidoException;
 import exceptions.valordeatributoinvalido.NomeInvalidoException;
 import exceptions.valordeatributoinvalido.QuantidadedeDiasInvalidaException;
+import exceptions.valordeatributoinvalido.ValorDeAtributoInvalidoException;
 	
 /**
  * facade do sistema
@@ -105,11 +106,11 @@ public class Facade {
 	 * @param quantidadeDias dia que ficara hospedado
 	 * @param numeroQuarto numero do quarto em que ficara
 	 * @param tipoDeQuartoString string do tipo de quarto que ocupara
-	 * @throws NomeDeAtributoInvalidoException caso nome seja invalido
 	 * @throws QuantidadedeDiasInvalidaException caso a quantidade de dias seja invalida
 	 * @throws HospedeNaoEncontradoException caso hospe não esja cadastrado
+	 * @throws ValorDeAtributoInvalidoException 
 	 */
-	public void realizaCheckin(String id, int quantidadeDias, String numeroQuarto, String tipoDeQuartoString) throws NomeDeAtributoInvalidoException, QuantidadedeDiasInvalidaException, HospedeNaoEncontradoException{
+	public void realizaCheckin(String id, int quantidadeDias, String numeroQuarto, String tipoDeQuartoString) throws QuantidadedeDiasInvalidaException, HospedeNaoEncontradoException, ValorDeAtributoInvalidoException{
 		controlerRecepcao.realizaCheckin(id, numeroQuarto, tipoDeQuartoString, quantidadeDias);
 	}
 	

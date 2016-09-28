@@ -70,7 +70,7 @@ public class Estadia {
 
 	private void verificaQuantidadedeDias(int quantidadeDias) throws QuantidadedeDiasInvalidaException {
 		if (quantidadeDias<=0){
-			throw new QuantidadedeDiasInvalidaException("Quantidade de dias invalida");
+			throw new QuantidadedeDiasInvalidaException("Quantidade de dias esta invalida.");
 		}
 	}
 }

@@ -13,7 +13,7 @@ public class Quarto {
 	
 	public Quarto(String numeroQuarto, TipoDeQuarto tipo ) throws NomeDeAtributoInvalidoException{
 		if(numeroQuarto == null || numeroQuarto.equals("")){
-			throw new NomeDeAtributoInvalidoException("Quarto invalido");
+			throw new NomeDeAtributoInvalidoException("ID do quarto invalido, use apenas numeros ou letras.");
 		}
 		this.numeroQuarto = numeroQuarto;
 		this.tipo = tipo;
