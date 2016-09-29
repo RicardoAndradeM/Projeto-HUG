@@ -134,12 +134,13 @@ public class Hospede {
 	 * Verifica se o hospede tem pontos o suficiente para mudar o cartao
 	 */
 	public void upGrade(){
-		if(this.getPontos() > 350 && this.getPontos() < 1000){
+		if(this.getPontos() >= 350 && this.getPontos() <= 1000){
 			this.setCartaoFidelidade(new Premium());
 		}else if(this.getPontos() > 1000){
 			this.setCartaoFidelidade(new Vip());
 		}
 	}
+	
 	
 	public CartaoFidelidade getCartaoFidelidade() {
 		return cartaoFidelidade;
