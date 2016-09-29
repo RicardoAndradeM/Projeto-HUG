@@ -1,4 +1,4 @@
-package cartaoFidelidade;
+package cartaofidelidade;
 
 public class Padrao implements CartaoFidelidade {
 

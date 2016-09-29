@@ -1,4 +1,4 @@
-package cartaoFidelidade;
+package cartaofidelidade;
 
 public interface CartaoFidelidade {
 	

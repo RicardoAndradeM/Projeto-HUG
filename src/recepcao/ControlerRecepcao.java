@@ -242,4 +242,8 @@ public class ControlerRecepcao {
 		Estadia estadiaASerFechada = this.buscaHospede(id).devolveEstadia(numeroQuarto);
 		this.historicoDeCheckout.add(new Checkout(LocalDate.now().toString(), buscaHospede(id).getNome(), estadiaASerFechada.getQuartoNumero(), estadiaASerFechada.calculaValor()));
 	}
+	
+	public void upGrade(Hospede hospede){
+		hospede.upGrade();
+	}
 }
