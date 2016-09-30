@@ -242,4 +242,11 @@ public class ControlerRecepcao {
 		Estadia estadiaASerFechada = this.buscaHospede(id).devolveEstadia(numeroQuarto);
 		this.historicoDeCheckout.add(new Checkout(LocalDate.now().toString(), buscaHospede(id).getNome(), estadiaASerFechada.getQuartoNumero(), estadiaASerFechada.calculaValor()));
 	}
+	
+	/** metodo que dara o upGrade no cartao fidelidade
+	 * @param hospede hospede que sera dado o upGrade no cartao
+	 */
+	public void upGrade(Hospede hospede){
+		hospede.upGrade();
+	}
 }

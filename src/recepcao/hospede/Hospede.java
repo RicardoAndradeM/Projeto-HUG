@@ -1,12 +1,14 @@
 package recepcao.hospede;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import cartaofidelidade.CartaoFidelidade;
+import cartaofidelidade.Padrao;
+import cartaofidelidade.Premium;
+import cartaofidelidade.Vip;
 import recepcao.Estadia;
 import exceptions.valordeatributoinvalido.DataNascimentoInvalidaException;
 import exceptions.valordeatributoinvalido.EmailInvalidoException;
@@ -21,6 +23,8 @@ public class Hospede {
 	private String dataNascimento;
 	private HashMap<String, Estadia> estadias;
 	private VerificadorDeHospede verificador = new VerificadorDeHospede();
+	private CartaoFidelidade cartaoFidelidade;
+	private int pontos;
 	
 	/**
 	 * @param nome nome do hospede
@@ -38,6 +42,8 @@ public class Hospede {
 		this.verificador.verificaDataNascimento(dataNascimento);
 		this.dataNascimento = dataNascimento;
 		this.estadias = new HashMap<String, Estadia>();
+		this.cartaoFidelidade = new Padrao();
+		this.pontos = pontos;
 	}
 	
 	/** associa uma estadia ao hospede
@@ -122,6 +128,35 @@ public class Hospede {
 	public void setDataNascimento(String dataNascimento) throws DataNascimentoInvalidaException {
 		this.verificador.verificaDataNascimento(dataNascimento);
 		this.dataNascimento = dataNascimento;
+	}
+	
+	/**
+	 * Verifica se o hospede tem pontos o suficiente para mudar o cartao
+	 */
+	public void upGrade(){
+		if(this.getPontos() >= 350 && this.getPontos() <= 1000){
+			this.setCartaoFidelidade(new Premium());
+		}else if(this.getPontos() > 1000){
+			this.setCartaoFidelidade(new Vip());
+		}
+	}
+	
+	
+	public CartaoFidelidade getCartaoFidelidade() {
+		return cartaoFidelidade;
+	}
+
+	public void setCartaoFidelidade(CartaoFidelidade cartaoFidelidade) {
+		this.cartaoFidelidade = cartaoFidelidade;
+	}
+
+	public int getPontos() {
+		return pontos;
+	}
+
+	public void setPontos(int pontos) {
+		this.pontos = pontos;
+		
 	}
 
 	@Override
