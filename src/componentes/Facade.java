@@ -223,6 +223,11 @@ public class Facade {
 		controlerRestaurante.removeRefeicao(nomeRefeicao);
 	}	
 	
+	public String consultaMenuRestaurante(){
+		return controlerRestaurante.consultaMenuRestaurante();
+	}
+	
+	
 	 public void fechaSistema(){
 		 
 	 }

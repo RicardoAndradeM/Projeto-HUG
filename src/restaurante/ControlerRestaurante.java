@@ -2,6 +2,10 @@ package restaurante;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+
+import javax.swing.text.html.HTMLDocument.Iterator;
 
 import exceptions.jacadastrado.JaCadastradoException;
 import exceptions.naocadastrado.NaoCadastradoException;
@@ -202,5 +206,20 @@ public class ControlerRestaurante {
 			return true;
 		}
 		return false;
+	}
+	
+	public String consultaMenuRestaurante(){
+		ArrayList<String> cardapio = new ArrayList<String>();
+		
+		Set<String> pratos2 = this.pratos.keySet();
+		for (String nome : pratos2){
+			cardapio.add(nome);
+		}
+		
+		for (Refeicao refeicao : refeicoes){
+			cardapio.add(refeicao.getNome());
+		}
+		
+		return cardapio.toString();
 	}
 }
