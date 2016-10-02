@@ -24,7 +24,6 @@ public class Hospede {
 	private HashMap<String, Estadia> estadias;
 	private VerificadorDeHospede verificador = new VerificadorDeHospede();
 	private CartaoFidelidade cartaoFidelidade;
-	private int pontos;
 	
 	/**
 	 * @param nome nome do hospede
@@ -43,7 +42,6 @@ public class Hospede {
 		this.dataNascimento = dataNascimento;
 		this.estadias = new HashMap<String, Estadia>();
 		this.cartaoFidelidade = new Padrao();
-		this.pontos = pontos;
 	}
 	
 	/** associa uma estadia ao hospede
@@ -151,12 +149,11 @@ public class Hospede {
 	}
 
 	public int getPontos() {
-		return pontos;
+		return cartaoFidelidade.getPontos();
 	}
 
 	public void setPontos(int pontos) {
-		this.pontos = pontos;
-		
+		cartaoFidelidade.setPontos(pontos);
 	}
 
 	@Override

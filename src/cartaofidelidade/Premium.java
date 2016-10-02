@@ -1,34 +1,21 @@
 package cartaofidelidade;
 
-public class Premium implements CartaoFidelidade{
+public class Premium extends CartaoFidelidade {
 
-	/** metodo que adicionarar pontos ao cartao do hospede
-	 * @param valor	valor a ser convertidos a pontos
-	 * @return pontos convertidos 
-	 */
 	@Override
-	public int adicionarPontos(double valor) {
-		int pontos = (int) (valor*0.3);
-		int pontos2 = (int) (valor/10);
+	public void adicionaPontos(double valor) {
+		int pontosGanhos = 0;
 		
-		return pontos + pontos2;
-	}
-
-	/** metodo que aplicarar deconto
-	 * @param valor valor sera descontato de acordado com o tipo do cartao
-	 * @return
-	 */
-	@Override
-	public double aplicarDesconto(double valor) {
-		return valor - valor*0.1;
+		pontosGanhos += (int) valor * 0.30;
+		if (valor > 100.00){
+			pontosGanhos += 10 * (valor - 100.00) / 100;
+		}
 		
-		
+		this.pontos += pontosGanhos;
 	}
 
 	@Override
-	public int pagarDividas() {
-		// TODO Auto-generated method stub
-		return 0;
+	public double aplicaDesconto(double valor) {
+		return valor - valor*0.10;
 	}
-
 }
