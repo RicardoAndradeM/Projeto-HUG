@@ -22,7 +22,10 @@ public class ControlerRestaurante {
 	private HashMap<String, Prato> pratos;
 	private ArrayList<Refeicao> refeicoes;
 	
+	private ArrayList<String> cardapio;
+	
 	public ControlerRestaurante(){
+		cardapio = new ArrayList<String>();
 		pratos = new HashMap<String, Prato>();
 		refeicoes = new ArrayList<Refeicao>();
 	}
@@ -42,6 +45,7 @@ public class ControlerRestaurante {
 			}else{
 				Prato novoPrato = new Prato(nome, preco, descricao);
 				pratos.put(nome, novoPrato);
+				cardapio.add(nome);
 				return true;
 			}
 	}
@@ -62,6 +66,7 @@ public class ControlerRestaurante {
 			}else{
 				Refeicao novaRefeicao = new Refeicao(nome, descricao, primeiroPrato,segundoPrato, terceiroPrato);
 				refeicoes.add(novaRefeicao);
+				cardapio.add(nome);
 				return true;
 			}
 	}
@@ -83,6 +88,7 @@ public class ControlerRestaurante {
 		}else{
 			Refeicao novaRefeicao = new Refeicao(nome, descricao, primeiroPrato,segundoPrato, terceiroPrato, quartoPrato);
 			refeicoes.add(novaRefeicao);
+			cardapio.add(nome);
 			return true;
 		}
 	}
@@ -104,6 +110,7 @@ public class ControlerRestaurante {
 		
 		if (atributo.equals(NOME)){
 			prato.setNome(valor);
+			mudaNomeNoCardapio(nomePrato, valor);
 			return true;
 		}else if (atributo.equals(DESCRICAO)){
 			prato.setDescricao(valor);
@@ -132,6 +139,7 @@ public class ControlerRestaurante {
 		
 		if (atributo.equals(NOME)){
 			refeicao.setNome(valor);
+			mudaNomeNoCardapio(nomeRefeicao, valor);
 			return true;
 		}else if (atributo.equals(DESCRICAO)){
 			refeicao.setDescricao(valor);
@@ -188,6 +196,7 @@ public class ControlerRestaurante {
 	public boolean removePrato(String nomePrato) throws Exception{
 		if (verificaPrato(nomePrato)){
 			pratos.remove(nomePrato);
+			removeNomeDoCardapio(nomePrato);
 			return true;
 		}else{
 			throw new NaoCadastradoException("Prato nao existe");
@@ -203,23 +212,42 @@ public class ControlerRestaurante {
 	public boolean removeRefeicao(String nomeRefeicao) throws Exception{
 		if (verificaRefeicao(nomeRefeicao)){
 			refeicoes.remove(buscaRefeicao(nomeRefeicao));
+			removeNomeDoCardapio(nomeRefeicao);
 			return true;
 		}
 		return false;
 	}
 	
 	public String consultaMenuRestaurante(){
-		ArrayList<String> cardapio = new ArrayList<String>();
 		
-		Set<String> pratos2 = this.pratos.keySet();
-		for (String nome : pratos2){
-			cardapio.add(nome);
+		String finalStr = "";
+		for (String str : this.cardapio) {
+			if (finalStr.trim().isEmpty()) {
+				finalStr = str;
+			} else {
+				finalStr = finalStr + "," + str;
+			}
 		}
 		
-		for (Refeicao refeicao : refeicoes){
-			cardapio.add(refeicao.getNome());
+		return finalStr;
+	}
+	
+	public boolean removeNomeDoCardapio(String nome){
+		if (cardapio.contains(nome)){
+			cardapio.remove(nome);
+			return true;
+		}else{
+			return false;
 		}
-		
-		return cardapio.toString();
+	}
+	
+	public boolean mudaNomeNoCardapio(String nome, String novoNome){
+		for (String nome2 : cardapio){
+			if (nome.equals(nome)){
+				nome2 = novoNome;
+				return true;
+			}
+		}
+		return false;
 	}
 }
