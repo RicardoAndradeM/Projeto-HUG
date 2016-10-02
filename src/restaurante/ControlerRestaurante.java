@@ -243,7 +243,7 @@ public class ControlerRestaurante {
 	
 	public boolean mudaNomeNoCardapio(String nome, String novoNome){
 		for (String nome2 : cardapio){
-			if (nome.equals(nome)){
+			if (nome2.equals(nome)){
 				nome2 = novoNome;
 				return true;
 			}
