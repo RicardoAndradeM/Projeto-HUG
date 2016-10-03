@@ -95,6 +95,13 @@ public class ControlerRecepcao {
 	public String getInfoHospedagem(String email, String atributo) throws Exception{
 		
 		Hospede hospedeTemp = buscaHospede(email);
+		
+		try{
+			verificaHospede.verificaEmail(email);
+		}catch(Exception e){
+			throw new ValorDeAtributoInvalidoException("Erro ao checar hospedagem ativa. "+e.getMessage());
+		}
+		
 		int infoHospedagem = hospedeTemp.getHospedagensAtivas();
 		
 		if (infoHospedagem==0){
@@ -105,6 +112,7 @@ public class ControlerRecepcao {
 			return String.valueOf(infoHospedagem);
 			
 		}else if (atributo.equals("Total")){
+			
 			return "R$" + String.format("%.2f",hospedeTemp.getValorTotalEstadias());
 					
 		}else if (atributo.equals("Quarto")){
@@ -118,6 +126,8 @@ public class ControlerRecepcao {
 		}
 		return "0";
 	}
+	
+
 	
 	/** atualiza dados de hospede
 	 * @param id email do hospede
@@ -211,8 +221,10 @@ public class ControlerRecepcao {
 			tipoDeQuarto = TipoDeQuarto.PRESIDENCIAL;
 		} else if (tipoDeQuartoString.equals("Luxo")){
 			tipoDeQuarto = TipoDeQuarto.LUXO;
-		} else {
+		} else if (tipoDeQuartoString.equals("Simples")){
 			tipoDeQuarto = TipoDeQuarto.SIMPLES;
+		}else{
+			throw new ValorDeAtributoInvalidoException("Erro ao realizar checkin. Tipo de quarto invalido.");
 		}
 		
 		Quarto novoQuarto;
