@@ -203,7 +203,7 @@ public class ControlerRecepcao {
 			throw new EmailInvalidoException("Erro ao realizar checkin. "+ e.getMessage());
 		}
 		
-		if (numeroQuarto==null|numeroQuarto.trim().equals("")){
+		if (numeroQuarto==null|numeroQuarto.trim().equals("")|!(numeroQuarto.matches("[a-zA-Z0-9-]+"))){
 			throw new ValorDeAtributoInvalidoException("Erro ao realizar checkin. ID do quarto invalido, use apenas numeros ou letras.");
 		}
 		
