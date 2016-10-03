@@ -1,9 +1,13 @@
 package recepcao.hospede;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
+
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 import cartaofidelidade.CartaoFidelidade;
 import cartaofidelidade.Padrao;
@@ -80,8 +84,15 @@ public class Hospede {
 		return valorTotal;
 	}
 	
-	public Set<String> getQuarto(){
-		return estadias.keySet();
+	public ArrayList<String> getQuarto(){
+		Set<String> meuSet = estadias.keySet();
+		ArrayList<String> minhaLista = new ArrayList<String>();
+		for (String quarto : meuSet){
+			minhaLista.add(quarto);
+		}
+		Collections.sort(minhaLista);
+		
+		return minhaLista;
 	}
 	
 	/**
