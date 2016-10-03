@@ -119,7 +119,7 @@ public class Facade {
 	 * @param numeroQuarto numero do quarto em que ficara
 	 * @throws HospedeNaoEncontradoException caso hospede não seja encontrado
 	 */
-	public void RealizaCheckout(String email, String quarto) throws HospedeNaoEncontradoException{
+	public void realizaCheckout(String email, String quarto) throws HospedeNaoEncontradoException{
 		controlerRecepcao.checkout(email, quarto);
 	}
 	
