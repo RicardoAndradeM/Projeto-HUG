@@ -43,10 +43,14 @@ public class ControlerRestaurante {
 				throw new JaCadastradoException("prato jah esta cadastrado");
 				
 			}else{
-				Prato novoPrato = new Prato(nome, preco, descricao);
-				pratos.put(nome, novoPrato);
-				cardapio.add(nome);
-				return true;
+				try {
+					Prato novoPrato = new Prato(nome, preco, descricao);	
+					pratos.put(nome, novoPrato);
+					cardapio.add(nome);
+					return true;
+				} catch (Exception e) {
+					throw new Exception("Erro no cadastro do prato. "+e.getMessage());
+				}
 			}
 	}
 	

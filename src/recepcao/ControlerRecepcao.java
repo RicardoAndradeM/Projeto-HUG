@@ -252,11 +252,13 @@ public class ControlerRecepcao {
 	/** faz o checkout do hospede no sistema
 	 * @param id email do hospede
 	 * @param numeroQuarto numero do quarto em que ficara
+	 * @return 
 	 * @throws HospedeNaoEncontradoException caso hospede não seja encontrado
 	 */
-	public void checkout(String id, String numeroQuarto) throws HospedeNaoEncontradoException{
+	public double checkout(String id, String numeroQuarto) throws HospedeNaoEncontradoException{
 		Estadia estadiaASerFechada = this.buscaHospede(id).devolveEstadia(numeroQuarto);
 		this.historicoDeCheckout.add(new Checkout(LocalDate.now().toString(), buscaHospede(id).getNome(), estadiaASerFechada.getQuartoNumero(), estadiaASerFechada.calculaValor()));
+		return estadiaASerFechada.calculaValor();
 	}
 	
 	/** metodo que dara o upGrade no cartao fidelidade

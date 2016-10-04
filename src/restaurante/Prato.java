@@ -35,19 +35,19 @@ public class Prato {
 
 	private void verificaDescricao(String descricao) throws ValorDeAtributoInvalidoException {
 		if (descricao==null||descricao.trim().equals("")){
-			throw new ValorDeAtributoInvalidoException("Descricao nao pode ser nula ou vazia");
+			throw new ValorDeAtributoInvalidoException("Descricao do prato esta vazia.");
 		}
 	}
 
 	private void verificaPreco(double preco) throws PrecoInvalidoException {
 		if (preco<= 0){
-			throw new PrecoInvalidoException("Preco nao pode ser menor que zero");
+			throw new PrecoInvalidoException("Preco do prato eh invalido.");
 		}
 	}
 
 	private void verificaNome(String nome) throws NomeInvalidoException {
 		if (nome==null || nome.trim().equals("")){
-			throw new NomeInvalidoException("Nome do prato nao pode ser nulo ou vazio");
+			throw new NomeInvalidoException("Nome do prato esta vazio.");
 		}
 	}
 	

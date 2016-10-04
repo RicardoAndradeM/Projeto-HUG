@@ -50,13 +50,13 @@ public class Refeicao {
 
 	private void verificaDescricao(String descricao) throws NomeDeAtributoInvalidoException {
 		if( descricao == null || descricao.equals("")){
-			throw new NomeDeAtributoInvalidoException("Descricao invalida");
+			throw new NomeDeAtributoInvalidoException("Descricao da refeicao esta vazia.");
 		}
 	}
 
 	private void verificaNome(String nome) throws NomeDeAtributoInvalidoException {
 		if(nome == null|| nome.equals("")){
-			throw new NomeDeAtributoInvalidoException("Nome invalido");
+			throw new NomeDeAtributoInvalidoException("Nome da refeicao esta vazio.");
 		}
 	}
 	
