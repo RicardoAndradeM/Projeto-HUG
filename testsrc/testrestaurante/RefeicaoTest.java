@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import exceptions.valordeatributoinvalido.NomeInvalidoException;
+import cadastro.exception.NomeInvalidoException;
 import exceptions.valordeatributoinvalido.PrecoInvalidoException;
 import exceptions.valordeatributoinvalido.ValorDeAtributoInvalidoException;
 import restaurante.Prato;

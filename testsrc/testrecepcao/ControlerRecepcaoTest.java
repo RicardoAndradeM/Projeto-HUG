@@ -5,12 +5,12 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import cadastro.exception.DataNascimentoInvalidaException;
+import cadastro.exception.EmailInvalidoException;
+import cadastro.exception.NomeInvalidoException;
 import exceptions.naocadastrado.HospedeNaoEncontradoException;
 import exceptions.naocadastrado.NaoCadastradoException;
-import exceptions.valordeatributoinvalido.DataNascimentoInvalidaException;
-import exceptions.valordeatributoinvalido.EmailInvalidoException;
 import exceptions.valordeatributoinvalido.NomeDeAtributoInvalidoException;
-import exceptions.valordeatributoinvalido.NomeInvalidoException;
 import exceptions.valordeatributoinvalido.ValorDeAtributoInvalidoException;
 import recepcao.ControlerRecepcao;
 import recepcao.hospede.Hospede;
