@@ -1,3 +1,0 @@
-lembrar de:
-	perguntas se devo colocar metodos delegados no uml
-	perguntar sobre hashcode toString e equals em controler e facade
