@@ -106,6 +106,7 @@ public class ControllerCadastro {
 				throw new NomeInvalidoException("Erro na atualizacao do cadastro de Hospede. " + e.getMessage());
 			}
 			this.hospedes.get(id).setNome(valor);
+			break;
 		
 		case "Email":
 			try {
@@ -117,6 +118,7 @@ public class ControllerCadastro {
 			/* Alem de atualizar o hospede, tambem eh nescesario atualizar a chave usada para mapea-lo */
 			Hospede hospede = this.hospedes.remove(id);
 			this.hospedes.put(hospede.getEmail(), hospede);
+			break;
 		
 		case "Data de Nascimento":
 			try {
@@ -125,6 +127,7 @@ public class ControllerCadastro {
 				throw new DataNascimentoInvalidaException("Erro na atualizacao do cadastro de Hospede. " + e.getMessage());
 			}
 			this.hospedes.get(id).setDataNascimento(valor);
+			break;
 			
 		default:
 			throw new AtributoInvalidoException("Erro na consulta de hospede. Atributo solicitado nao encontrado.");
@@ -133,8 +136,18 @@ public class ControllerCadastro {
 	
 	/** Meotodo que remove um hospde do sistema
 	 * @param id Email do hospede a ser removido
+	 * @throws EmailInvalidoException Exception lancada quando email passado eh invaldo
+	 * @throws HospedeNaoCadastradoException Exception lancada quando se tenta remover um hospede que nao existe no sistema
 	 */
-	public void removeHospede(String id){
+	public void removeHospede(String id) throws EmailInvalidoException, HospedeNaoCadastradoException{
+		try {
+			this.verificadorDeHospede.verificaEmail(id);
+		} catch (EmailInvalidoException e) {
+			throw new EmailInvalidoException("Erro na remocao do Hospede. Formato de email invalido.");
+		}
+		if(!this.hospedes.containsKey(id)){
+			throw new HospedeNaoCadastradoException(String.format("Erro na atualizacao do cadastro de Hospede. Hospede de email %s nao foi cadastrado(a).", id));
+		}
 		this.hospedes.remove(id);
 	}
 	
