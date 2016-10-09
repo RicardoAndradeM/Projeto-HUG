@@ -10,6 +10,8 @@ import cadastro.exception.DataNascimentoInvalidaException;
 import cadastro.exception.EmailInvalidoException;
 import cadastro.exception.HospedeNaoCadastradoException;
 import cadastro.exception.NomeInvalidoException;
+import cadastro.exception.QuartoNaoEncontradoException;
+import cadastro.exception.QuartoOcupadoException;
 
 /** Classe responsavel por cadastrar, armazenar, gerenciar e remover hospedes
  * @author Ricardo Andrade
@@ -149,6 +151,36 @@ public class ControllerCadastro {
 			throw new HospedeNaoCadastradoException(String.format("Erro na atualizacao do cadastro de Hospede. Hospede de email %s nao foi cadastrado(a).", id));
 		}
 		this.hospedes.remove(id);
+	}
+	
+	/** Metodo que armazena a chave do quarto, para que aparti do hospede,
+	 * se possa mapear quais quartos o mesmo esta ocupado
+	 * @param id Email do hospode
+	 * @param quarto Nome do quarto que o mesmo vai ocupar
+	 * @param preco Preco do Quarto
+	 * @throws QuartoOcupadoException Lanca exeception caso o hospede ja esteja ocupando o quarto
+	 * @throws HospedeNaoCadastradoException Lanca exeception caso hospede solicitado nao esteja cadastrado no sitema
+	 */
+	public void concluirCheckin(String id, String quarto, double preco) throws QuartoOcupadoException, HospedeNaoCadastradoException{
+		try {
+			this.hospedes.get(id).recebeChave(quarto, preco);			
+		} catch (NullPointerException e) {
+			throw new HospedeNaoCadastradoException(String.format("Hospede de email %s nao foi cadastrado(a).", id));
+		}
+	}
+	
+	/** Metodo que devolve as chaves que estao com o hospde para o hotel
+	 * @param id email do hospede
+	 * @param quarto nome do quarto que o hospede esta ocupado
+	 * @throws QuartoNaoEncontradoException Lanca exception caso hospede nao esteja ocupando o quarto solicitado
+	 * @throws HospedeNaoCadastradoException Lanca exception caso hospede solicitado nao esteja cadastrado
+	 */
+	public void concluirCheckout(String id, String quarto) throws QuartoNaoEncontradoException, HospedeNaoCadastradoException{
+		try {
+			this.hospedes.get(id).removeChave(quarto);			
+		} catch (NullPointerException e) {
+			throw new HospedeNaoCadastradoException(String.format("Hospede de email %s nao foi cadastrado(a).", id));
+		}
 	}
 	
 	@Override
