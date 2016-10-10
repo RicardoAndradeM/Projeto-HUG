@@ -1,11 +1,12 @@
-package cadastro.componentes;
+package cadastro.hospede;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import cadastro.Hospede;
+import cadastro.hospede.FactoryDeHospedes;
+import cadastro.hospede.Hospede;
 
 public class FactoryDeHospedesTest {
 	private final String NOME = "Anderson Barros";

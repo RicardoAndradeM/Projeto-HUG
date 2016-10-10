@@ -1,4 +1,4 @@
-package cadastro.componentes;
+package cadastro.hospede;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;

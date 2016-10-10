@@ -3,8 +3,6 @@ package cadastro;
 import java.util.HashMap;
 import java.util.Set;
 
-import cadastro.componentes.FactoryDeHospedes;
-import cadastro.componentes.VerificadorDeHospede;
 import cadastro.exception.AtributoInvalidoException;
 import cadastro.exception.DataNascimentoInvalidaException;
 import cadastro.exception.EmailInvalidoException;
@@ -12,6 +10,9 @@ import cadastro.exception.HospedeNaoCadastradoException;
 import cadastro.exception.NomeInvalidoException;
 import cadastro.exception.QuartoNaoEncontradoException;
 import cadastro.exception.QuartoOcupadoException;
+import cadastro.hospede.FactoryDeHospedes;
+import cadastro.hospede.Hospede;
+import cadastro.hospede.VerificadorDeHospede;
 
 /** Classe responsavel por cadastrar, armazenar, gerenciar e remover hospedes
  * @author Ricardo Andrade

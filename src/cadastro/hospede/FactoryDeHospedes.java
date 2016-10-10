@@ -1,6 +1,4 @@
-package cadastro.componentes;
-
-import cadastro.Hospede;
+package cadastro.hospede;
 
 /** Classe Responsavel por criar novos hospedes
  * @author ricardo

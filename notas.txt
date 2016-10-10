@@ -1,0 +1,2 @@
+Inplementacao futura:
+						-Quarto deve ser previamente cadastrados

@@ -1,4 +1,4 @@
-package cadastro;
+package cadastro.hospede;
 
 import static org.junit.Assert.*;
 
@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import cadastro.exception.QuartoNaoEncontradoException;
 import cadastro.exception.QuartoOcupadoException;
+import cadastro.hospede.Hospede;
 
 public class HospedeTest {
 	Hospede h;

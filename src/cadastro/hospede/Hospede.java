@@ -1,4 +1,4 @@
-package cadastro;
+package cadastro.hospede;
 
 import java.util.ArrayList;
 import java.util.HashMap;

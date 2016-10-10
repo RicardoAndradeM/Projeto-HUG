@@ -11,5 +11,4 @@ public class AtributoInvalidoException extends CadastroException {
 	public AtributoInvalidoException(String msg) {
 		super(msg);
 	}
-
 }
