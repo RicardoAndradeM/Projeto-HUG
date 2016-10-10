@@ -30,6 +30,7 @@ public class Quarto {
 	public void recebeEstadia(Estadia estadia) throws QuartoOcupadoException{
 		if(this.getEstadia() == null ){
 			this.estadia = estadia;
+			return;
 		}
 		throw new QuartoOcupadoException(String.format("Quarto %s ja esta ocupado.", this.getNumero()));
 	}

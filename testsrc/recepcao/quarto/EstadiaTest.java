@@ -5,6 +5,10 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * @author Ricardo Andrade
+ * @since 10/10/2016
+ */
 public class EstadiaTest {
 	Estadia e;
 	

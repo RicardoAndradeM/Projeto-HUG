@@ -11,6 +11,10 @@ import cadastro.exception.QuartoNaoEncontradoException;
 import cadastro.exception.QuartoOcupadoException;
 import cadastro.hospede.Hospede;
 
+/**
+ * @author Ricardo Andrade
+ * @since 10/10/2016
+ */
 public class HospedeTest {
 	Hospede h;
 	

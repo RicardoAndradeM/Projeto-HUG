@@ -8,6 +8,10 @@ import org.junit.Test;
 import cadastro.hospede.FactoryDeHospedes;
 import cadastro.hospede.Hospede;
 
+/**
+ * @author Ricardo Andrade
+ * @since 10/10/2016
+ */
 public class FactoryDeHospedesTest {
 	private final String NOME = "Anderson Barros";
 	private final String EMAIL = "senhoanderson@bol.com.br";
