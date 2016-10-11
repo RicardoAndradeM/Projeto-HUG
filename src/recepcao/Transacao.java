@@ -1,19 +1,36 @@
 package recepcao;
 
+import java.time.LocalDate;
+
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.LocalAttribute;
+
 /** Classe que representa uma trasacao no hotel
  * @author Ricardo Andrade
  * @since 09/10/2016
  */
 public class Transacao {
-	private String dataDeSaida;
+	private LocalDate dataDeSaida;
 	private String nomeHospede;
 	private String numeroDoQuarto;
 	private double totalPago;
 	
+	/** Controi uma nova transacao
+	 * @param dataDeSaida data de saida do hospede
+	 * @param nomeHospede nome do hospede
+	 * @param numeroDoQuarto numero do quarto em que ele ficou hospedado
+	 * @param totalPago total pago na hora do checkout
+	 */
+	public Transacao(LocalDate dataDeSaida, String nomeHospede, String numeroDoQuarto, double totalPago) {
+		this.dataDeSaida = dataDeSaida;
+		this.nomeHospede = nomeHospede;
+		this.numeroDoQuarto = numeroDoQuarto;
+		this.totalPago = totalPago;
+	}
+	
 	/**
 	 * @return retorna a data de saida do hotel
 	 */
-	public String getDataDeSaida() {
+	public LocalDate getDataDeSaida() {
 		return dataDeSaida;
 	}
 	

@@ -6,6 +6,13 @@ import cadastro.exception.DataNascimentoInvalidaException;
 import cadastro.exception.EmailInvalidoException;
 import cadastro.exception.HospedeNaoCadastradoException;
 import cadastro.exception.NomeInvalidoException;
+import cadastro.exception.QuartoNaoEncontradoException;
+import recepcao.ControllerRecepcao;
+import recepcao.exception.DiasInvalidoException;
+import recepcao.exception.NumeroQuartoInvalido;
+import recepcao.exception.QuartoDesocupadoException;
+import recepcao.exception.QuartoOcupadoException;
+import recepcao.exception.TipoDeQuartoInvalido;
 
 /** Classe responsavel por delegar metodos dos controlles
  * @author Ricardo Andrarde
@@ -13,12 +20,14 @@ import cadastro.exception.NomeInvalidoException;
  */
 public class Facade {
 	private ControllerCadastro cadastro;
+	private ControllerRecepcao recepcao;
 	
 	/**
 	 * Construtor que inicializa os controles
 	 */
 	public Facade() {
 		this.cadastro = new ControllerCadastro();
+		this.recepcao = new ControllerRecepcao(cadastro);
 	}
 
 	/**
@@ -78,6 +87,31 @@ public class Facade {
 		cadastro.removeHospede(id);
 	}
 	
+	// documentar 
+	
+	public void realizaCheckin(String email, int dias, String quarto, String tipoQuarto)
+			throws DiasInvalidoException, NumeroQuartoInvalido, TipoDeQuartoInvalido, QuartoOcupadoException,
+			cadastro.exception.QuartoOcupadoException, HospedeNaoCadastradoException {
+		recepcao.realizaCheckin(email, dias, quarto, tipoQuarto);
+	}
+
+	public String realizaCheckout(String email, String quarto) throws QuartoNaoEncontradoException,
+			HospedeNaoCadastradoException, EmailInvalidoException, QuartoDesocupadoException {
+		return recepcao.realizaCheckout(email, quarto);
+	}
+
+	public String getInfoHospedagem(String email, String atributo) {
+		return recepcao.getInfoHospedagem(email, atributo);
+	}
+
+	public String consultaTransacoe(String atributo) {
+		return recepcao.consultaTransacoe(atributo);
+	}
+
+	public String consultaTransacoe(String atributo, int indice) {
+		return recepcao.consultaTransacoe(atributo, indice);
+	}
+
 	/**
 	 * Metodo que seja implmentado futuramente
 	 */

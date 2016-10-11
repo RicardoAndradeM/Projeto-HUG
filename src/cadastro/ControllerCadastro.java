@@ -175,8 +175,10 @@ public class ControllerCadastro {
 	 * @param quarto nome do quarto que o hospede esta ocupado
 	 * @throws QuartoNaoEncontradoException Lanca exception caso hospede nao esteja ocupando o quarto solicitado
 	 * @throws HospedeNaoCadastradoException Lanca exception caso hospede solicitado nao esteja cadastrado
+	 * @throws EmailInvalidoException Lanca exception caso email passado esteja em formato invalido
 	 */
-	public void concluirCheckout(String id, String quarto) throws QuartoNaoEncontradoException, HospedeNaoCadastradoException{
+	public void concluirCheckout(String id, String quarto) throws QuartoNaoEncontradoException, HospedeNaoCadastradoException, EmailInvalidoException{
+		this.verificadorDeHospede.verificaEmail(id);
 		try {
 			this.hospedes.get(id).removeChave(quarto);			
 		} catch (NullPointerException e) {

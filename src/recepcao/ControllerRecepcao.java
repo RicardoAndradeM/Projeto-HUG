@@ -1,10 +1,14 @@
 package recepcao;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import cadastro.ControllerCadastro;
+import cadastro.exception.AtributoInvalidoException;
+import cadastro.exception.EmailInvalidoException;
 import cadastro.exception.HospedeNaoCadastradoException;
+import cadastro.exception.QuartoNaoEncontradoException;
 import recepcao.exception.DiasInvalidoException;
 import recepcao.exception.NumeroQuartoInvalido;
 import recepcao.exception.QuartoDesocupadoException;
@@ -48,7 +52,7 @@ public class ControllerRecepcao {
 	 * @throws cadastro.exception.QuartoOcupadoException Lanca exception o quarto esteja ocupado
 	 * @throws HospedeNaoCadastradoException Lanca exception caso email passado nao esteja cadastrado no sitema 
 	 */
-	public void  realizaCheckin(String email, int dias, String quarto, String tipoQuarto) throws DiasInvalidoException, NumeroQuartoInvalido, TipoDeQuartoInvalido, QuartoOcupadoException, cadastro.exception.QuartoOcupadoException, HospedeNaoCadastradoException{
+	public void realizaCheckin(String email, int dias, String quarto, String tipoQuarto) throws DiasInvalidoException, NumeroQuartoInvalido, TipoDeQuartoInvalido, QuartoOcupadoException, cadastro.exception.QuartoOcupadoException, HospedeNaoCadastradoException{
 		this.verificadorDeRecepcao.verificaDias(dias);
 		this.verificadorDeRecepcao.verificaQuarto(quarto);
 		if(!this.quartos.containsKey(quarto)){
@@ -80,5 +84,36 @@ public class ControllerRecepcao {
 			this.quartos.put(novoQuarto.getNumero(), novoQuarto);
 		}
 		throw new QuartoOcupadoException(String.format("Erro ao realizar checkin. Quarto %s ja esta ocupado.", quarto));
+	}
+	
+	/** Metodo que realiza o checkou do hospede no sistema
+	 * @param email Email do hospede
+	 * @param quarto Quarto que deseja fazer checkout
+	 * @return retorna o preco da estadia naquele quarto
+	 * @throws QuartoNaoEncontradoException Lanca exception caso quarto passado nao seja encontrado
+	 * @throws HospedeNaoCadastradoException Lanca exception caso caso hospede nao esteja cadastrado no sistema
+	 * @throws EmailInvalidoException Lanca exception caso email passado seja invalido
+	 * @throws QuartoDesocupadoException lanca exception caso quarto passado nao esteja sendo ocupado pelo hospede
+	 */
+	public String realizaCheckout(String email, String quarto) throws QuartoNaoEncontradoException, HospedeNaoCadastradoException, EmailInvalidoException, QuartoDesocupadoException{
+		this.cadastro.concluirCheckout(email, quarto);
+		try {
+			this.transacoes.add(new Transacao(LocalDate.now(), this.cadastro.getInfoHospede(email, "nome"), quarto, this.quartos.get(quarto).calculaValor()));
+		} catch (AtributoInvalidoException e) {
+			e.printStackTrace();
+		}
+		return String.format("R$%2.f", this.quartos.remove(quarto).calculaValor());
+	}
+	
+	public String getInfoHospedagem(String email, String atributo){
+		return  null; // implementar
+	}
+	
+	public String consultaTransacoe(String atributo){
+		return null; // implementar
+	}
+	
+	public String consultaTransacoe(String atributo, int indice){
+		return null; // implementar
 	}
 }
