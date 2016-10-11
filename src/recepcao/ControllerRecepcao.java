@@ -26,6 +26,9 @@ public class ControllerRecepcao {
 	private FactoryDeQuarto factoryDeQuarto;
 	private VerificadorDeRecepcao verificadorDeRecepcao;
 	
+	/** Constroi Recepcao e inicializa as variaveis
+	 * @param cadastro Controler Cadastro utilizado para gerencias os hospedes
+	 */
 	public ControllerRecepcao(ControllerCadastro cadastro) {
 		this.cadastro = cadastro;
 		this.quartos = new HashMap<String, Quarto>();
@@ -33,7 +36,19 @@ public class ControllerRecepcao {
 		this.factoryDeQuarto = new FactoryDeQuarto();
 	}
 	
-	public void  realizaCheckin(String email, int dias, String quarto, String tipoQuarto) throws DiasInvalidoException, NumeroQuartoInvalido, TipoDeQuartoInvalido, QuartoOcupadoException, cadastro.exception.QuartoOcupadoException, HospedeNaoCadastradoException, QuartoDesocupadoException{
+	/** Faz checin do hospede no sistema
+	 * @param email Email do hospde
+	 * @param dias Dias que fica hospedado
+	 * @param quarto Numero do quarto
+	 * @param tipoQuarto Tipo do quarto
+	 * @throws DiasInvalidoException Lanca exception caso quantidade de dias seja invalido
+	 * @throws NumeroQuartoInvalido Lanca exception caso numero do quarto seja invalido
+	 * @throws TipoDeQuartoInvalido Lanca exception caso nome todo tipo de quart seja invalido
+	 * @throws QuartoOcupadoException Lanca exception caso o quarto esteja ocupado
+	 * @throws cadastro.exception.QuartoOcupadoException Lanca exception o quarto esteja ocupado
+	 * @throws HospedeNaoCadastradoException Lanca exception caso email passado nao esteja cadastrado no sitema 
+	 */
+	public void  realizaCheckin(String email, int dias, String quarto, String tipoQuarto) throws DiasInvalidoException, NumeroQuartoInvalido, TipoDeQuartoInvalido, QuartoOcupadoException, cadastro.exception.QuartoOcupadoException, HospedeNaoCadastradoException{
 		this.verificadorDeRecepcao.verificaDias(dias);
 		this.verificadorDeRecepcao.verificaQuarto(quarto);
 		if(!this.quartos.containsKey(quarto)){
@@ -57,7 +72,11 @@ public class ControllerRecepcao {
 			Estadia novaEstadia = new Estadia(email, dias);
 			Quarto novoQuarto =  this.factoryDeQuarto.criaQuarto(quarto, tipoDoNovoQuarto);
 			novoQuarto.recebeEstadia(novaEstadia);
-			this.cadastro.concluirCheckin(email, novoQuarto.getNumero(), novoQuarto.calculaValor());
+			try {
+				this.cadastro.concluirCheckin(email, novoQuarto.getNumero(), novoQuarto.calculaValor());
+			} catch (QuartoDesocupadoException e) {
+				e.printStackTrace();
+			}
 			this.quartos.put(novoQuarto.getNumero(), novoQuarto);
 		}
 		throw new QuartoOcupadoException(String.format("Erro ao realizar checkin. Quarto %s ja esta ocupado.", quarto));

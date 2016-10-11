@@ -1,2 +1,3 @@
 Inplementacao futura:
 						-Quarto deve ser previamente cadastrados
+						-corrigir nome do metodo verificaQuarto em verificador de quarto
