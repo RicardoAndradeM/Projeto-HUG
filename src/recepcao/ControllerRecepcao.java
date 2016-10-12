@@ -9,7 +9,9 @@ import cadastro.exception.AtributoInvalidoException;
 import cadastro.exception.EmailInvalidoException;
 import cadastro.exception.HospedeNaoCadastradoException;
 import cadastro.exception.QuartoNaoEncontradoException;
+import cadastro.hospede.VerificadorDeHospede;
 import recepcao.exception.DiasInvalidoException;
+import recepcao.exception.HospedeNaoHospedadoException;
 import recepcao.exception.NumeroQuartoInvalido;
 import recepcao.exception.QuartoDesocupadoException;
 import recepcao.exception.QuartoOcupadoException;
@@ -38,6 +40,7 @@ public class ControllerRecepcao {
 		this.quartos = new HashMap<String, Quarto>();
 		this.transacoes = new ArrayList<Transacao>();
 		this.factoryDeQuarto = new FactoryDeQuarto();
+		this.verificadorDeRecepcao = new VerificadorDeRecepcao();
 	}
 	
 	/** Faz checin do hospede no sistema
@@ -51,10 +54,25 @@ public class ControllerRecepcao {
 	 * @throws QuartoOcupadoException Lanca exception caso o quarto esteja ocupado
 	 * @throws cadastro.exception.QuartoOcupadoException Lanca exception o quarto esteja ocupado
 	 * @throws HospedeNaoCadastradoException Lanca exception caso email passado nao esteja cadastrado no sitema 
+	 * @throws EmailInvalidoException Lanca exception caso email passado seja invalido
 	 */
-	public void realizaCheckin(String email, int dias, String quarto, String tipoQuarto) throws DiasInvalidoException, NumeroQuartoInvalido, TipoDeQuartoInvalido, QuartoOcupadoException, cadastro.exception.QuartoOcupadoException, HospedeNaoCadastradoException{
-		this.verificadorDeRecepcao.verificaDias(dias);
-		this.verificadorDeRecepcao.verificaQuarto(quarto);
+	public void realizaCheckin(String email, int dias, String quarto, String tipoQuarto) throws TipoDeQuartoInvalido, cadastro.exception.QuartoOcupadoException, QuartoOcupadoException, HospedeNaoCadastradoException, EmailInvalidoException, DiasInvalidoException, NumeroQuartoInvalido{
+		try {
+			this.verificadorDeRecepcao.verificaDias(dias);
+		} catch (DiasInvalidoException e) {
+			throw new DiasInvalidoException("Erro ao realizar checkin. " + e.getMessage());
+		}
+		try {
+			this.verificadorDeRecepcao.verificaQuarto(quarto);
+		} catch (NumeroQuartoInvalido e) {
+			throw new NumeroQuartoInvalido("Erro ao realizar checkin. " + e.getMessage());
+		}
+		try {
+			this.verificadorDeRecepcao.verificaTipoDeQuarto(tipoQuarto);			
+		} catch (TipoDeQuartoInvalido e) {
+			throw new TipoDeQuartoInvalido("Erro ao realizar checkin. " + e.getMessage());
+		}
+		
 		if(!this.quartos.containsKey(quarto)){
 			TipoDeQuarto tipoDoNovoQuarto;
 			switch (tipoQuarto) {
@@ -66,22 +84,31 @@ public class ControllerRecepcao {
 				tipoDoNovoQuarto = TipoDeQuarto.LUXO;
 				break;
 				
-			case "Presidencial":
+			default:
 				tipoDoNovoQuarto = TipoDeQuarto.PRESIDENCIAL;
 				break;
-		
-			default:
-				throw new TipoDeQuartoInvalido("Erro ao realizar checkin. Nome do tipo de quarto invalido");
 			}
 			Estadia novaEstadia = new Estadia(email, dias);
 			Quarto novoQuarto =  this.factoryDeQuarto.criaQuarto(quarto, tipoDoNovoQuarto);
-			novoQuarto.recebeEstadia(novaEstadia);
+			try {
+				novoQuarto.recebeEstadia(novaEstadia);
+			} catch (QuartoOcupadoException e) {
+				throw new QuartoOcupadoException("Erro ao realizar checkin. " + e.getMessage());
+			}
 			try {
 				this.cadastro.concluirCheckin(email, novoQuarto.getNumero(), novoQuarto.calculaValor());
 			} catch (QuartoDesocupadoException e) {
 				e.printStackTrace();
+			} catch (HospedeNaoCadastradoException e) {
+				throw new HospedeNaoCadastradoException("Erro ao realizar checkin. " + e.getMessage());
 			}
 			this.quartos.put(novoQuarto.getNumero(), novoQuarto);
+			return;
+		}
+		try {
+			new VerificadorDeHospede().verificaEmail(email);
+		} catch (EmailInvalidoException e) {
+			throw new EmailInvalidoException("Erro ao realizar checkin. " + e.getMessage());
 		}
 		throw new QuartoOcupadoException(String.format("Erro ao realizar checkin. Quarto %s ja esta ocupado.", quarto));
 	}
@@ -105,8 +132,33 @@ public class ControllerRecepcao {
 		return String.format("R$%2.f", this.quartos.remove(quarto).calculaValor());
 	}
 	
-	public String getInfoHospedagem(String email, String atributo){
-		return  null; // implementar
+	/** Metodo que exibe informaçoes de hospedagens de hospedes
+	 * @param email Email do hospede
+	 * @param atributo Atributo a ser acessado
+	 * @return Retonar a informacao solicitada
+	 * @throws HospedeNaoHospedadoException Lanca Exception caso o hospede nao esteja cadastrado no sistema
+	 * @throws HospedeNaoCadastradoException Lanca exception caso o hospede nao esteja cadastrado no sistema
+	 * @throws AtributoInvalidoException Lanca exception caso atributo solicitado seja invalido
+	 * @throws EmailInvalidoException Lanca exception caso email seja invalido
+	 */
+	public String getInfoHospedagem(String email, String atributo) throws HospedeNaoHospedadoException, HospedeNaoCadastradoException, AtributoInvalidoException, EmailInvalidoException{
+		try {
+			new VerificadorDeHospede().verificaEmail(email);
+		} catch (EmailInvalidoException e) {
+			throw new EmailInvalidoException("Erro ao checar hospedagem ativa. " + e.getMessage());
+		}
+		try {
+			String infoHospedagem = this.cadastro.getInfoHospede(email, atributo);
+			if(infoHospedagem.equals("0") || infoHospedagem.equals("R$0,00") || infoHospedagem.equals("")){
+				throw new HospedeNaoHospedadoException(String.format("Erro na consulta de hospedagem. Hospede %s nao esta hospedado(a).", this.cadastro.getInfoHospede(email, "Nome")));
+			}
+			return infoHospedagem;
+		} catch (HospedeNaoCadastradoException e) {
+			throw new HospedeNaoCadastradoException(String.format("Erro na consulta de hospedagem. Hospede de email %s nao foi cadastrado(a).", email));
+			
+		} catch (AtributoInvalidoException e) {
+			throw new AtributoInvalidoException("Erro na consulta de hospedagem. Atributo solicitado nao encontrado.");
+		}
 	}
 	
 	public String consultaTransacoe(String atributo){

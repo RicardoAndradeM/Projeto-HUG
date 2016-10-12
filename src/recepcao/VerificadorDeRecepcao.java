@@ -2,6 +2,7 @@ package recepcao;
 
 import recepcao.exception.DiasInvalidoException;
 import recepcao.exception.NumeroQuartoInvalido;
+import recepcao.exception.TipoDeQuartoInvalido;
 
 /** Classe que verifica informacoes nas operacoes de Recepcao
  * @author Ricardo Andrade
@@ -24,8 +25,14 @@ public class VerificadorDeRecepcao {
 	 * @throws NumeroQuartoInvalido lanca exception caso numero seja invalido
 	 */
 	public void verificaQuarto(String quarto) throws NumeroQuartoInvalido {
-		if(quarto == null || quarto.trim().equals("")){
-			throw new NumeroQuartoInvalido("Numero de quarto nao poder ser vazio ou nulo");
+		if(quarto == null || quarto.trim().equals("") || quarto.matches("\\W")){
+			throw new NumeroQuartoInvalido("ID do quarto invalido, use apenas numeros ou letras.");
+		}
+	}
+
+	public void verificaTipoDeQuarto(String tipoDeQuarto) throws TipoDeQuartoInvalido {
+		if(!(tipoDeQuarto.equals("Simples") || tipoDeQuarto.equals("Luxo") || tipoDeQuarto.equals("Presidencial"))){
+			throw new TipoDeQuartoInvalido("Tipo de quarto invalido.");
 		}
 	}
 

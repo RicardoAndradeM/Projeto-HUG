@@ -1,5 +1,6 @@
 package cadastro;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -81,6 +82,21 @@ public class ControllerCadastro {
 		
 		case "Data de Nascimento":
 			return this.hospedes.get(id).getDataNascimento();
+		
+		case "Hospedagens ativas":
+			return String.format("%d", this.hospedes.get(id).getChaves().size());
+		
+		case "Quarto":
+			ArrayList<String> chaves = this.hospedes.get(id).getChaves();
+			if(chaves.size() < 1){return "";}
+			String chavesFormatado = chaves.get(0);
+			for (int i = 1; i < chaves.size(); i++) {
+				chavesFormatado += "," + chaves.get(i);
+			}
+			return chavesFormatado;
+		
+		case "Total":
+			return String.format("R$%.2f", this.hospedes.get(id).getDebito());
 			
 		default:
 			throw new AtributoInvalidoException("Erro na consulta de hospede. Atributo solicitado nao encontrado.");
