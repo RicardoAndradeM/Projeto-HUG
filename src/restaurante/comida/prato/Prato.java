@@ -1,4 +1,4 @@
-package restaurante.comida;
+package restaurante.comida.prato;
 
 /** Classe que representa um prato do restaurante
  * @since 19/09/16

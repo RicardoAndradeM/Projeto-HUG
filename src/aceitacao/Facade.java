@@ -15,6 +15,10 @@ import recepcao.exception.NumeroQuartoInvalido;
 import recepcao.exception.QuartoDesocupadoException;
 import recepcao.exception.QuartoOcupadoException;
 import recepcao.exception.TipoDeQuartoInvalido;
+import restaurante.ControllerRestaurante;
+import restaurante.exception.DescricaoInvalidaException;
+import restaurante.exception.PratosInvalidoException;
+import restaurante.exception.PrecoInvalidoException;
 
 /** Classe responsavel por delegar metodos dos controlles
  * @author Ricardo Andrarde
@@ -23,6 +27,7 @@ import recepcao.exception.TipoDeQuartoInvalido;
 public class Facade {
 	private ControllerCadastro cadastro;
 	private ControllerRecepcao recepcao;
+	private ControllerRestaurante restaurante;
 	
 	/**
 	 * Construtor que inicializa os controles
@@ -30,6 +35,7 @@ public class Facade {
 	public Facade() {
 		this.cadastro = new ControllerCadastro();
 		this.recepcao = new ControllerRecepcao(cadastro);
+		this.restaurante = new ControllerRestaurante();
 	}
 
 	/**
@@ -153,6 +159,42 @@ public class Facade {
 	 */
 	public String consultaTransacoes(String atributo, int indice) throws IndiceInvalidoException {
 		return recepcao.consultaTransacoes(atributo, indice);
+	}
+	
+	/** Metodo que cadastra novos pratos no  sistema
+	 * @param nome Nome do prato
+	 * @param preco Preco do prato
+	 * @param descricao Breve descricao do Prato
+	 * @throws NomeInvalidoException Lanca exception caso nome seja invalido
+	 * @throws PrecoInvalidoException Lanca exception caso preco seja invalido
+	 * @throws DescricaoInvalidaException Lanca exception caso descricao seja invalido
+	 */
+	public void cadastraPrato(String nome, double preco, String descricao)
+			throws restaurante.exception.NomeInvalidoException, PrecoInvalidoException, DescricaoInvalidaException {
+		restaurante.cadastraPrato(nome, preco, descricao);
+	}
+
+	/** Metodo que cadastra refeicoes no sistema
+	 * @param nome Nome do prato
+	 * @param descricao Descricao da refeicao
+	 * @param componentes Pratos que compoem a refeicao
+	 * @throws NomeInvalidoException Lanca exception caso nome seja invalido
+	 * @throws DescricaoInvalidaException Lanca exception caso descricao seja invalida
+	 * @throws PratosInvalidoException Lanca exception caso pratos seja invalido
+	 */
+	public void cadastraRefeicao(String nome, String descricao, String componentes)
+			throws restaurante.exception.NomeInvalidoException, DescricaoInvalidaException, PratosInvalidoException {
+		restaurante.cadastraRefeicao(nome, descricao, componentes);
+	}
+	
+	/** metodo que consulta informacao de restaurante
+	 * @param nome Nome do prato/refeicao
+	 * @param atributo atributo desejado
+	 * @return informacao solicitada
+	 * @throws NomeInvalidoException Lanca exeception caso nome seja invalido
+	 */
+	public String consultaRestaurante(String nome, String atributo) throws restaurante.exception.NomeInvalidoException {
+		return restaurante.consultaRestaurante(nome, atributo);
 	}
 
 	/**

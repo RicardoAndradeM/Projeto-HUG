@@ -11,7 +11,9 @@ public class Main {
 	    					"testacept/testes_uc2.txt",
 	    					"testacept/testes_uc2_exception.txt",
 	    					"testacept/testes_uc3.txt",
-	    					"testacept/testes_uc3_exception.txt"};
+	    					"testacept/testes_uc3_exception.txt",
+	    					"testacept/testes_uc4.txt",
+	    					"testacept/testes_uc4_exception.txt"};
 	    EasyAccept.main(args);
 	}
 }

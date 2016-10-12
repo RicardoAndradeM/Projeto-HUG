@@ -1,4 +1,4 @@
-package restaurante;
+package restaurante.comida.prato;
 
 import java.util.ArrayList;
 
@@ -11,7 +11,7 @@ import restaurante.exception.PrecoInvalidoException;
  * @author Ricardo Andrade
  * @since 12/10/2016
  */
-public class VerificadorDeRestaurante {
+public class VerificadorDePrato {
 	
 	/** Valida nome
 	 * @param nome Nome a ser avaliado
@@ -40,22 +40,6 @@ public class VerificadorDeRestaurante {
 	public void verificaDescricao(String Descricao) throws DescricaoInvalidaException{
 		if(Descricao == null || Descricao.trim().equals("")){
 			throw new DescricaoInvalidaException("Descricao do prato esta vazia.");
-		}
-	}
-	
-	/** Valida Pratos
-	 * @param pratosDaRefeicao Pratos a serem validados
-	 * @param pratos Lista de pratos cadastrados no sistema
-	 * @throws PratosInvalidoException lanca Exception caso os pratos sejam invalidos
-	 */
-	public void verificaPratos(String[] pratosDaRefeicao, ArrayList<String> pratos) throws PratosInvalidoException{
-		if(pratosDaRefeicao.length < 3 || pratosDaRefeicao.length > 4){
-			throw new PratosInvalidoException("Uma refeicao completa deve possuir no minimo 3 e no maximo 4 pratos.");
-		}
-		for (String pratoAvaliado : pratosDaRefeicao) {
-			if(!pratos.contains(pratoAvaliado)){
-				throw new PratosInvalidoException("So eh possivel cadastrar refeicoes com pratos ja cadastrados.");
-			}
 		}
 	}
 }
