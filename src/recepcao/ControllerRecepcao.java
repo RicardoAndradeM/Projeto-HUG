@@ -3,6 +3,8 @@ package recepcao;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.StringTokenizer;
 
 import cadastro.ControllerCadastro;
 import cadastro.exception.AtributoInvalidoException;
@@ -12,6 +14,7 @@ import cadastro.exception.QuartoNaoEncontradoException;
 import cadastro.hospede.VerificadorDeHospede;
 import recepcao.exception.DiasInvalidoException;
 import recepcao.exception.HospedeNaoHospedadoException;
+import recepcao.exception.IndiceInvalidoException;
 import recepcao.exception.NumeroQuartoInvalido;
 import recepcao.exception.QuartoDesocupadoException;
 import recepcao.exception.QuartoOcupadoException;
@@ -121,15 +124,25 @@ public class ControllerRecepcao {
 	 * @throws HospedeNaoCadastradoException Lanca exception caso caso hospede nao esteja cadastrado no sistema
 	 * @throws EmailInvalidoException Lanca exception caso email passado seja invalido
 	 * @throws QuartoDesocupadoException lanca exception caso quarto passado nao esteja sendo ocupado pelo hospede
+	 * @throws NumeroQuartoInvalido Lanca exception caso nome de quarto seja invalido
 	 */
-	public String realizaCheckout(String email, String quarto) throws QuartoNaoEncontradoException, HospedeNaoCadastradoException, EmailInvalidoException, QuartoDesocupadoException{
-		this.cadastro.concluirCheckout(email, quarto);
+	public String realizaCheckout(String email, String quarto) throws QuartoNaoEncontradoException, HospedeNaoCadastradoException, QuartoDesocupadoException, EmailInvalidoException, NumeroQuartoInvalido{
 		try {
-			this.transacoes.add(new Transacao(LocalDate.now(), this.cadastro.getInfoHospede(email, "nome"), quarto, this.quartos.get(quarto).calculaValor()));
+			this.verificadorDeRecepcao.verificaQuarto(quarto);
+		} catch (NumeroQuartoInvalido e) {
+			throw new NumeroQuartoInvalido("Erro ao realizar checkout. " + e.getMessage());
+		}
+		try {
+			this.cadastro.concluirCheckout(email, quarto);
+		} catch (EmailInvalidoException e) {
+			throw new EmailInvalidoException("Erro ao realizar checkout. " + e.getMessage());
+		}
+		try {
+			this.transacoes.add(new Transacao(LocalDate.now(), this.cadastro.getInfoHospede(email, "Nome"), quarto, this.quartos.get(quarto).calculaValor()));
 		} catch (AtributoInvalidoException e) {
 			e.printStackTrace();
 		}
-		return String.format("R$%2.f", this.quartos.remove(quarto).calculaValor());
+		return String.format("R$%.2f", this.quartos.remove(quarto).calculaValor());
 	}
 	
 	/** Metodo que exibe informaçoes de hospedagens de hospedes
@@ -161,11 +174,60 @@ public class ControllerRecepcao {
 		}
 	}
 	
-	public String consultaTransacoe(String atributo){
-		return null; // implementar
+	/** Metodo que consulta informacoes sobre transacoes
+	 * @param atributo Atributos Solicitado
+	 * @return Retorna a informacao solicitada
+	 */
+	public String consultaTransacoes(String atributo){
+		switch (atributo) {
+		case "Quantidade":
+			return String.valueOf(this.transacoes.size());
+		
+		case "Total":
+			double total = 0;
+			for (Transacao transacao : transacoes) {
+				total += transacao.getTotalPago();
+			}
+			return String.format("R$%.2f",total);
+			
+		case "Nome":
+			StringBuilder pessoas = new StringBuilder();
+			for (Transacao transacao : transacoes) {
+				if(pessoas.length() == 0){
+					pessoas.append(transacao.getNomeHospede());
+					continue;
+				}
+				pessoas.append(";");
+				pessoas.append(transacao.getNomeHospede());
+			}
+			return pessoas.toString();
+			
+		default:
+			return null;
+		}
 	}
 	
-	public String consultaTransacoe(String atributo, int indice){
-		return null; // implementar
+	/** Metodo que consulta informacoes sobre transacoes
+	 * @param atributo Atributos Solicitado
+	 * @param indice Indice a se pesquisar
+	 * @return Retorna a informacao solicitada
+	 * @throws IndiceInvalidoException Lanca exception caso indice seja invalido
+	 */
+	public String consultaTransacoes(String atributo, int indice) throws IndiceInvalidoException{
+		try {
+			this.verificadorDeRecepcao.verificaIndice(indice);
+		} catch (IndiceInvalidoException e) {
+			throw new IndiceInvalidoException("Erro na consulta de transacoes. " + e.getMessage());
+		}
+		switch (atributo) {
+		case "Total":
+			return String.format("R$%.2f",this.transacoes.get(indice).getTotalPago());
+			
+		case "Nome":
+			return this.transacoes.get(indice).getNomeHospede();
+
+		default:
+			return null;
+		}
 	}
 }

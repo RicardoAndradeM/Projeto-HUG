@@ -10,6 +10,7 @@ import cadastro.exception.QuartoNaoEncontradoException;
 import recepcao.ControllerRecepcao;
 import recepcao.exception.DiasInvalidoException;
 import recepcao.exception.HospedeNaoHospedadoException;
+import recepcao.exception.IndiceInvalidoException;
 import recepcao.exception.NumeroQuartoInvalido;
 import recepcao.exception.QuartoDesocupadoException;
 import recepcao.exception.QuartoOcupadoException;
@@ -116,9 +117,10 @@ public class Facade {
 	 * @throws HospedeNaoCadastradoException Lanca exception caso caso hospede nao esteja cadastrado no sistema
 	 * @throws EmailInvalidoException Lanca exception caso email passado seja invalido
 	 * @throws QuartoDesocupadoException lanca exception caso quarto passado nao esteja sendo ocupado pelo hospede
+	 * @throws NumeroQuartoInvalido Lanca exception caso nome de quarto seja invalido
 	 */
 	public String realizaCheckout(String email, String quarto) throws QuartoNaoEncontradoException,
-			HospedeNaoCadastradoException, EmailInvalidoException, QuartoDesocupadoException {
+			HospedeNaoCadastradoException, EmailInvalidoException, QuartoDesocupadoException, NumeroQuartoInvalido {
 		return recepcao.realizaCheckout(email, quarto);
 	}
 
@@ -135,13 +137,22 @@ public class Facade {
 		return recepcao.getInfoHospedagem(email, atributo);
 	}
 
-	//documentar
-	public String consultaTransacoe(String atributo) {
-		return recepcao.consultaTransacoe(atributo);
+	/** Metodo que consulta informacoes sobre transacoes
+	 * @param atributo Atributos Solicitado
+	 * @return Retorna a informacao solicitada
+	 */
+	public String consultaTransacoes(String atributo) {
+		return recepcao.consultaTransacoes(atributo);
 	}
 
-	public String consultaTransacoe(String atributo, int indice) {
-		return recepcao.consultaTransacoe(atributo, indice);
+	/** Metodo que consulta informacoes sobre transacoes
+	 * @param atributo Atributos Solicitado
+	 * @param indice Indice a se pesquisar
+	 * @return Retorna a informacao solicitada
+	 * @throws IndiceInvalidoException Lanca exception caso indice seja invalido
+	 */
+	public String consultaTransacoes(String atributo, int indice) throws IndiceInvalidoException {
+		return recepcao.consultaTransacoes(atributo, indice);
 	}
 
 	/**
