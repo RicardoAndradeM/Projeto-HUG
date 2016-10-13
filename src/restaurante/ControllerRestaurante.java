@@ -3,6 +3,8 @@ package restaurante;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import aceitacao.Main;
+import restaurante.comida.Comestivel;
 import restaurante.comida.prato.Prato;
 import restaurante.comida.prato.VerificadorDePrato;
 import restaurante.comida.refeicao.Refeicao;
@@ -17,8 +19,7 @@ import restaurante.exception.PrecoInvalidoException;
  * @since 12/10/2016
  */
 public class ControllerRestaurante {
-	private HashMap<String, Prato> pratos;
-	private HashMap<String, Refeicao> refeicoes;
+	private HashMap<String, Comestivel> cardapio;
 	private VerificadorDePrato verificadorDePrato;
 	private VerificadorDeRefeicao verificadorDeRefeicao;
 	
@@ -26,8 +27,7 @@ public class ControllerRestaurante {
 	 * Cria um novo controler de Restaurante
 	 */
 	public ControllerRestaurante() {
-		this.pratos = new HashMap<String, Prato>();
-		this.refeicoes = new HashMap<String, Refeicao>();
+		this.cardapio = new HashMap<String, Comestivel>();
 		this.verificadorDePrato = new VerificadorDePrato();
 		this.verificadorDeRefeicao = new VerificadorDeRefeicao();
 	}
@@ -57,7 +57,7 @@ public class ControllerRestaurante {
 			throw new DescricaoInvalidaException("Erro no cadastro do prato. " + e.getMessage());
 		}
 		
-		this.pratos.put(nome, new Prato(nome, preco, descricao));
+		this.cardapio.put(nome, new Prato(nome, preco, descricao));
 	}
 	
 	/** Metodo que cadastra refeicoes no sistema
@@ -79,10 +79,13 @@ public class ControllerRestaurante {
 		} catch (DescricaoInvalidaException e) {
 			throw new DescricaoInvalidaException("Erro no cadastro de refeicao. " +  e.getMessage());
 		}
-		this.verificadorDeRefeicao.verificaPratos(componentes, new ArrayList<String>(pratos.keySet()));
-		String[] pratosDeRefeicao = componentes.split(";");
-		
-		this.refeicoes.put(nome, new Refeicao(nome, descricao, pratosDeRefeicao));
+		this.verificadorDeRefeicao.verificaPratos(componentes, this.cardapio);
+		Prato[] pratosDeRefeicao = new Prato[componentes.split(";").length];
+		String[] nomeDosPratos = componentes.split(";");
+		for (int i = 0; i < componentes.split(";").length; i++) {
+			pratosDeRefeicao[i] = (Prato) this.cardapio.get(nomeDosPratos[i]);
+		}
+		this.cardapio.put(nome, new Refeicao(nome, descricao, pratosDeRefeicao));
 	}
 	
 	/** metodo que consulta informacao de restaurante
@@ -99,16 +102,14 @@ public class ControllerRestaurante {
 		}
 		switch (atributo) {
 		case "Preco":
-			if(this.pratos.containsKey(nome)){
-				return String.format("R$%.2f",this.pratos.get(nome).getPreco());
+			if(this.cardapio.containsKey(nome)){
+				return String.format("R$%.2f",this.cardapio.get(nome).getPreco());
 			}
-			return String.format("R$%.2f",this.refeicoes.get(nome).getPreco(pratos));
-			
+
 		case "Descricao":
-			if(this.pratos.containsKey(nome)){
-				return this.pratos.get(nome).getDescricao();
+			if(this.cardapio.containsKey(nome)){
+				return this.cardapio.get(nome).getDescricao();
 			}
-			return this.refeicoes.get(nome).toString();
 		}
 		return null;
 	}

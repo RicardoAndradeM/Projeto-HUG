@@ -1,25 +1,25 @@
 package restaurante.comida.refeicao;
 
 import java.util.Arrays;
-import java.util.HashMap;
 
+import restaurante.comida.Comestivel;
 import restaurante.comida.prato.Prato;
 
 /** Classe que representa um refeicao
  * @author Ricardo Andrade
  * @since 18/09/16
  */
-public class Refeicao {
+public class Refeicao implements Comestivel {
 	private String nome;
 	private String descricao;
-	private String[] pratos;
+	private Prato[] pratos;
 	
 	/** Cria uma nova refeicao
 	 * @param nome Nome da Refeicao
 	 * @param descricao Desricao da Refeicao
 	 * @param pratos Pratos que copoem a refeicao
 	 */
-	public Refeicao(String nome, String descricao, String[] pratos) {
+	public Refeicao(String nome, String descricao, Prato[] pratos) {
 		this.setNome(nome);
 		this.setDescricao(descricao);
 		this.pratos = pratos;
@@ -38,11 +38,15 @@ public class Refeicao {
 		this.nome = nome;
 	}
 
-	/**
-	 * @return Retorna a descricao do refeicao
-	 */
+	@Override
 	public String getDescricao() {
-		return descricao;
+		StringBuilder pratosASerServdos = new StringBuilder();
+		for (int i = 0; i < pratos.length; i++) {
+			pratosASerServdos.append(String.format(" (%d) ", i +1));
+			pratosASerServdos.append(this.pratos[i].getNome());
+			pratosASerServdos.append(",");
+		}
+		return String.format("%s Serao servidos:%s.", this.descricao, pratosASerServdos.toString().substring(0, pratosASerServdos.length() -1));
 	}
 
 	/**
@@ -56,18 +60,15 @@ public class Refeicao {
 	 * @param indice Indice a ser trocado
 	 * @param prato Novo prato
 	 */
-	public void atualizaPrato(int indice, String prato){
+	public void atualizaPrato(int indice, Prato prato){
 		this.pratos[indice] = prato;
 	}
-	
-	/** Retorna o preco de uma refeicao
-	 * @param pratosDoRestaurante Pratos do Restaurante atualizado para verificar o precos
-	 * @return retonar o preco da refeicao
-	 */
-	public double getPreco(HashMap<String,Prato> pratosDoRestaurante) {
+
+	@Override
+	public double getPreco() {
 		double total = 0;
-		for (String prato : this.pratos) {
-			total += pratosDoRestaurante.get(prato).getPreco();
+		for (Prato prato : pratos) {
+			total += prato.getPreco();
 		}
 		return total - total*(10/100.0);
 	}
@@ -114,6 +115,12 @@ public class Refeicao {
 			pratosASerServdos.append(this.pratos[i]);
 			pratosASerServdos.append(",");
 		}
-		return String.format("%s Serao servidos:%s.", this.getDescricao(), pratosASerServdos.toString().substring(0, pratosASerServdos.length() -1));
+		return String.format("%s(R$%.2f) - %s",this.nome, this.getPreco(), this.getDescricao());
+	}
+
+	@Override
+	public int compareTo(Comestivel o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

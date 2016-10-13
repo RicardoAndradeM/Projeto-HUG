@@ -1,10 +1,7 @@
 package restaurante.comida.prato;
 
-import java.util.ArrayList;
-
 import restaurante.exception.DescricaoInvalidaException;
 import restaurante.exception.NomeInvalidoException;
-import restaurante.exception.PratosInvalidoException;
 import restaurante.exception.PrecoInvalidoException;
 
 /** Classe que valida informacoes passadas para controlerRestaurante

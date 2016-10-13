@@ -1,7 +1,9 @@
 package restaurante.comida.refeicao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import restaurante.comida.Comestivel;
 import restaurante.exception.DescricaoInvalidaException;
 import restaurante.exception.NomeInvalidoException;
 import restaurante.exception.PratosInvalidoException;
@@ -33,7 +35,7 @@ public class VerificadorDeRefeicao {
 	 * @param pratos Lista de pratos cadastrados no sistema
 	 * @throws PratosInvalidoException lanca Exception caso os pratos sejam invalidos
 	 */
-	public void verificaPratos(String pratosAvaliados, ArrayList<String> pratos) throws PratosInvalidoException{
+	public void verificaPratos(String pratosAvaliados, HashMap<String, Comestivel> pratos) throws PratosInvalidoException{
 		if(pratosAvaliados == null || pratosAvaliados.trim().equals("")){
 			throw new PratosInvalidoException("Erro no cadastro de refeicao. Componente(s) esta(o) vazio(s).");
 		}
@@ -42,7 +44,7 @@ public class VerificadorDeRefeicao {
 			throw new PratosInvalidoException("Erro no cadastro de refeicao completa. Uma refeicao completa deve possuir no minimo 3 e no maximo 4 pratos.");
 		}
 		for (String pratoAvaliado : pratosDaRefeicao) {
-			if(!pratos.contains(pratoAvaliado)){
+			if(!pratos.containsKey(pratoAvaliado) || pratos.get(pratoAvaliado) instanceof Refeicao){
 				throw new PratosInvalidoException("Erro no cadastro de refeicao. So eh possivel cadastrar refeicoes com pratos ja cadastrados.");
 			}
 		}
