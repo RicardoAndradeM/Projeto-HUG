@@ -35,7 +35,7 @@ public class Facade {
 	public Facade() {
 		this.cadastro = new ControllerCadastro();
 		this.recepcao = new ControllerRecepcao(cadastro);
-		this.restaurante = new ControllerRestaurante();
+		this.restaurante = new ControllerRestaurante(recepcao);
 	}
 
 	/**
@@ -207,6 +207,10 @@ public class Facade {
 		return restaurante.consultaMenuRestaurante();
 	}
 		
+	public String realizaPedido(String email, String nome) throws HospedeNaoCadastradoException, AtributoInvalidoException {
+		return restaurante.realizaPedido(email, nome);
+	}
+
 	/**
 	 * Metodo que seja implmentado futuramente
 	 */

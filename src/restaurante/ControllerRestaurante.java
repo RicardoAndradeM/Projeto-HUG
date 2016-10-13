@@ -6,6 +6,10 @@ import java.util.HashMap;
 
 import javax.management.loading.PrivateClassLoader;
 
+import cadastro.exception.AtributoInvalidoException;
+import cadastro.exception.HospedeNaoCadastradoException;
+import recepcao.ControllerRecepcao;
+
 import java.util.*;
 
 import java.util.Collections;
@@ -33,15 +37,17 @@ public class ControllerRestaurante {
 	private VerificadorDeRefeicao verificadorDeRefeicao;
 	private EstrategiaOrdenacaoCadapio estrategiaOrdenacao;
 	private ArrayList<Comestivel> itensDeCardapio;
+	private ControllerRecepcao recepcao;
 	
 	/**
 	 * Cria um novo controler de Restaurante
 	 */
-	public ControllerRestaurante() {
+	public ControllerRestaurante(ControllerRecepcao recepcao) {
 		this.cardapio = new HashMap<String, Comestivel>();
 		this.verificadorDePrato = new VerificadorDePrato();
 		this.verificadorDeRefeicao = new VerificadorDeRefeicao();
 		this.itensDeCardapio = new ArrayList<Comestivel>();
+		this.recepcao = recepcao;
 	}
 	
 	/** Metodo que cadastra novos pratos no  sistema
@@ -152,5 +158,11 @@ public class ControllerRestaurante {
 			}
 		}
 		return lista.toString().substring(0, lista.length() -1);
+	}
+	
+	public String realizaPedido(String email, String nome) throws HospedeNaoCadastradoException, AtributoInvalidoException{
+		Comestivel pedido = cardapio.get(nome);
+		this.recepcao.registraTransacao(email, pedido.getNome(), pedido.getPreco());
+		return String.format("R$%.2f", pedido.getPreco());
 	}
 }

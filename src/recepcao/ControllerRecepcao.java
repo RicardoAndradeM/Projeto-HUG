@@ -225,9 +225,16 @@ public class ControllerRecepcao {
 			
 		case "Nome":
 			return this.transacoes.get(indice).getNomeHospede();
+		
+		case "Detalhes":
+			return this.transacoes.get(indice).getNumeroDoQuarto();
 
 		default:
 			return null;
 		}
+	}
+	
+	public void registraTransacao(String nomeHospede, String nome, double totalPago ) throws HospedeNaoCadastradoException, AtributoInvalidoException{
+		this.transacoes.add(new Transacao(LocalDate.now(), this.cadastro.getInfoHospede(nomeHospede, "Nome"), nome, totalPago));
 	}
 }
