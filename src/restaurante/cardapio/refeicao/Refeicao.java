@@ -1,9 +1,9 @@
-package restaurante.comida.refeicao;
+package restaurante.cardapio.refeicao;
 
 import java.util.Arrays;
 
-import restaurante.comida.Comestivel;
-import restaurante.comida.prato.Prato;
+import restaurante.cardapio.Comestivel;
+import restaurante.cardapio.prato.Prato;
 
 /** Classe que representa um refeicao
  * @author Ricardo Andrade
@@ -25,9 +25,7 @@ public class Refeicao implements Comestivel {
 		this.pratos = pratos;
 	}
 
-	/**
-	 * @return retorna o nome da Refeicao
-	 */
+	@Override
 	public String getNome() {
 		return nome;
 	}
@@ -116,11 +114,5 @@ public class Refeicao implements Comestivel {
 			pratosASerServdos.append(",");
 		}
 		return String.format("%s(R$%.2f) - %s",this.nome, this.getPreco(), this.getDescricao());
-	}
-
-	@Override
-	public int compareTo(Comestivel o) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 }

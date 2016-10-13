@@ -1,14 +1,23 @@
 package restaurante;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
-import aceitacao.Main;
-import restaurante.comida.Comestivel;
-import restaurante.comida.prato.Prato;
-import restaurante.comida.prato.VerificadorDePrato;
-import restaurante.comida.refeicao.Refeicao;
-import restaurante.comida.refeicao.VerificadorDeRefeicao;
+import javax.management.loading.PrivateClassLoader;
+
+import java.util.*;
+
+import java.util.Collections;
+
+import restaurante.cardapio.Comestivel;
+import restaurante.cardapio.EstrategiaOrdenacaoCadapio;
+import restaurante.cardapio.NomeCardapioComparator;
+import restaurante.cardapio.PrecoCardapioComparator;
+import restaurante.cardapio.prato.Prato;
+import restaurante.cardapio.prato.VerificadorDePrato;
+import restaurante.cardapio.refeicao.Refeicao;
+import restaurante.cardapio.refeicao.VerificadorDeRefeicao;
 import restaurante.exception.DescricaoInvalidaException;
 import restaurante.exception.NomeInvalidoException;
 import restaurante.exception.PratosInvalidoException;
@@ -22,6 +31,8 @@ public class ControllerRestaurante {
 	private HashMap<String, Comestivel> cardapio;
 	private VerificadorDePrato verificadorDePrato;
 	private VerificadorDeRefeicao verificadorDeRefeicao;
+	private EstrategiaOrdenacaoCadapio estrategiaOrdenacao;
+	private ArrayList<Comestivel> itensDeCardapio;
 	
 	/**
 	 * Cria um novo controler de Restaurante
@@ -30,6 +41,7 @@ public class ControllerRestaurante {
 		this.cardapio = new HashMap<String, Comestivel>();
 		this.verificadorDePrato = new VerificadorDePrato();
 		this.verificadorDeRefeicao = new VerificadorDeRefeicao();
+		this.itensDeCardapio = new ArrayList<Comestivel>();
 	}
 	
 	/** Metodo que cadastra novos pratos no  sistema
@@ -58,6 +70,7 @@ public class ControllerRestaurante {
 		}
 		
 		this.cardapio.put(nome, new Prato(nome, preco, descricao));
+		this.itensDeCardapio.add(new Prato(nome, preco, descricao));
 	}
 	
 	/** Metodo que cadastra refeicoes no sistema
@@ -86,6 +99,7 @@ public class ControllerRestaurante {
 			pratosDeRefeicao[i] = (Prato) this.cardapio.get(nomeDosPratos[i]);
 		}
 		this.cardapio.put(nome, new Refeicao(nome, descricao, pratosDeRefeicao));
+		this.itensDeCardapio.add(new Refeicao(nome, descricao, pratosDeRefeicao));
 	}
 	
 	/** metodo que consulta informacao de restaurante
@@ -112,5 +126,31 @@ public class ControllerRestaurante {
 			}
 		}
 		return null;
+	}
+	
+	// documentar
+	
+	public void ordenaMenu(String tipoOrdenacao){
+		if(tipoOrdenacao.equals("Nome")){
+			this.estrategiaOrdenacao = new NomeCardapioComparator();
+		}
+		this.estrategiaOrdenacao = new NomeCardapioComparator();
+	}
+	
+	public String consultaMenuRestaurante(){
+		StringBuilder lista = new StringBuilder();
+		if(estrategiaOrdenacao == null){
+			for (Comestivel itemDoCardapio : itensDeCardapio){
+				lista.append(itemDoCardapio.getNome());
+				lista.append(";");
+			}
+		} else {
+			itensDeCardapio.sort(estrategiaOrdenacao);
+			for (Comestivel itemDoCardapio : itensDeCardapio){
+				lista.append(itemDoCardapio.getNome());
+				lista.append(";");
+			}
+		}
+		return lista.toString().substring(0, lista.length() -1);
 	}
 }

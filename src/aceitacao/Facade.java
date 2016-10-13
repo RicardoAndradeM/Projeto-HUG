@@ -197,10 +197,21 @@ public class Facade {
 		return restaurante.consultaRestaurante(nome, atributo);
 	}
 
+	// documentar
+	
+	public void ordenaMenu(String tipoOrdenacao) {
+		restaurante.ordenaMenu(tipoOrdenacao);
+	}
+	
+	public String consultaMenuRestaurante() {
+		return restaurante.consultaMenuRestaurante();
+	}
+		
 	/**
 	 * Metodo que seja implmentado futuramente
 	 */
 	public void fechaSistema(){
 		
 	}
+
 }

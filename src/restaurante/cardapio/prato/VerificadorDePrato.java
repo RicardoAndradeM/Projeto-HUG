@@ -1,4 +1,4 @@
-package restaurante.comida.prato;
+package restaurante.cardapio.prato;
 
 import restaurante.exception.DescricaoInvalidaException;
 import restaurante.exception.NomeInvalidoException;

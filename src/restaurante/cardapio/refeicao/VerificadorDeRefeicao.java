@@ -1,9 +1,10 @@
-package restaurante.comida.refeicao;
+package restaurante.cardapio.refeicao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import restaurante.comida.Comestivel;
+import restaurante.cardapio.Comestivel;
+import restaurante.cardapio.prato.Prato;
 import restaurante.exception.DescricaoInvalidaException;
 import restaurante.exception.NomeInvalidoException;
 import restaurante.exception.PratosInvalidoException;
@@ -32,10 +33,10 @@ public class VerificadorDeRefeicao {
 	
 	/** Valida Pratos
 	 * @param pratosDaRefeicao Pratos a serem validados
-	 * @param pratos Lista de pratos cadastrados no sistema
+	 * @param cardapio Lista de pratos cadastrados no sistema
 	 * @throws PratosInvalidoException lanca Exception caso os pratos sejam invalidos
 	 */
-	public void verificaPratos(String pratosAvaliados, HashMap<String, Comestivel> pratos) throws PratosInvalidoException{
+	public void verificaPratos(String pratosAvaliados, HashMap<String, Comestivel> cardapio) throws PratosInvalidoException{
 		if(pratosAvaliados == null || pratosAvaliados.trim().equals("")){
 			throw new PratosInvalidoException("Erro no cadastro de refeicao. Componente(s) esta(o) vazio(s).");
 		}
@@ -44,7 +45,7 @@ public class VerificadorDeRefeicao {
 			throw new PratosInvalidoException("Erro no cadastro de refeicao completa. Uma refeicao completa deve possuir no minimo 3 e no maximo 4 pratos.");
 		}
 		for (String pratoAvaliado : pratosDaRefeicao) {
-			if(!pratos.containsKey(pratoAvaliado) || pratos.get(pratoAvaliado) instanceof Refeicao){
+			if(!cardapio.containsKey(pratoAvaliado) || cardapio.get(pratoAvaliado) instanceof Refeicao){
 				throw new PratosInvalidoException("Erro no cadastro de refeicao. So eh possivel cadastrar refeicoes com pratos ja cadastrados.");
 			}
 		}

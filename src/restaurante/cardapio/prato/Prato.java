@@ -1,6 +1,6 @@
-package restaurante.comida.prato;
+package restaurante.cardapio.prato;
 
-import restaurante.comida.Comestivel;
+import restaurante.cardapio.Comestivel;
 
 /** Classe que representa um prato do restaurante
  * @since 19/09/16
@@ -23,9 +23,7 @@ public class Prato implements Comestivel {
 		this.descricao = descricao;
 	}
 	
-	/**
-	 * @return Nome do prato
-	 */
+	@Override
 	public String getNome() {
 		return this.nome;
 	}
@@ -95,11 +93,5 @@ public class Prato implements Comestivel {
 	@Override
 	public String toString() {
 		return String.format("%s(R$%.2f) - %s", this.nome, this.preco, this.descricao);
-	}
-
-	@Override
-	public int compareTo(Comestivel o) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 }
