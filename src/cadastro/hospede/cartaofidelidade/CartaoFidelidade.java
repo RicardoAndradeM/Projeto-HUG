@@ -31,7 +31,14 @@ public class CartaoFidelidade {
 			this.tipoDeCartao = new Vip();
 		} else if(this.pontos >= 350){
 			this.tipoDeCartao = new Premium();
+		} else {
+			this.tipoDeCartao = new Padrao();
 		}
+	}
+	
+	public double convertePontos(double valor){
+		this.pontos -= valor;
+		return tipoDeCartao.convertePontos(valor);
 	}
 	
 }

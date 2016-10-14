@@ -30,6 +30,10 @@ public class Hospede {
 		return cartao.aplicaDesconto(valor);
 	}
 
+	public double convertePontos(double valor) {
+		return cartao.convertePontos(valor);
+	}
+
 	/** 
 	 * @param nome Nome do Hospede
 	 * @param email Email do Hospede

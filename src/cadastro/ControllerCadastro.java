@@ -213,6 +213,10 @@ public class ControllerCadastro {
 		return this.hospedes.get(id).aplicaDesconto(valor);
 	}
 	
+	public double convertePontos(String id, double valor){
+		return this.hospedes.get(id).convertePontos(valor);
+	}
+	
 	@Override
 	public String toString() {
 		String relatorioHostel = "Hospedes instalados no momento:";

@@ -211,6 +211,10 @@ public class Facade {
 		return restaurante.realizaPedido(email, nome);
 	}
 
+	public double convertePontos(String id, double valor) {
+		return cadastro.convertePontos(id, valor);
+	}
+
 	/**
 	 * Metodo que seja implmentado futuramente
 	 */

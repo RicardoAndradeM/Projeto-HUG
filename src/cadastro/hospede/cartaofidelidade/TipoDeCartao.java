@@ -10,6 +10,6 @@ public interface TipoDeCartao {
 	
 	public double aplicaDesconto(double valor);
 	
-	public double valorAPagar();
+	public double convertePontos(double valor);
 	
 }

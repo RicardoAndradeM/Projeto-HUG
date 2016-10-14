@@ -23,9 +23,8 @@ public class Vip implements TipoDeCartao {
 	}
 
 	@Override
-	public double valorAPagar() {
-		// TODO Auto-generated method stub
-		return 0;
+	public double convertePontos(double valor) {
+		return valor * 0.7 + (valor/10 * 0.5);
 	}
 
 }
