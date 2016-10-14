@@ -30,7 +30,7 @@ public class VerificadorDeRefeicao {
 	}
 	
 	/** Valida Pratos
-	 * @param pratosDaRefeicao Pratos a serem validados
+	 * @param pratosAvaliados Pratos a serem validados
 	 * @param cardapio Lista de pratos cadastrados no sistema
 	 * @throws PratosInvalidoException lanca Exception caso os pratos sejam invalidos
 	 */

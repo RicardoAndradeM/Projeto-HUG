@@ -168,7 +168,7 @@ public class Facade {
 	 * @param nome Nome do prato
 	 * @param preco Preco do prato
 	 * @param descricao Breve descricao do Prato
-	 * @throws NomeInvalidoException Lanca exception caso nome seja invalido
+	 * @throws restaurante.exception.NomeInvalidoException Lanca exception caso nome seja invalido
 	 * @throws PrecoInvalidoException Lanca exception caso preco seja invalido
 	 * @throws DescricaoInvalidaException Lanca exception caso descricao seja invalido
 	 */
@@ -181,7 +181,7 @@ public class Facade {
 	 * @param nome Nome do prato
 	 * @param descricao Descricao da refeicao
 	 * @param componentes Pratos que compoem a refeicao
-	 * @throws NomeInvalidoException Lanca exception caso nome seja invalido
+	 * @throws restaurante.exception.NomeInvalidoException Lanca exception caso nome seja invalido
 	 * @throws DescricaoInvalidaException Lanca exception caso descricao seja invalida
 	 * @throws PratosInvalidoException Lanca exception caso pratos seja invalido
 	 */
@@ -194,7 +194,7 @@ public class Facade {
 	 * @param nome Nome do prato/refeicao
 	 * @param atributo atributo desejado
 	 * @return informacao solicitada
-	 * @throws NomeInvalidoException Lanca exeception caso nome seja invalido
+	 * @throws restaurante.exception.NomeInvalidoException Lanca exeception caso nome seja invalido
 	 */
 	public String consultaRestaurante(String nome, String atributo) throws restaurante.exception.NomeInvalidoException {
 		return restaurante.consultaRestaurante(nome, atributo);

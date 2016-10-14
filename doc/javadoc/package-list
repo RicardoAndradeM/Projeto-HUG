@@ -1,3 +1,13 @@
+aceitacao
 cadastro
-cadastro.componentes
 cadastro.exception
+cadastro.hospede
+cadastro.hospede.cartaofidelidade
+recepcao
+recepcao.exception
+recepcao.quarto
+restaurante
+restaurante.cardapio
+restaurante.cardapio.prato
+restaurante.cardapio.refeicao
+restaurante.exception

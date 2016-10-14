@@ -41,7 +41,7 @@ public class Prato implements Comestivel {
 	}
 	
 	/**
-	 * @param Preco do prato
+	 * @param preco Preco do prato
 	 */
 	public void setPreco(double preco) {
 		this.preco = preco;
@@ -53,7 +53,7 @@ public class Prato implements Comestivel {
 	}
 
 	/**
-	 * @param Descricao do prato
+	 * @param descricao Descricao do prato
 	 */
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;

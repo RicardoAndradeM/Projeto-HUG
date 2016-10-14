@@ -32,6 +32,7 @@ public class ControllerRestaurante {
 	
 	/**
 	 * Cria um novo controler de Restaurante
+	 * @param recepcao Recepcao do sistema
 	 */
 	public ControllerRestaurante(ControllerRecepcao recepcao) {
 		this.cardapio = new HashMap<String, Comestivel>();
