@@ -22,4 +22,10 @@ public class Vip implements TipoDeCartao {
 		return valorFinal;
 	}
 
+	@Override
+	public double valorAPagar() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

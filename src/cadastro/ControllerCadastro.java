@@ -98,6 +98,9 @@ public class ControllerCadastro {
 		case "Total":
 			return String.format("R$%.2f", this.hospedes.get(id).getDebito());
 			
+		case "Pontos":
+			return String.valueOf(this.hospedes.get(id).getPontos());
+			
 		default:
 			throw new AtributoInvalidoException("Erro na consulta de hospede. Atributo solicitado nao encontrado.");
 		}
@@ -200,6 +203,14 @@ public class ControllerCadastro {
 		} catch (NullPointerException e) {
 			throw new HospedeNaoCadastradoException(String.format("Hospede de email %s nao foi cadastrado(a).", id));
 		}
+	}
+	
+	public void adicionaPontos(String id, double valor){
+		this.hospedes.get(id).adicionaPontos(valor);
+	}
+	
+	public double aplicaDesconto(String id, double valor){
+		return this.hospedes.get(id).aplicaDesconto(valor);
 	}
 	
 	@Override

@@ -1,23 +1,14 @@
 package restaurante;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-
-import javax.management.loading.PrivateClassLoader;
 
 import cadastro.exception.AtributoInvalidoException;
 import cadastro.exception.HospedeNaoCadastradoException;
 import recepcao.ControllerRecepcao;
-
-import java.util.*;
-
-import java.util.Collections;
-
 import restaurante.cardapio.Comestivel;
 import restaurante.cardapio.EstrategiaOrdenacaoCadapio;
 import restaurante.cardapio.NomeCardapioComparator;
-import restaurante.cardapio.PrecoCardapioComparator;
 import restaurante.cardapio.prato.Prato;
 import restaurante.cardapio.prato.VerificadorDePrato;
 import restaurante.cardapio.refeicao.Refeicao;

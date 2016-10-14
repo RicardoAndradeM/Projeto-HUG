@@ -3,8 +3,6 @@ package recepcao;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.StringTokenizer;
 
 import cadastro.ControllerCadastro;
 import cadastro.exception.AtributoInvalidoException;
@@ -142,7 +140,9 @@ public class ControllerRecepcao {
 		} catch (AtributoInvalidoException e) {
 			e.printStackTrace();
 		}
-		return String.format("R$%.2f", this.quartos.remove(quarto).calculaValor());
+		double valorAPagar = this.cadastro.aplicaDesconto(email,this.quartos.remove(quarto).calculaValor());
+		this.cadastro.adicionaPontos(email, valorAPagar);
+		return String.format("R$%.2f", valorAPagar);
 	}
 	
 	/** Metodo que exibe informaçoes de hospedagens de hospedes
@@ -234,7 +234,9 @@ public class ControllerRecepcao {
 		}
 	}
 	
-	public void registraTransacao(String nomeHospede, String nome, double totalPago ) throws HospedeNaoCadastradoException, AtributoInvalidoException{
-		this.transacoes.add(new Transacao(LocalDate.now(), this.cadastro.getInfoHospede(nomeHospede, "Nome"), nome, totalPago));
+	public void registraTransacao(String email, String nome, double totalPago ) throws HospedeNaoCadastradoException, AtributoInvalidoException{
+		double valorAPagar = this.cadastro.aplicaDesconto(email, totalPago);
+		this.transacoes.add(new Transacao(LocalDate.now(), this.cadastro.getInfoHospede(email, "Nome"), nome, valorAPagar));
+		this.cadastro.adicionaPontos(email, valorAPagar);
 	}
 }

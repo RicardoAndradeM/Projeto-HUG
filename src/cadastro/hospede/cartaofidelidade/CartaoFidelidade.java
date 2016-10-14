@@ -13,6 +13,10 @@ public class CartaoFidelidade {
 		this.tipoDeCartao = new Padrao();
 	}
 	
+	public double aplicaDesconto(double valor) {
+		return tipoDeCartao.aplicaDesconto(valor);
+	}
+
 	public int getPontos(){
 		return this.pontos;
 	}

@@ -1,10 +1,8 @@
 package restaurante.cardapio.refeicao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import restaurante.cardapio.Comestivel;
-import restaurante.cardapio.prato.Prato;
 import restaurante.exception.DescricaoInvalidaException;
 import restaurante.exception.NomeInvalidoException;
 import restaurante.exception.PratosInvalidoException;

@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import cadastro.exception.QuartoNaoEncontradoException;
 import cadastro.exception.QuartoOcupadoException;
+import cadastro.hospede.cartaofidelidade.CartaoFidelidade;
 
 /** Classe que representa um hospede
  * @author Ricardo Andrade
@@ -15,7 +16,20 @@ public class Hospede {
 	private String email;
 	private String dataNascimento;
 	private HashMap<String, Double> chavesDoQuarto;
+	private CartaoFidelidade cartao;
 	
+	public int getPontos() {
+		return cartao.getPontos();
+	}
+
+	public void adicionaPontos(double valor) {
+		cartao.adicionaPontos(valor);
+	}
+
+	public double aplicaDesconto(double valor) {
+		return cartao.aplicaDesconto(valor);
+	}
+
 	/** 
 	 * @param nome Nome do Hospede
 	 * @param email Email do Hospede
@@ -26,6 +40,7 @@ public class Hospede {
 		this.email = email;
 		this.dataNascimento = dataNascimento;
 		this.chavesDoQuarto = new HashMap<String, Double>();
+		this.cartao = new CartaoFidelidade();
 	}
 	
 	/** Quando o cliente faz o checkin no hostel ele recebe a chave do quarto,

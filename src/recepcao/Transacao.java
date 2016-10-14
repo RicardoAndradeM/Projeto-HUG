@@ -2,8 +2,6 @@ package recepcao;
 
 import java.time.LocalDate;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.LocalAttribute;
-
 /** Classe que representa uma trasacao no hotel
  * @author Ricardo Andrade
  * @since 09/10/2016

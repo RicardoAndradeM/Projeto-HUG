@@ -19,4 +19,10 @@ public class Premium implements TipoDeCartao {
 		return valor - valor*0.10;
 	}
 
+	@Override
+	public double valorAPagar() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
