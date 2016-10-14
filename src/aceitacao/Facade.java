@@ -1,5 +1,8 @@
 package aceitacao;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 import cadastro.ControllerCadastro;
 import cadastro.exception.AtributoInvalidoException;
 import cadastro.exception.DataNascimentoInvalidaException;
@@ -217,9 +220,34 @@ public class Facade {
 
 	/**
 	 * Metodo que seja implmentado futuramente
+	 * @throws IOException Lanca exception caso haja erro na manipulacao de arquivos
 	 */
-	public void fechaSistema(){
+	public void fechaSistema() throws IOException{
+		String relatorioCadastro = this.cadastro.toString();
+		String relatorioRecepcao = this.recepcao.toString();
+		String relatorioRestaurante = this.restaurante.toString();
+		String separador = "======================================================\n";
+		String relatorioFinal = separador+relatorioCadastro+separador+relatorioRestaurante+separador+relatorioRecepcao;
 		
+		FileWriter out = null;
+		
+		try {
+			out = new FileWriter("arquivos_sistema/relatorios/cad_hospedes.txt");
+			out.write(relatorioCadastro);
+			out.close();
+			out = new FileWriter("arquivos_sistema/relatorios/cad_restaurante.txt");
+			out.write(relatorioRestaurante);
+			out.close();
+			out = new FileWriter("arquivos_sistema/relatorios/cad_transacoes.txt");
+			out.write(relatorioRecepcao);
+			out.close();
+			out = new FileWriter("arquivos_sistema/relatorios/hotel_principal.txt");
+			out.write(relatorioFinal);
+			out.close();
+			
+		} finally {
+			out.close();
+		}
 	}
 
 }

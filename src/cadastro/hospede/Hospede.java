@@ -157,6 +157,11 @@ public class Hospede {
 	
 	@Override
 	public String toString() {
-		return this.nome + " : " + this.email;
+		StringBuilder relatorio = new StringBuilder();
+		String[] data = dataNascimento.split("/");
+		relatorio.append("\nEmail: " + this.email);
+		relatorio.append("\nNome: " + this.nome);
+		relatorio.append(String.format("\nData de nascimento: %s-%s-%s", data[2], data[1], data[0]));
+		return relatorio.toString();
 	}
 }

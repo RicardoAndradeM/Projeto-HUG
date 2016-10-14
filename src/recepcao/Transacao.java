@@ -52,4 +52,9 @@ public class Transacao {
 	public double getTotalPago() {
 		return totalPago;
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("\n==> Nome: %s Gasto: R$%.2f Detalhes: %s", this.nomeHospede,this.totalPago,this.numeroDoQuarto);
+	}
 }

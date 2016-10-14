@@ -92,6 +92,6 @@ public class Prato implements Comestivel {
 	
 	@Override
 	public String toString() {
-		return String.format("%s(R$%.2f) - %s", this.nome, this.preco, this.descricao);
+		return String.format("\nNome: %s Preco: R$%.2f\nDescricao: %s", this.nome, this.preco, this.descricao);
 	}
 }

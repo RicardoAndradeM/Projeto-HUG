@@ -239,4 +239,16 @@ public class ControllerRecepcao {
 		this.transacoes.add(new Transacao(LocalDate.now(), this.cadastro.getInfoHospede(email, "Nome"), nome, valorAPagar));
 		this.cadastro.adicionaPontos(email, valorAPagar);
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder relatorio = new StringBuilder("Historico de Transacoes:");
+		double lucroTotal = 0;
+		for (Transacao transacao : transacoes) {
+			relatorio.append(transacao.toString());
+			lucroTotal += transacao.getTotalPago();
+		}
+		relatorio.append(String.format("\n===== Resumo de transacoes =====\nLucro total:R$%.2f\nTotal de transacoes:%d\nLucro medio por transacao: R$%.2f>", lucroTotal, transacoes.size(), lucroTotal/transacoes.size()));
+		return relatorio.toString();
+	}
 }

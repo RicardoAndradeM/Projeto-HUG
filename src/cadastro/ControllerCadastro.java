@@ -2,6 +2,7 @@ package cadastro;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Set;
 
 import cadastro.exception.AtributoInvalidoException;
@@ -219,11 +220,12 @@ public class ControllerCadastro {
 	
 	@Override
 	public String toString() {
-		String relatorioHostel = "Hospedes instalados no momento:";
+		StringBuilder relatorioHostel = new StringBuilder(String.format("Cadastro de Hospedes: %s hospedes registrados", this.hospedes.size()));
 		Set<String> listaDeHospedes = this.hospedes.keySet();
+		int indice = 1;
 		for (String hospede : listaDeHospedes) {
-			relatorioHostel += String.format("\n -%s", this.hospedes.get(hospede));
+			relatorioHostel.append(String.format("\n==> Hospede %d:%s\n", indice++, this.hospedes.get(hospede).toString()));
 		}
-		return relatorioHostel;
+		return relatorioHostel.toString();
 	}
 }

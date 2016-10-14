@@ -107,12 +107,11 @@ public class Refeicao implements Comestivel {
 	
 	@Override
 	public String toString() {
-		StringBuilder pratosASerServdos = new StringBuilder();
+		StringBuilder relatorio = new StringBuilder(String.format("\nNome: %s Preco: R$%.2f\nDescricao: %s\nPratos: ", this.nome, this.getPreco(), this.descricao));
 		for (int i = 0; i < pratos.length; i++) {
-			pratosASerServdos.append(String.format(" (%d) ", i +1));
-			pratosASerServdos.append(this.pratos[i]);
-			pratosASerServdos.append(",");
+			relatorio.append(pratos[i].getNome());
+			relatorio.append(",");
 		}
-		return String.format("%s(R$%.2f) - %s",this.nome, this.getPreco(), this.getDescricao());
+		return relatorio.toString().substring(0, relatorio.length() -1);
 	}
 }

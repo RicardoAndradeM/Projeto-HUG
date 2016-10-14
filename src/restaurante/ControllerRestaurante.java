@@ -156,4 +156,14 @@ public class ControllerRestaurante {
 		this.recepcao.registraTransacao(email, pedido.getNome(), pedido.getPreco());
 		return String.format("R$%.2f", pedido.getPreco());
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder relatorio = new StringBuilder(String.format("Menu do Restaurante: %d itens no cardapio", this.itensDeCardapio.size()));
+		int indice = 1;
+		for (Comestivel item : itensDeCardapio) {
+			relatorio.append(String.format("\n==> Item %d:%s\n", indice++, item.toString()));
+		}
+		return relatorio.toString();
+	}
 }
