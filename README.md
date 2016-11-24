@@ -1,10 +1,11 @@
 # Projeto-Ricardo-Gabriel
 Projeto de LP2 - Hotel Urbano de Gotemburgo
 
-## Componetes:
+## autor:
 
-115211310 - Ricardo de Andrade Maia
+Ricardo de Andrade Maia
 
-115210941 - Gabriel Schubert Silva Araújo
+### colaboradores
+Gabriel Schubert Silva Araújo
 
-115211231 - Ygor Luiz Ouriques Rodrigues
+Ygor Luiz Ouriques Rodrigues

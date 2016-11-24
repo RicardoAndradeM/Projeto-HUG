@@ -9,6 +9,7 @@ import recepcao.ControllerRecepcao;
 import restaurante.cardapio.Comestivel;
 import restaurante.cardapio.EstrategiaOrdenacaoCadapio;
 import restaurante.cardapio.NomeCardapioComparator;
+import restaurante.cardapio.PrecoCardapioComparator;
 import restaurante.cardapio.prato.Prato;
 import restaurante.cardapio.prato.VerificadorDePrato;
 import restaurante.cardapio.refeicao.Refeicao;
@@ -27,6 +28,8 @@ public class ControllerRestaurante {
 	private VerificadorDePrato verificadorDePrato;
 	private VerificadorDeRefeicao verificadorDeRefeicao;
 	private EstrategiaOrdenacaoCadapio estrategiaOrdenacao;
+	private EstrategiaOrdenacaoCadapio estrategiaNome;
+	private EstrategiaOrdenacaoCadapio estrategiaPreco;
 	private ArrayList<Comestivel> itensDeCardapio;
 	private ControllerRecepcao recepcao;
 	
@@ -40,6 +43,8 @@ public class ControllerRestaurante {
 		this.verificadorDeRefeicao = new VerificadorDeRefeicao();
 		this.itensDeCardapio = new ArrayList<Comestivel>();
 		this.recepcao = recepcao;
+		this.estrategiaNome =  new NomeCardapioComparator();
+		this.estrategiaPreco = new PrecoCardapioComparator();
 	}
 	
 	/** Metodo que cadastra novos pratos no  sistema
@@ -130,9 +135,10 @@ public class ControllerRestaurante {
 	
 	public void ordenaMenu(String tipoOrdenacao){
 		if(tipoOrdenacao.equals("Nome")){
-			this.estrategiaOrdenacao = new NomeCardapioComparator();
+			this.estrategiaOrdenacao = estrategiaNome;
+		} else {
+			this.estrategiaOrdenacao = estrategiaPreco;
 		}
-		this.estrategiaOrdenacao = new NomeCardapioComparator();
 	}
 	
 	public String consultaMenuRestaurante(){
