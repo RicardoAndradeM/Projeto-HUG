@@ -160,8 +160,7 @@ public class ControllerRestaurante {
 	
 	public String realizaPedido(String email, String nome) throws HospedeNaoCadastradoException, AtributoInvalidoException{
 		Comestivel pedido = cardapio.get(nome);
-		this.recepcao.registraTransacao(email, pedido.getNome(), pedido.getPreco());
-		return String.format("R$%.2f", pedido.getPreco());
+		return String.format("R$%.2f", this.recepcao.registraTransacao(email, pedido.getNome(), pedido.getPreco()));
 	}
 	
 	@Override

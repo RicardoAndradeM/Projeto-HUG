@@ -234,10 +234,11 @@ public class ControllerRecepcao {
 		}
 	}
 	
-	public void registraTransacao(String email, String nome, double totalPago ) throws HospedeNaoCadastradoException, AtributoInvalidoException{
+	public double registraTransacao(String email, String nome, double totalPago ) throws HospedeNaoCadastradoException, AtributoInvalidoException{
 		double valorAPagar = this.cadastro.aplicaDesconto(email, totalPago);
 		this.transacoes.add(new Transacao(LocalDate.now(), this.cadastro.getInfoHospede(email, "Nome"), nome, valorAPagar));
-		this.cadastro.adicionaPontos(email, valorAPagar);
+		this.cadastro.adicionaPontos(email, totalPago);
+		return valorAPagar;
 	}
 	
 	@Override

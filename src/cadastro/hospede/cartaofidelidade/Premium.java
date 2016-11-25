@@ -8,7 +8,7 @@ public class Premium implements TipoDeCartao {
 		
 		pontosGanhos += (int) valor * 0.30;
 		if (valor > 100.00){
-			pontosGanhos += 10 * (valor - 100.00) / 100;
+			pontosGanhos += 10 * (int) (valor/100);
 		}
 		
 		return pontosGanhos;
