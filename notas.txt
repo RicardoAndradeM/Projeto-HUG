@@ -1,6 +1,0 @@
-Inplementacao futura:
-						-Quarto deve ser previamente cadastrados
-						-corrigir nome do metodo verificaQuarto em verificador de quarto
-						- getinfohospedagem deve ser transforma em getinfohospede
-						- retirar todas as verificacoes de email de classe ControllerRecepcao
-						- dar uma atecao ao controlerRestaurante
